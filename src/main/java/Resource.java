@@ -41,14 +41,4 @@ public abstract class Resource {
         if (amountToSubtract < 0) throw new IllegalArgumentException("Parameter must be non-negative");
         maxValue -= amountToSubtract;
     }
-
-    public void increaseMin(int amountToAdd) {
-        if (amountToAdd < 0) throw new IllegalArgumentException("Parameter must be non-negative");
-        maxValue += amountToAdd;
-    }
-
-    public void decreaseMin(int amountToSubtract) {
-        if (amountToSubtract < 0) throw new IllegalArgumentException("Parameter must be non-negative");
-        maxValue -= amountToSubtract;
-    }
 }
