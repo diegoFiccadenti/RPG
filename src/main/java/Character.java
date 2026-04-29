@@ -1,6 +1,6 @@
 public abstract class Character {
 
-    String name;
+    private final String name;
 
     public Character(String name) {
         this.name = name;

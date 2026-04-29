@@ -1,8 +1,14 @@
 public abstract class Resource {
 
-    int currentValue;
-    int maxValue;
-    int minValue;
+    private int currentValue;
+    private int maxValue;
+    private final int minValue;
+
+    public Resource(int currentValue, int maxValue, int minValue) {
+        this.currentValue = currentValue;
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+    }
 
     public int getCurrentValue() {
         return currentValue;

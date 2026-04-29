@@ -1,4 +1,4 @@
 public interface Fighter {
-    public Object getHealthPoints();
-    public Object getManaPoints();
+    public void attack();
+    public void takeDamage();
 }
