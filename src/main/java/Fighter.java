@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
-
-public class Fighter {
+public interface Fighter {
+    public Object getHealthPoints();
+    public Object getManaPoints();
 }

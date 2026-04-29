@@ -1,4 +1,16 @@
-package PACKAGE_NAME;
+public class Player extends Character implements Fighter {
 
-public class Player {
+    public Player(String name) {
+        super(name);
+    }
+
+    @Override
+    public Object getHealthPoints() {
+        return null;
+    }
+
+    @Override
+    public Object getManaPoints() {
+        return null;
+    }
 }
