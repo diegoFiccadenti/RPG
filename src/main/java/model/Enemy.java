@@ -12,4 +12,6 @@ public class Enemy extends Character implements Fighter, Lootable {
     public void attack(){}
 
     public void takeDamage() {}
+
+    public void dropLoot() {}
 }

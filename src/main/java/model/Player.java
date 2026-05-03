@@ -9,6 +9,7 @@ public class Player extends Character implements Fighter, Levelable {
     private final ManaPoints MP;
     private final Experience XP;
     private int level;
+    private final SkillStats skillStats;
 
     public Player(String name, HealthPoints HP, ManaPoints MP) {
         super(name);
@@ -16,6 +17,7 @@ public class Player extends Character implements Fighter, Levelable {
         this.MP = MP;
         this.level = 0;
         this.XP = new Experience(level);
+        this.skillStats = new SkillStats();
     }
 
     public HealthPoints getHP() {
@@ -34,6 +36,8 @@ public class Player extends Character implements Fighter, Levelable {
         return XP;
     }
 
+    public SkillStats getSkillStats() {return skillStats;}
+
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {
             int xpSurplus = gainedXP - XP.neededXPToLevelUp();
@@ -49,6 +53,7 @@ public class Player extends Character implements Fighter, Levelable {
 
     public void levelUp() {
         level++;
+        skillStats.addAbilityPoints(3);
     }
 
     public void attack() {}
