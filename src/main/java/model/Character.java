@@ -1,3 +1,5 @@
+package model;
+
 public abstract class Character {
 
     private final String name;

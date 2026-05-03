@@ -1,3 +1,5 @@
+package model;
+
 public class Experience extends Resource {
 
     public Experience(int currentLevel) {

@@ -1,3 +1,7 @@
+package interfaces;
+
+import model.Experience;
+
 public interface Levelable {
 
     public int getLevel();

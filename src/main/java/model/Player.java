@@ -1,3 +1,8 @@
+package model;
+
+import interfaces.Fighter;
+import interfaces.Levelable;
+
 public class Player extends Character implements Fighter, Levelable {
 
     private final HealthPoints HP;
