@@ -1,6 +1,9 @@
 package model;
 
-public abstract class Item {
+import interfaces.Takeable;
+import interfaces.Droppable;
+
+public abstract class Item implements Takeable, Droppable {
 
     private final String name;
     private final String description;
@@ -30,4 +33,8 @@ public abstract class Item {
     public int hashCode() {
         return name.hashCode();
     }
+
+    public void take() {}
+
+    public void drop() {}
 }
