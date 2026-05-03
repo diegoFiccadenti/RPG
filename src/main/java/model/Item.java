@@ -20,6 +20,10 @@ public abstract class Item implements Takeable, Droppable {
         return description;
     }
 
+    public void take() {}
+
+    public void drop() {}
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -33,8 +37,4 @@ public abstract class Item implements Takeable, Droppable {
     public int hashCode() {
         return name.hashCode();
     }
-
-    public void take() {}
-
-    public void drop() {}
 }

@@ -12,8 +12,8 @@ public class Player extends Character implements Fighter, Levelable {
     private final SkillStats skillStats;
     private final Currency silver;
 
-    public Player(String name, HealthPoints HP, ManaPoints MP) {
-        super(name);
+    public Player(String name, Inventory inventory, HealthPoints HP, ManaPoints MP) {
+        super(name, inventory);
         this.HP = HP;
         this.MP = MP;
         this.level = 0;
