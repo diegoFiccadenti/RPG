@@ -22,29 +22,30 @@ public abstract class Resource {
         return minValue;
     }
 
-    public void increaseCurrent(int amountToAdd) {
-        if (amountToAdd < 0) throw new IllegalArgumentException("Parameter must be non-negative");
-        currentValue += amountToAdd;
+    public boolean isAtMaximum() {
+        return currentValue >= maxValue;
+    }
+
+    public boolean isAtMinimum() {
+        return currentValue <= minValue;
+    }
+
+    public void setCurrent(int newCurrent) {
+
+        this.currentValue = newCurrent;
+
         if (currentValue > maxValue) {
             currentValue = maxValue;
         }
-    }
-
-    public void decreaseCurrent(int amountToSubtract) {
-        if (amountToSubtract < 0) throw new IllegalArgumentException("Parameter must be non-negative");
-        currentValue -= amountToSubtract;
         if (currentValue < minValue) {
             currentValue = minValue;
         }
     }
 
-    public void increaseMax(int amountToAdd) {
-        if (amountToAdd < 0) throw new IllegalArgumentException("Parameter must be non-negative");
-        maxValue += amountToAdd;
-    }
-
-    public void decreaseMax(int amountToSubtract) {
-        if (amountToSubtract < 0) throw new IllegalArgumentException("Parameter must be non-negative");
-        maxValue -= amountToSubtract;
+    public void setMax(int newMax) {
+        if (newMax < minValue) {
+            throw new IllegalArgumentException("maxValue must be greater than minValue");
+        }
+        this.maxValue = newMax;
     }
 }
