@@ -10,6 +10,7 @@ public class Player extends Character implements Fighter, Levelable {
     private final Experience XP;
     private int level;
     private final SkillStats skillStats;
+    private final Currency silver;
 
     public Player(String name, HealthPoints HP, ManaPoints MP) {
         super(name);
@@ -18,6 +19,7 @@ public class Player extends Character implements Fighter, Levelable {
         this.level = 0;
         this.XP = new Experience(level);
         this.skillStats = new SkillStats();
+        this.silver = new Currency(500);
     }
 
     public HealthPoints getHP() {
@@ -37,6 +39,8 @@ public class Player extends Character implements Fighter, Levelable {
     }
 
     public SkillStats getSkillStats() {return skillStats;}
+
+    public Currency getSilver() {return silver;}
 
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {
