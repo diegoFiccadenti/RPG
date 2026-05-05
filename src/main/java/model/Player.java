@@ -22,10 +22,12 @@ public class Player extends Character implements Fighter, Levelable {
         this.silver = new Currency(500);
     }
 
+    @Override
     public HealthPoints getHP() {
         return HP;
     }
 
+    @Override
     public ManaPoints getMP() {
         return MP;
     }
@@ -61,6 +63,4 @@ public class Player extends Character implements Fighter, Levelable {
     }
 
     public void attack() {}
-
-    public void takeDamage() {}
 }
