@@ -20,9 +20,17 @@ public abstract class Item implements Takeable, Droppable {
         return description;
     }
 
-    public void take() {}
+    public void take(Character taker) {
+        if (taker == null) throw new  IllegalArgumentException("taker cannot be null");
 
-    public void drop() {}
+        taker.getInventory().addItem(this, 1);
+    }
+
+    public void drop(Character dropper) {
+        if (dropper == null) throw new  IllegalArgumentException("dropper cannot be null");
+
+        dropper.getInventory().removeItem(this, 1);
+    }
 
     @Override
     public boolean equals(Object obj) {
