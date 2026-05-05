@@ -47,7 +47,7 @@ public class Player extends Character implements Fighter, Levelable {
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {
             int xpSurplus = gainedXP - XP.neededXPToLevelUp();
-            XP.setCurrent(XP.getCurrentValue() + gainedXP);
+            XP.increaseCurrent(gainedXP);
             if (XP.isAtMaximum()) {
                 this.levelUp();
                 XP.setMax(Experience.maxXPForNewLevel(level));

@@ -34,11 +34,29 @@ public abstract class Resource {
 
     public void setCurrent(int newCurrent) {
 
-        this.currentValue = newCurrent;
+        currentValue = newCurrent;
 
         if (currentValue > maxValue) {
             currentValue = maxValue;
         }
+        if (currentValue < minValue) {
+            currentValue = minValue;
+        }
+    }
+
+    public void increaseCurrent(int amount) {
+        if (amount < 0) throw new IllegalArgumentException("Amount cannot be negative");
+
+        currentValue += amount;
+        if (currentValue > maxValue) {
+            currentValue = maxValue;
+        }
+    }
+
+    public void decreaseCurrent(int amount) {
+        if (amount < 0) throw new IllegalArgumentException("Amount cannot be negative");
+
+        currentValue -= amount;
         if (currentValue < minValue) {
             currentValue = minValue;
         }
