@@ -31,7 +31,7 @@ public class Weapon extends Item implements Equippable {
         equipped = true;
     }
 
-    public void unEquip() {
+    public void unequip() {
         equipped = false;
     }
 }

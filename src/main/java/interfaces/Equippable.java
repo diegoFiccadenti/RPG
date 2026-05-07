@@ -4,5 +4,5 @@ public interface Equippable {
 
     public void equip();
 
-    public void unEquip();
+    public void unequip();
 }

@@ -24,7 +24,6 @@ public class Potion extends Item implements Consumable {
 
     @Override
     public void use(Fighter user) {
-
         user.getHP().increaseCurrent(recoveredHP);
         user.getMP().increaseCurrent(recoveredMP);
     }
