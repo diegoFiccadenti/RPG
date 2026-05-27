@@ -5,7 +5,7 @@ import quantifiables.ManaPoints;
 
 public interface Fighter {
 
-    public void attack();
+    public void attack(Fighter target);
 
     public HealthPoints getHP();
     public ManaPoints getMP();

@@ -9,11 +9,13 @@ public class Enemy extends Character implements Fighter, Lootable {
 
     private final HealthPoints HP;
     private final ManaPoints MP;
+    private final int DROPPED_XP; // Experience dropped when defeated
 
-    public Enemy (String name, Inventory inventory, HealthPoints HP, ManaPoints MP) {
+    public Enemy (String name, Inventory inventory, HealthPoints HP, ManaPoints MP, int DROPPED_XP) {
         super(name, inventory);
         this.HP = HP;
         this.MP = MP;
+        this.DROPPED_XP = DROPPED_XP;
     }
 
     @Override
@@ -26,7 +28,11 @@ public class Enemy extends Character implements Fighter, Lootable {
         return MP;
     }
 
-    public void attack(){}
+    public int getDROPPED_XP() {
+        return DROPPED_XP;
+    }
+
+    public void attack(Fighter target){}
 
     public void dropLoot() {}
 }

@@ -66,5 +66,5 @@ public class Player extends Character implements Fighter, Levelable {
         skillStats.addAbilityPoints(3);
     }
 
-    public void attack() {}
+    public void attack(Fighter target) {}
 }
