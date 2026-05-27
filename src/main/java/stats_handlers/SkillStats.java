@@ -1,4 +1,4 @@
-package model;
+package stats_handlers;
 
 import java.util.HashMap;
 

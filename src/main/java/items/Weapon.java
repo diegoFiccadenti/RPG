@@ -1,6 +1,4 @@
-package model;
-
-import interfaces.Equippable;
+package items;
 
 public class Weapon extends Item implements Equippable {
 

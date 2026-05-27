@@ -1,4 +1,6 @@
-package model;
+package data_structures;
+
+import items.Item;
 
 import java.util.HashMap;
 

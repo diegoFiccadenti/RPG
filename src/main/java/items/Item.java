@@ -1,7 +1,6 @@
-package model;
+package items;
 
-import interfaces.Takeable;
-import interfaces.Droppable;
+import entities.Character;
 
 public abstract class Item implements Takeable, Droppable {
 
@@ -20,7 +19,7 @@ public abstract class Item implements Takeable, Droppable {
         return description;
     }
 
-    public void take(Character taker) {
+    public void take(entities.Character taker) {
         if (taker == null) throw new  IllegalArgumentException("taker cannot be null");
 
         taker.getInventory().addItem(this, 1);

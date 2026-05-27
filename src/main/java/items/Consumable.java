@@ -1,4 +1,6 @@
-package interfaces;
+package items;
+
+import entities.Fighter;
 
 public interface Consumable {
 

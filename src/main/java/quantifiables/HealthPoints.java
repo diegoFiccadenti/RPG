@@ -1,4 +1,4 @@
-package model;
+package quantifiables;
 
 public class HealthPoints extends Resource {
     public HealthPoints(int currentValue, int maxValue) {

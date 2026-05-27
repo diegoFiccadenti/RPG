@@ -1,4 +1,4 @@
-package model;
+package quantifiables;
 
 public class ManaPoints extends Resource {
     public ManaPoints(int currentValue, int maxValue) {

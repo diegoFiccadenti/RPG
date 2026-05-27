@@ -1,7 +1,6 @@
-package model;
+package items;
 
-import interfaces.Consumable;
-import interfaces.Fighter;
+import entities.Fighter;
 
 public class Potion extends Item implements Consumable {
 

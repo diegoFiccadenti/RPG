@@ -1,7 +1,9 @@
-package model;
+package entities;
 
-import interfaces.Fighter;
-import interfaces.Lootable;
+import items.Lootable;
+import quantifiables.HealthPoints;
+import data_structures.Inventory;
+import quantifiables.ManaPoints;
 
 public class Enemy extends Character implements Fighter, Lootable {
 

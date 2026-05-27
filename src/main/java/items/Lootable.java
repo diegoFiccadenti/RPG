@@ -1,4 +1,4 @@
-package interfaces;
+package items;
 
 public interface Lootable {
 

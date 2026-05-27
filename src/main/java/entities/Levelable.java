@@ -1,6 +1,6 @@
-package interfaces;
+package entities;
 
-import model.Experience;
+import quantifiables.Experience;
 
 public interface Levelable {
 

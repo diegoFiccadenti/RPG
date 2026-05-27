@@ -1,7 +1,11 @@
-package model;
+package entities;
 
-import interfaces.Fighter;
-import interfaces.Levelable;
+import data_structures.*;
+import quantifiables.Currency;
+import quantifiables.Experience;
+import quantifiables.HealthPoints;
+import quantifiables.ManaPoints;
+import stats_handlers.SkillStats;
 
 public class Player extends Character implements Fighter, Levelable {
 

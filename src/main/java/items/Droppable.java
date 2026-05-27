@@ -1,6 +1,6 @@
-package interfaces;
+package items;
 
-import model.Character;
+import entities.Character;
 
 public interface Droppable {
 

@@ -1,4 +1,4 @@
-package model;
+package quantifiables;
 
 public abstract class Resource {
 

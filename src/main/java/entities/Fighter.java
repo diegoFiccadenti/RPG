@@ -1,7 +1,7 @@
-package interfaces;
+package entities;
 
-import model.HealthPoints;
-import model.ManaPoints;
+import quantifiables.HealthPoints;
+import quantifiables.ManaPoints;
 
 public interface Fighter {
 

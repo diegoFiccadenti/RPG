@@ -1,4 +1,6 @@
-package model;
+package entities;
+
+import data_structures.Inventory;
 
 public abstract class Character {
 
