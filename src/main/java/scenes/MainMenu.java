@@ -31,6 +31,7 @@ public class MainMenu implements MyScene {
 
         // adds events to buttons
         addEventQuitGame(quit);
+        addEventShowTutorial(tutorial, stage);
 
         // creates menu's scene
         Scene menuScene = new Scene(vbox, 640, 480);
@@ -41,6 +42,13 @@ public class MainMenu implements MyScene {
         button.setPrefSize(200, 50);
         button.setAlignment(Pos.CENTER);
         button.setFont(Font.font("Copperplate Gothic Light", 24));
+    }
+
+    private static void addEventShowTutorial(Button tutorialButton, Stage stage) {
+        tutorialButton.setOnAction(e -> {
+            Tutorial.create(stage);
+            stage.show();
+        });
     }
 
     private static void addEventQuitGame(Button quitButton) {
