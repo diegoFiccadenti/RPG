@@ -1,5 +1,11 @@
 plugins {
     id("java")
+    application
+    id ("org.openjfx.javafxplugin") version "0.1.0"
+}
+
+application {
+    mainClass.set("Main")
 }
 
 group = "org.example"
@@ -7,6 +13,11 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+javafx {
+    version = "25.0.3"
+    modules = listOf("javafx.controls")
 }
 
 dependencies {
