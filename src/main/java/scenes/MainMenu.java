@@ -1,6 +1,9 @@
 package scenes;
 
 import javafx.geometry.Pos;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -16,16 +19,13 @@ public class MainMenu implements MyScene {
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
+        vbox.setBackground(new Background((new BackgroundFill(Color.DARKGRAY, null, null))));
 
         // creates and adds the buttons
-        Button play = new Button("Play");
-        Button tutorial = new Button("Tutorial");
-        Button settings = new Button("Settings");
-        Button quit = new Button("Quit");
-        newMenuButton(play);
-        newMenuButton(tutorial);
-        newMenuButton(settings);
-        newMenuButton(quit);
+        Button play = newMenuButton("Play");
+        Button tutorial = newMenuButton("Tutorial");
+        Button settings = newMenuButton("Settings");
+        Button quit = newMenuButton("Quit");
 
         vbox.getChildren().addAll(play, tutorial, settings, quit);
 
@@ -39,10 +39,12 @@ public class MainMenu implements MyScene {
         stage.setScene(menuScene);
     }
 
-    private static void newMenuButton(Button button) {
+    private static Button newMenuButton(String buttonName) {
+        Button button = new Button(buttonName);
         button.setPrefSize(200, 50);
         button.setAlignment(Pos.CENTER);
         button.setFont(Font.font("Copperplate Gothic Light", 24));
+        return button;
     }
 
     private static void addEventStartGame(Button playButton, Stage stage) {

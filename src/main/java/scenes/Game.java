@@ -2,17 +2,15 @@ package scenes;
 
 import entities.Player;
 import data_structures.Inventory;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import quantifiables.HealthPoints;
 import quantifiables.ManaPoints;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Game implements MyScene {
@@ -42,12 +40,16 @@ public class Game implements MyScene {
     }
 
     private static Pane createMainPane(Stage stage) {
+
+        Pane pane = new Pane();
+        pane.setBackground(new Background((new BackgroundFill(Color.DARKGRAY, null, null))));
+
         Button exit = new Button("Exit");
         exit.setOnAction(e -> {
             MainMenu.create(stage);
             stage.show();
         });
-        Pane pane = new Pane();
+
         pane.getChildren().add(exit);
 
         return pane;
