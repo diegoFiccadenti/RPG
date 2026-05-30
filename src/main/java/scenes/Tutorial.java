@@ -24,13 +24,7 @@ public class Tutorial implements MyScene {
 
         // creating the button for returning to main menu
         Button returnToMenu = new Button("Return to Menu");
-        returnToMenu.setPrefSize(300, 50);
-        returnToMenu.setAlignment(Pos.CENTER);
-        returnToMenu.setFont(Font.font("Copperplate Gothic Light", 24));
-        returnToMenu.setOnAction(e -> {
-            MainMenu.create(stage);
-            stage.show();
-        });
+        personalizeReturnButton(returnToMenu, stage);
 
         // creating the text-flow area
         TextFlow textFlow = new TextFlow(text1, text2);
@@ -39,7 +33,7 @@ public class Tutorial implements MyScene {
         // creating the VBox
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.TOP_CENTER);
-        vbox.setSpacing(10);
+        vbox.setSpacing(20);
         vbox.getChildren().addAll(textFlow);
         vbox.getChildren().add(returnToMenu); // added for last so it stays on the bottom
 
@@ -50,5 +44,15 @@ public class Tutorial implements MyScene {
         Scene tutorialScene = new Scene(scrollPane, 640, 480);
 
         stage.setScene(tutorialScene);
+    }
+
+    private static void personalizeReturnButton(Button button, Stage stage) {
+        button.setPrefSize(250, 50);
+        button.setAlignment(Pos.CENTER);
+        button.setFont(Font.font("Copperplate Gothic Light", 24));
+        button.setOnAction(e -> {
+            MainMenu.create(stage);
+            stage.show();
+        });
     }
 }
