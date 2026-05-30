@@ -11,8 +11,8 @@ public class Enemy extends Character implements Fighter, Lootable {
     private final ManaPoints MP;
     private final int DROPPED_XP; // Experience dropped when defeated
 
-    public Enemy (String name, Inventory inventory, HealthPoints HP, ManaPoints MP, int DROPPED_XP) {
-        super(name, inventory);
+    public Enemy (String name, Inventory inventory, HealthPoints HP, ManaPoints MP, int DROPPED_XP, int coins) {
+        super(name, inventory, coins);
         this.HP = HP;
         this.MP = MP;
         this.DROPPED_XP = DROPPED_XP;

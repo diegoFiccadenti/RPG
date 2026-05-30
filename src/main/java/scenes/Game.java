@@ -74,7 +74,7 @@ public class Game implements MyScene {
         HBox MP_HBox = createProgressBarWithExplicitValues(MP, MPBar, MPValue);
 
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.TOP_CENTER);
+        grid.setAlignment(Pos.CENTER);
         grid.setHgap(100);
         grid.setVgap(10);
 
