@@ -1,37 +1,22 @@
 package entities;
 
 import data_structures.*;
-import quantifiables.Currency;
 import quantifiables.Experience;
 import quantifiables.HealthPoints;
 import quantifiables.ManaPoints;
-import stats_handlers.SkillStats;
+import stats_handlers.CombatStats;
 
 public class Player extends Character implements Fighter, Levelable {
 
-    private final HealthPoints HP;
-    private final ManaPoints MP;
     private final Experience XP;
     private int level;
-    private final SkillStats skillStats;
+    private final CombatStats combatStats;
 
-    public Player(String name, Inventory inventory, HealthPoints HP, ManaPoints MP) {
+    public Player(String name, Inventory inventory) {
         super(name, inventory, 0);
-        this.HP = HP;
-        this.MP = MP;
         this.level = 0;
         this.XP = new Experience(level);
-        this.skillStats = new SkillStats();
-    }
-
-    @Override
-    public HealthPoints getHP() {
-        return HP;
-    }
-
-    @Override
-    public ManaPoints getMP() {
-        return MP;
+        this.combatStats = new CombatStats();
     }
 
     public int getLevel() {
@@ -42,7 +27,7 @@ public class Player extends Character implements Fighter, Levelable {
         return XP;
     }
 
-    public SkillStats getSkillStats() {return skillStats;}
+    public CombatStats getCombatStats() {return combatStats;}
 
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {
@@ -59,7 +44,7 @@ public class Player extends Character implements Fighter, Levelable {
 
     public void levelUp() {
         level++;
-        skillStats.addAbilityPoints(3);
+        combatStats.addAbilityPoints(3);
     }
 
     public void attack(Fighter target) {}

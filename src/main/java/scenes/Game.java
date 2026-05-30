@@ -19,9 +19,7 @@ public class Game implements MyScene {
     // creazione player temporanea:
     private static Player player = new Player(
             "NomeDiProva",
-            new Inventory(),
-            new HealthPoints(86,100),
-            new ManaPoints(28,100)
+            new Inventory()
     );
 
     public static void create(Stage stage) {
@@ -61,16 +59,21 @@ public class Game implements MyScene {
         Label playerLevel = new Label("Level: " + player.getLevel());
         Label playerCoins = new Label("Coins: " + player.getCoins().getCurrentValue());
 
+        int currentHP = player.getCombatStats().getHP().getCurrentValue();
+        int maxHP = player.getCombatStats().getHP().getMaxValue();
+        int currentMP = player.getCombatStats().getMP().getCurrentValue();
+        int maxMP = player.getCombatStats().getMP().getMaxValue();
+
         Label HP = new Label("HP");
-        Label HPValue = new Label(player.getHP().getCurrentValue() + " / " + player.getHP().getMaxValue());
+        Label HPValue = new Label(currentHP + " / " + maxHP);
         ProgressBar HPBar = new ProgressBar();
-        HPBar.setProgress((double) player.getHP().getCurrentValue()/player.getHP().getMaxValue());
+        HPBar.setProgress((double) currentHP / maxHP);
         HBox HP_HBox = createProgressBarWithExplicitValues(HP, HPBar, HPValue);
 
         Label MP = new Label("MP");
-        Label MPValue = new Label(player.getMP().getCurrentValue() + " / " + player.getMP().getMaxValue());
+        Label MPValue = new Label(currentMP + " / " + maxMP);
         ProgressBar MPBar = new ProgressBar();
-        MPBar.setProgress((double) player.getMP().getCurrentValue()/player.getMP().getMaxValue());
+        MPBar.setProgress((double) currentMP / maxMP);
         HBox MP_HBox = createProgressBarWithExplicitValues(MP, MPBar, MPValue);
 
         GridPane grid = new GridPane();
