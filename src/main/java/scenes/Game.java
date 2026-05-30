@@ -4,6 +4,7 @@ import data_structures.Inventory;
 import entities.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -61,6 +62,13 @@ public class Game implements MyScene {
 
         // main pane
         Pane pane = new Pane();
+        Button exit = new Button("Exit");
+        exit.setOnAction(e -> {
+            MainMenu.create(stage);
+            stage.show();
+        });
+        pane.getChildren().add(exit);
+
 
         // scene creation
         BorderPane root = new BorderPane();
