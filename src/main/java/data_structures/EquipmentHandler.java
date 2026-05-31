@@ -71,6 +71,18 @@ public class EquipmentHandler {
         updateDependantStats();
     }
 
+    public void unequip(Equippable pieceToUnequip, Fighter equipper) {
+        int type = pieceToUnequip.getType();
+        HashMap<Integer, Equippable> equipperEquipmentSlots = equipper.getEquipment().getEquipmentSlots();
+
+        if (equipperEquipmentSlots.get(type) != null) {
+            if (equipperEquipmentSlots.get(type).equals(pieceToUnequip)) {
+                equipperEquipmentSlots.get(type).setEquipped(false);
+                equipperEquipmentSlots.put(type, null);
+            }
+        }
+    }
+
     // to call every time a piece of equipment gets equipped or unequipped
     private void updateDependantStats() {
 
