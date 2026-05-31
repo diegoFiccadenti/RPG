@@ -17,8 +17,11 @@ public class StatsHandler {
     private static final int CHARISMA = 4;
 
     // dependent attributes
-    private final HealthPoints HP = new HealthPoints(100, 100);
-    private final ManaPoints MP = new ManaPoints(100, 100);
+    private final HealthPoints HP = new HealthPoints(0, 0);
+    private final ManaPoints MP = new ManaPoints(0, 0);
+    private int basicMeleeAttack = 0;
+    private int basicMagicAttack = 0;
+    private int persuasiveness = 0;
 
     public StatsHandler() {
         // default value: 5 (for level 0 entities)
@@ -48,10 +51,19 @@ public class StatsHandler {
 
     public ManaPoints getMP() {return MP;}
 
+    public int getBasicMeleeAttack() {return basicMeleeAttack;}
+
+    public int getBasicMagicAttack() {return basicMagicAttack;}
+
+    public int getPersuasiveness() {return persuasiveness;}
+
     // to call every time a skill stat changes (except for Ability Points)
     private void updateDependantStats() {
         this.HP.setMax(20*skillStats.get(VITALITY));
         this.MP.setMax(20*skillStats.get(INTELLIGENCE));
+        this.basicMeleeAttack = 3*skillStats.get(STRENGTH);
+        this.basicMagicAttack = 3*skillStats.get(INTELLIGENCE);
+        this.persuasiveness = 3*skillStats.get(CHARISMA);
     }
 
     public boolean increaseStat(int statName) {

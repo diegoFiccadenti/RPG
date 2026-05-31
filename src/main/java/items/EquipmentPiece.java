@@ -1,7 +1,5 @@
 package items;
 
-
-// TODO: aggiungere metodi equals e hashCode
 public class EquipmentPiece extends Item implements Equippable {
 
     private boolean equipped;

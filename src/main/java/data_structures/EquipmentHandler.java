@@ -19,8 +19,8 @@ public class EquipmentHandler {
     private static final int CHARM = 5;
 
     // dependent attributes
-    private int physicalAttack;
-    private int physicalDefence;
+    private int meleeAttack;
+    private int meleeDefence;
     private int magicAttack;
     private int magicDefence;
 
@@ -33,26 +33,29 @@ public class EquipmentHandler {
         this.equipmentSlots.put(FEET, null);
         this.equipmentSlots.put(CHARM, null);
 
-        this.physicalAttack = 0;
-        this.physicalDefence = 0;
-        this.magicAttack = 0;
-        this.magicDefence = 0;
+        updateDependantStats();
+    }
+
+    public EquipmentHandler(HashMap<Integer, Equippable> equipment) {
+        this.equipmentSlots = equipment;
+
+        updateDependantStats();
     }
 
     public HashMap<Integer, Equippable> getEquipmentSlots() {
         return equipmentSlots;
     }
 
-    public int getPhysicalAttack() {
-        return physicalAttack;
+    public int getMeleeAttack() {
+        return meleeAttack;
     }
 
     public int getMagicAttack() {
         return magicAttack;
     }
 
-    public int getPhysicalDefence() {
-        return physicalDefence;
+    public int getMeleeDefence() {
+        return meleeDefence;
     }
 
     public int getMagicDefence() {
@@ -86,14 +89,14 @@ public class EquipmentHandler {
     // to call every time a piece of equipment gets equipped or unequipped
     private void updateDependantStats() {
 
-        physicalAttack = 0;
-        physicalDefence = 0;
+        meleeAttack = 0;
+        meleeDefence = 0;
         magicAttack = 0;
         magicDefence = 0;
         for (int i = 0; i < this.equipmentSlots.size(); i++) {
             if (equipmentSlots.get(i) != null && equipmentSlots.get(i) instanceof EquipmentPiece) {
-                physicalAttack += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDamage();
-                physicalDefence += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDefence();
+                meleeAttack += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDamage();
+                meleeDefence += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDefence();
                 magicAttack += ((EquipmentPiece) equipmentSlots.get(i)).getMagicDamage();
                 magicDefence += ((EquipmentPiece) equipmentSlots.get(i)).getMagicDefence();
             }
