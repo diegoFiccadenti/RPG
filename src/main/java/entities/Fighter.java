@@ -1,10 +1,13 @@
 package entities;
 
 import data_structures.StatsHandler;
+import data_structures.EquipmentHandler;
 
 public interface Fighter {
 
-    public void attack(Fighter target);
+    void attack(Fighter target);
 
-    public StatsHandler getCombatStats();
+    StatsHandler getCombatStats();
+
+    EquipmentHandler getEquipment();
 }

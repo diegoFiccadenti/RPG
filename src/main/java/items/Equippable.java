@@ -2,7 +2,7 @@ package items;
 
 public interface Equippable {
 
-    public void equip();
+    void setEquipped(boolean equipped);
 
-    public void unequip();
+    int getType();
 }

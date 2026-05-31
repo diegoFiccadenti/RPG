@@ -1,6 +1,8 @@
 package data_structures;
 
+import items.EquipmentPiece;
 import items.Equippable;
+import entities.Fighter;
 
 import java.util.HashMap;
 
@@ -16,12 +18,13 @@ public class EquipmentHandler {
     private static final int FEET = 4;
     private static final int CHARM = 5;
 
+    // dependent attributes
     private int physicalAttack;
     private int physicalDefence;
     private int magicAttack;
     private int magicDefence;
 
-    public EquipmentHandler(int physicalAttack, int physicalDefence, int magicAttack, int magicDefence) {
+    public EquipmentHandler() {
         this.equipmentSlots = new HashMap<>();
         this.equipmentSlots.put(PRIMARY_WEAPON, null);
         this.equipmentSlots.put(HEAD, null);
@@ -54,6 +57,35 @@ public class EquipmentHandler {
 
     public int getMagicDefence() {
         return magicDefence;
+    }
+
+    public void equip(Equippable pieceToEquip, Fighter equipper) {
+        int type = pieceToEquip.getType();
+        HashMap<Integer, Equippable> equipperEquipmentSlots = equipper.getEquipment().getEquipmentSlots();
+
+        if (equipperEquipmentSlots.get(type) != null) {
+            equipperEquipmentSlots.get(type).setEquipped(false);
+        }
+        equipperEquipmentSlots.put(type, pieceToEquip);
+        pieceToEquip.setEquipped(true);
+        updateDependantStats();
+    }
+
+    // to call every time a piece of equipment gets equipped or unequipped
+    private void updateDependantStats() {
+
+        physicalAttack = 0;
+        physicalDefence = 0;
+        magicAttack = 0;
+        magicDefence = 0;
+        for (int i = 0; i < this.equipmentSlots.size(); i++) {
+            if (equipmentSlots.get(i) != null && equipmentSlots.get(i) instanceof EquipmentPiece) {
+                physicalAttack += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDamage();
+                physicalDefence += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDefence();
+                magicAttack += ((EquipmentPiece) equipmentSlots.get(i)).getMagicDamage();
+                magicDefence += ((EquipmentPiece) equipmentSlots.get(i)).getMagicDefence();
+            }
+        }
     }
 }
 
