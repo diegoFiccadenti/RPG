@@ -19,7 +19,7 @@ public abstract class Item implements Takeable, Droppable {
         return description;
     }
 
-    public void take(entities.Character taker) {
+    public void take(Character taker) {
         if (taker == null) throw new  IllegalArgumentException("taker cannot be null");
 
         taker.getInventory().addItem(this, 1);

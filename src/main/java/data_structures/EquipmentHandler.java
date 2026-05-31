@@ -1,10 +1,12 @@
 package data_structures;
 
+import items.Equippable;
+
 import java.util.HashMap;
 
 public class EquipmentHandler {
 
-    private HashMap<Integer, Integer> equipmentSlots;
+    private HashMap<Integer, Equippable> equipmentSlots;
 
     // Keys definition
     private static final int PRIMARY_WEAPON = 0;
@@ -14,16 +16,44 @@ public class EquipmentHandler {
     private static final int FEET = 4;
     private static final int CHARM = 5;
 
-    int physicalAttack;
-    int physicalDefence;
-    int magicAttack;
-    int magicDefence;
+    private int physicalAttack;
+    private int physicalDefence;
+    private int magicAttack;
+    private int magicDefence;
 
     public EquipmentHandler(int physicalAttack, int physicalDefence, int magicAttack, int magicDefence) {
-        this.physicalAttack = physicalAttack;
-        this.physicalDefence = physicalDefence;
-        this.magicAttack = magicAttack;
-        this.magicDefence = magicDefence;
+        this.equipmentSlots = new HashMap<>();
+        this.equipmentSlots.put(PRIMARY_WEAPON, null);
+        this.equipmentSlots.put(HEAD, null);
+        this.equipmentSlots.put(CHEST, null);
+        this.equipmentSlots.put(LEGS, null);
+        this.equipmentSlots.put(FEET, null);
+        this.equipmentSlots.put(CHARM, null);
+
+        this.physicalAttack = 0;
+        this.physicalDefence = 0;
+        this.magicAttack = 0;
+        this.magicDefence = 0;
+    }
+
+    public HashMap<Integer, Equippable> getEquipmentSlots() {
+        return equipmentSlots;
+    }
+
+    public int getPhysicalAttack() {
+        return physicalAttack;
+    }
+
+    public int getMagicAttack() {
+        return magicAttack;
+    }
+
+    public int getPhysicalDefence() {
+        return physicalDefence;
+    }
+
+    public int getMagicDefence() {
+        return magicDefence;
     }
 }
 
