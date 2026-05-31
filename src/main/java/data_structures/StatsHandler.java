@@ -24,7 +24,9 @@ public class StatsHandler {
     private int persuasiveness = 0;
 
     public StatsHandler() {
+
         // default value: 5 (for level 0 entities)
+        skillStats = new HashMap<>();
         skillStats.put(ABILITY_POINTS, 0); // Points to distribute on the others stats
         skillStats.put(STRENGTH, 5); // Strength stat
         skillStats.put(VITALITY, 5); // Vitality stat
@@ -34,13 +36,8 @@ public class StatsHandler {
         updateDependantStats();
     }
 
-    public StatsHandler(int str, int vit, int intl, int chr) {
-
-        skillStats.put(ABILITY_POINTS, 0); // Points to distribute on the others stats
-        skillStats.put(STRENGTH, str); // Strength stat
-        skillStats.put(VITALITY, vit); // Vitality stat
-        skillStats.put(INTELLIGENCE, intl); // Intelligence stat
-        skillStats.put(CHARISMA, chr); // Charisma stat
+    public StatsHandler(HashMap<Integer,Integer> skillStats) {
+        this.skillStats = skillStats;
 
         updateDependantStats();
     }
@@ -60,7 +57,9 @@ public class StatsHandler {
     // to call every time a skill stat changes (except for Ability Points)
     private void updateDependantStats() {
         this.HP.setMax(20*skillStats.get(VITALITY));
+        this.HP.setCurrent(this.HP.getMaxValue());
         this.MP.setMax(20*skillStats.get(INTELLIGENCE));
+        this.MP.setCurrent(this.MP.getMaxValue());
         this.basicMeleeAttack = 3*skillStats.get(STRENGTH);
         this.basicMagicAttack = 3*skillStats.get(INTELLIGENCE);
         this.persuasiveness = 3*skillStats.get(CHARISMA);
