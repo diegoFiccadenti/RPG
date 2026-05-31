@@ -7,7 +7,7 @@ import java.util.HashMap;
 // Manges the stats which depends on character level or ability points used
 public class StatsHandler {
 
-    private HashMap<Integer,Integer> skillStats;
+    private final HashMap<Integer,Integer> skillStats;
 
     // Keys definition
     private static final int ABILITY_POINTS = 0;
@@ -37,8 +37,18 @@ public class StatsHandler {
     }
 
     public StatsHandler(HashMap<Integer,Integer> skillStats) {
-        this.skillStats = skillStats;
+        if (skillStats == null) {
+            throw new IllegalArgumentException("skillStats cannot be null");
+        }
+        if (!skillStats.containsKey(ABILITY_POINTS) ||
+                !skillStats.containsKey(STRENGTH) ||
+                !skillStats.containsKey(VITALITY) ||
+                !skillStats.containsKey(INTELLIGENCE) ||
+                !skillStats.containsKey(CHARISMA)) {
+            throw new IllegalArgumentException("given skillStats is not valid");
+        }
 
+        this.skillStats = skillStats;
         updateDependantStats();
     }
 
@@ -66,6 +76,9 @@ public class StatsHandler {
     }
 
     public boolean increaseStat(int statName) {
+        if (!skillStats.containsKey(statName)) {
+            throw new IllegalArgumentException("Unknown skill stat: " + statName);
+        }
         if (statName == ABILITY_POINTS) {
             throw new IllegalArgumentException("Cannot use this method for increasing ability points");
         }
@@ -80,6 +93,9 @@ public class StatsHandler {
     }
 
     public boolean increaseStat(int statName, int amount) {
+        if (!skillStats.containsKey(statName)) {
+            throw new IllegalArgumentException("Unknown skill stat: " + statName);
+        }
         if (statName == ABILITY_POINTS) {
             throw new IllegalArgumentException("Cannot use this method for increasing ability points");
         }

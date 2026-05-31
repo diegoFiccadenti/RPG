@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class EquipmentHandler {
 
-    private HashMap<Integer, Equippable> equipmentSlots;
+    private final HashMap<Integer, Equippable> equipmentSlots;
 
     // Keys definition
     private static final int PRIMARY_WEAPON = 0;
@@ -37,8 +37,19 @@ public class EquipmentHandler {
     }
 
     public EquipmentHandler(HashMap<Integer, Equippable> equipment) {
-        this.equipmentSlots = equipment;
+        if (equipment == null) {
+            throw new IllegalArgumentException("Equipment cannot be null");
+        }
+        if (!equipment.containsKey(PRIMARY_WEAPON) ||
+                !equipment.containsKey(HEAD) ||
+                !equipment.containsKey(CHEST) ||
+                !equipment.containsKey(LEGS) ||
+                !equipment.containsKey(FEET) ||
+                !equipment.containsKey(CHARM)) {
+            throw new IllegalArgumentException("given equipment is not valid");
+        }
 
+        this.equipmentSlots = equipment;
         updateDependantStats();
     }
 
