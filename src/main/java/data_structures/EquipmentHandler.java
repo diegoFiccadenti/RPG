@@ -2,7 +2,6 @@ package data_structures;
 
 import items.EquipmentPiece;
 import items.Equippable;
-import entities.Fighter;
 
 import java.util.HashMap;
 
@@ -49,7 +48,7 @@ public class EquipmentHandler {
             throw new IllegalArgumentException("given equipment is not valid");
         }
 
-        this.equipmentSlots = equipment;
+        this.equipmentSlots = new HashMap<>(equipment);
         updateDependantStats();
     }
 
@@ -73,26 +72,25 @@ public class EquipmentHandler {
         return magicDefence;
     }
 
-    public void equip(Equippable pieceToEquip, Fighter equipper) {
+    public void equip(Equippable pieceToEquip) {
         int type = pieceToEquip.getType();
-        HashMap<Integer, Equippable> equipperEquipmentSlots = equipper.getEquipment().getEquipmentSlots();
 
-        if (equipperEquipmentSlots.get(type) != null) {
-            equipperEquipmentSlots.get(type).setEquipped(false);
+        if (equipmentSlots.get(type) != null) {
+            equipmentSlots.get(type).setEquipped(false);
         }
-        equipperEquipmentSlots.put(type, pieceToEquip);
+        equipmentSlots.put(type, pieceToEquip);
         pieceToEquip.setEquipped(true);
         updateDependantStats();
     }
 
-    public void unequip(Equippable pieceToUnequip, Fighter equipper) {
+    public void unequip(Equippable pieceToUnequip) {
         int type = pieceToUnequip.getType();
-        HashMap<Integer, Equippable> equipperEquipmentSlots = equipper.getEquipment().getEquipmentSlots();
 
-        if (equipperEquipmentSlots.get(type) != null) {
-            if (equipperEquipmentSlots.get(type).equals(pieceToUnequip)) {
-                equipperEquipmentSlots.get(type).setEquipped(false);
-                equipperEquipmentSlots.put(type, null);
+        if (equipmentSlots.get(type) != null) {
+            if (equipmentSlots.get(type).equals(pieceToUnequip)) {
+                equipmentSlots.get(type).setEquipped(false);
+                equipmentSlots.put(type, null);
+                updateDependantStats();
             }
         }
     }
@@ -104,12 +102,13 @@ public class EquipmentHandler {
         meleeDefence = 0;
         magicAttack = 0;
         magicDefence = 0;
-        for (int i = 0; i < this.equipmentSlots.size(); i++) {
-            if (equipmentSlots.get(i) != null && equipmentSlots.get(i) instanceof EquipmentPiece) {
-                meleeAttack += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDamage();
-                meleeDefence += ((EquipmentPiece) equipmentSlots.get(i)).getPhysicalDefence();
-                magicAttack += ((EquipmentPiece) equipmentSlots.get(i)).getMagicDamage();
-                magicDefence += ((EquipmentPiece) equipmentSlots.get(i)).getMagicDefence();
+        for (int slot : equipmentSlots.keySet()) {
+            Equippable piece = equipmentSlots.get(slot);
+            if (piece instanceof EquipmentPiece) {
+                meleeAttack += ((EquipmentPiece) piece).getMeleeDamage();
+                meleeDefence += ((EquipmentPiece) piece).getMeleeDefence();
+                magicAttack += ((EquipmentPiece) piece).getMagicDamage();
+                magicDefence += ((EquipmentPiece) piece).getMagicDefence();
             }
         }
     }

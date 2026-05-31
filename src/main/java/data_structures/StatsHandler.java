@@ -48,7 +48,7 @@ public class StatsHandler {
             throw new IllegalArgumentException("given skillStats is not valid");
         }
 
-        this.skillStats = skillStats;
+        this.skillStats = new HashMap<>(skillStats);
         updateDependantStats();
     }
 

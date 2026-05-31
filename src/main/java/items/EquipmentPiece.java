@@ -4,12 +4,12 @@ public class EquipmentPiece extends Item implements Equippable {
 
     private boolean equipped;
     private final int type;
-    private final int physicalDamage;
-    private final int physicalDefence;
+    private final int meleeDamage;
+    private final int meleeDefence;
     private final int magicDamage;
     private final int magicDefence;
 
-    public EquipmentPiece(String name, String description, int type, int physicalDamage, int physicalDefence, int magicDamage, int magicDefence) {
+    public EquipmentPiece(String name, String description, int type, int meleeDamage, int meleeDefence, int magicDamage, int magicDefence) {
         super(name, description);
 
         // the current range of equipment types
@@ -18,8 +18,8 @@ public class EquipmentPiece extends Item implements Equippable {
         }
         this.type = type;
 
-        this.physicalDamage = physicalDamage;
-        this.physicalDefence = physicalDefence;
+        this.meleeDamage = meleeDamage;
+        this.meleeDefence = meleeDefence;
         this.magicDamage = magicDamage;
         this.magicDefence = magicDefence;
     }
@@ -30,11 +30,11 @@ public class EquipmentPiece extends Item implements Equippable {
 
     public int getType() {return type;}
 
-    public int getPhysicalDamage() {
-        return physicalDamage;
+    public int getMeleeDamage() {
+        return meleeDamage;
     }
 
-    public int getPhysicalDefence() {return physicalDefence;}
+    public int getMeleeDefence() {return meleeDefence;}
 
     public int getMagicDamage() {return magicDamage;}
 
