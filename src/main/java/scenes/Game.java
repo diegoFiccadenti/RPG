@@ -15,12 +15,12 @@ public class Game implements MyScene {
     // TODO: implementare creazione personaggio e sistema di permanenza dati
 
     // creazione player temporanea:
-    private Player player = new Player(
+    private final Player player = new Player(
             "NomeDiProva",
             new Inventory()
     );
 
-    private PlayerInfoGrid playerInfoGrid;
+    private final PlayerInfoGrid playerInfoGrid;
 
     private final Scene scene;
 
@@ -35,7 +35,7 @@ public class Game implements MyScene {
         root.setCenter(mainPane);
         root.setBottom(infoGrid);
 
-        this.scene = new Scene(root, SceneManager.SCREEN_WIDTH, SceneManager.SCREEN_HEIGHT);
+        this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
     }
 
     public Scene getScene() {return this.scene;}

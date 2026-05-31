@@ -35,7 +35,7 @@ public class MainMenu implements MyScene {
         addEventStartGame(play, sceneManager);
 
         // creates menu's scene
-        scene = new Scene(vbox, SceneManager.SCREEN_WIDTH, SceneManager.SCREEN_HEIGHT);
+        scene = new Scene(vbox, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
     }
 
     public Scene getScene() {return scene;}

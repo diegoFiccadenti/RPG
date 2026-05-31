@@ -42,7 +42,7 @@ public class Tutorial implements MyScene {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(vbox);
 
-        this.scene = new Scene(scrollPane, SceneManager.SCREEN_WIDTH, SceneManager.SCREEN_HEIGHT);
+        this.scene = new Scene(scrollPane, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
     }
 
     public Scene getScene() {return scene;}

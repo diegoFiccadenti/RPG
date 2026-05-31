@@ -7,8 +7,8 @@ public class SceneManager {
 
     private final Stage stage;
 
-    public static final int SCREEN_WIDTH = 640;
-    public static final int SCREEN_HEIGHT = 480;
+    private static final int SCREEN_WIDTH = 640;
+    private static final int SCREEN_HEIGHT = 480;
 
     private final MyScene mainMenuScene;
     private final MyScene tutorialScene;
