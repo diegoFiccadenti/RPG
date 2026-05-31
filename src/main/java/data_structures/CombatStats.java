@@ -1,4 +1,4 @@
-package stats_handlers;
+package data_structures;
 
 import quantifiables.HealthPoints;
 import quantifiables.ManaPoints;

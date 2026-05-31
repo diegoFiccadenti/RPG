@@ -1,8 +1,6 @@
 package entities;
 
-import quantifiables.HealthPoints;
-import quantifiables.ManaPoints;
-import stats_handlers.CombatStats;
+import data_structures.CombatStats;
 
 public interface Fighter {
 

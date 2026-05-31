@@ -2,9 +2,7 @@ package entities;
 
 import data_structures.*;
 import quantifiables.Experience;
-import quantifiables.HealthPoints;
-import quantifiables.ManaPoints;
-import stats_handlers.CombatStats;
+import data_structures.CombatStats;
 
 public class Player extends Character implements Fighter, Levelable {
 
