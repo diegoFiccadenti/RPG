@@ -2,19 +2,19 @@ package entities;
 
 import data_structures.*;
 import quantifiables.Experience;
-import data_structures.CombatStats;
+import data_structures.StatsHandler;
 
 public class Player extends Character implements Fighter, Levelable {
 
     private final Experience XP;
     private int level;
-    private final CombatStats combatStats;
+    private final StatsHandler statsHandler;
 
     public Player(String name, Inventory inventory) {
         super(name, inventory, 0);
         this.level = 0;
         this.XP = new Experience(level);
-        this.combatStats = new CombatStats();
+        this.statsHandler = new StatsHandler();
     }
 
     public int getLevel() {
@@ -25,7 +25,7 @@ public class Player extends Character implements Fighter, Levelable {
         return XP;
     }
 
-    public CombatStats getCombatStats() {return combatStats;}
+    public StatsHandler getCombatStats() {return statsHandler;}
 
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {
@@ -42,7 +42,7 @@ public class Player extends Character implements Fighter, Levelable {
 
     public void levelUp() {
         level++;
-        combatStats.addAbilityPoints(3);
+        statsHandler.addAbilityPoints(3);
     }
 
     public void attack(Fighter target) {}

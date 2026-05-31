@@ -4,12 +4,12 @@ public class Armor extends Item implements Equippable {
 
     boolean equipped;
     int physicalDefence;
-    int magicalDefence;
+    int magicDefence;
 
-    public Armor(String name, String description, int physicalDefence, int magicalDefence) {
+    public Armor(String name, String description, int physicalDefence, int magicDefence) {
         super(name, description);
         this.physicalDefence = physicalDefence;
-        this.magicalDefence = magicalDefence;
+        this.magicDefence = magicDefence;
     }
 
     public boolean isEquipped() {
@@ -20,8 +20,8 @@ public class Armor extends Item implements Equippable {
         return physicalDefence;
     }
 
-    public int getMagicalDefence() {
-        return magicalDefence;
+    public int getMagicDefence() {
+        return magicDefence;
     }
 
     public void equip() {

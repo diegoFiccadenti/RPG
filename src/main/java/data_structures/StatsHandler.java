@@ -5,9 +5,9 @@ import quantifiables.ManaPoints;
 import java.util.HashMap;
 
 // Manges the stats which depends on character level or ability points used
-public class CombatStats {
+public class StatsHandler {
 
-    public HashMap<Integer,Integer> skillStats;
+    private HashMap<Integer,Integer> skillStats;
 
     // Keys definition
     private static final int ABILITY_POINTS = 0;
@@ -20,7 +20,7 @@ public class CombatStats {
     private final HealthPoints HP = new HealthPoints(100, 100);
     private final ManaPoints MP = new ManaPoints(100, 100);
 
-    public CombatStats() {
+    public StatsHandler() {
         // default value: 5 (for level 0 entities)
         skillStats.put(ABILITY_POINTS, 0); // Points to distribute on the others stats
         skillStats.put(STRENGTH, 5); // Strength stat
@@ -31,7 +31,7 @@ public class CombatStats {
         updateDependantStats();
     }
 
-    public CombatStats(int str, int vit, int intl, int chr) {
+    public StatsHandler(int str, int vit, int intl, int chr) {
 
         skillStats.put(ABILITY_POINTS, 0); // Points to distribute on the others stats
         skillStats.put(STRENGTH, str); // Strength stat
@@ -41,6 +41,8 @@ public class CombatStats {
 
         updateDependantStats();
     }
+
+    public HashMap<Integer,Integer> getSkillStats() {return skillStats;}
 
     public HealthPoints getHP() {return HP;}
 

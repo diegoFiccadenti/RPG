@@ -1,10 +1,10 @@
 package entities;
 
-import data_structures.CombatStats;
+import data_structures.StatsHandler;
 
 public interface Fighter {
 
     public void attack(Fighter target);
 
-    public CombatStats getCombatStats();
+    public StatsHandler getCombatStats();
 }

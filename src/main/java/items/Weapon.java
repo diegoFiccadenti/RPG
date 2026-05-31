@@ -3,22 +3,22 @@ package items;
 public class Weapon extends Item implements Equippable {
 
     boolean equipped;
-    int magicalDamage;
     int physicalDamage;
+    int magicDamage;
 
-    public Weapon(String name, String description, int physicalDamage, int magicalDamage) {
+    public Weapon(String name, String description, int physicalDamage, int magicDamage) {
         super(name, description);
         equipped = false;
         this.physicalDamage = physicalDamage;
-        this.magicalDamage = magicalDamage;
+        this.magicDamage = magicDamage;
     }
 
     public boolean isEquipped() {
         return equipped;
     }
 
-    public int getMagicalDamage() {
-        return magicalDamage;
+    public int getMagicDamage() {
+        return magicDamage;
     }
 
     public int getPhysicalDamage() {
