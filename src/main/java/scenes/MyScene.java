@@ -1,8 +1,8 @@
 package scenes;
 
-import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 public interface MyScene {
 
-    public static void create(Stage stage) {}
+    public Scene getScene();
 }

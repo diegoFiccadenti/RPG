@@ -8,12 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 public class MainMenu implements MyScene {
 
-    // creates the main menu scene
-    public static void create(Stage stage) {
+    private final Scene scene;
+
+    public MainMenu(SceneManager sceneManager) {
 
         // creates vertical container for the buttons
         VBox vbox = new VBox();
@@ -31,15 +31,16 @@ public class MainMenu implements MyScene {
 
         // adds events to buttons
         addEventQuitGame(quit);
-        addEventShowTutorial(tutorial, stage);
-        addEventStartGame(play, stage);
+        addEventShowTutorial(tutorial, sceneManager);
+        addEventStartGame(play, sceneManager);
 
         // creates menu's scene
-        Scene menuScene = new Scene(vbox, 640, 480);
-        stage.setScene(menuScene);
+        scene = new Scene(vbox, SceneManager.SCREEN_WIDTH, SceneManager.SCREEN_HEIGHT);
     }
 
-    private static Button newMenuButton(String buttonName) {
+    public Scene getScene() {return scene;}
+
+    private Button newMenuButton(String buttonName) {
         Button button = new Button(buttonName);
         button.setPrefSize(200, 50);
         button.setAlignment(Pos.CENTER);
@@ -47,21 +48,19 @@ public class MainMenu implements MyScene {
         return button;
     }
 
-    private static void addEventStartGame(Button playButton, Stage stage) {
+    private void addEventStartGame(Button playButton, SceneManager sceneManager) {
         playButton.setOnAction(e -> {
-            Game.create(stage);
-            stage.show();
+            sceneManager.switchScene(SceneManager.SceneType.GAME);
         });
     }
 
-    private static void addEventShowTutorial(Button tutorialButton, Stage stage) {
+    private void addEventShowTutorial(Button tutorialButton, SceneManager sceneManager) {
         tutorialButton.setOnAction(e -> {
-            Tutorial.create(stage);
-            stage.show();
+            sceneManager.switchScene(SceneManager.SceneType.TUTORIAL);
         });
     }
 
-    private static void addEventQuitGame(Button quitButton) {
+    private void addEventQuitGame(Button quitButton) {
         quitButton.setOnAction(e -> {
             System.exit(0); // the game gets closed entirely
         });

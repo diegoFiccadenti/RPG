@@ -9,11 +9,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 
 public class Tutorial implements MyScene {
 
-    public static void create(Stage stage) {
+    private final Scene scene;
+
+    public Tutorial(SceneManager sceneManager) {
 
         // creating the text
         Text text1 = new Text("Benvenuto nel tutorial di *inserire nome del gioco*!\n");
@@ -24,7 +25,7 @@ public class Tutorial implements MyScene {
 
         // creating the button for returning to main menu
         Button returnToMenu = new Button("Return to Menu");
-        personalizeReturnButton(returnToMenu, stage);
+        personalizeReturnButton(returnToMenu, sceneManager);
 
         // creating the text-flow area
         TextFlow textFlow = new TextFlow(text1, text2);
@@ -41,18 +42,17 @@ public class Tutorial implements MyScene {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(vbox);
 
-        Scene tutorialScene = new Scene(scrollPane, 640, 480);
-
-        stage.setScene(tutorialScene);
+        this.scene = new Scene(scrollPane, SceneManager.SCREEN_WIDTH, SceneManager.SCREEN_HEIGHT);
     }
 
-    private static void personalizeReturnButton(Button button, Stage stage) {
+    public Scene getScene() {return scene;}
+
+    private static void personalizeReturnButton(Button button, SceneManager sceneManager) {
         button.setPrefSize(250, 50);
         button.setAlignment(Pos.CENTER);
         button.setFont(Font.font("Copperplate Gothic Light", 24));
         button.setOnAction(e -> {
-            MainMenu.create(stage);
-            stage.show();
+            sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
         });
     }
 }

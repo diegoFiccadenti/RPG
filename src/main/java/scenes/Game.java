@@ -2,50 +2,48 @@ package scenes;
 
 import entities.Player;
 import data_structures.Inventory;
+import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import quantifiables.HealthPoints;
-import quantifiables.ManaPoints;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 public class Game implements MyScene {
 
     // TODO: implementare creazione personaggio e sistema di permanenza dati
     // creazione player temporanea:
-    private static Player player = new Player(
+    private Player player = new Player(
             "NomeDiProva",
             new Inventory()
     );
 
-    public static void create(Stage stage) {
+    private final Scene scene;
 
-        Pane mainPane = createMainPane(stage);
+    public Game(SceneManager sceneManager) {
+
+        Pane mainPane = createMainPane(sceneManager);
 
         GridPane infoGrid = createInformationGrid();
 
-        // scene creation
         BorderPane root = new BorderPane();
         root.setCenter(mainPane);
         root.setBottom(infoGrid);
 
-        Scene gameScene = new Scene(root, 640, 480);
-        stage.setScene(gameScene);
+        this.scene = new Scene(root, SceneManager.SCREEN_WIDTH, SceneManager.SCREEN_HEIGHT);
     }
 
-    private static Pane createMainPane(Stage stage) {
+    public Scene getScene() {return this.scene;}
+
+    private Pane createMainPane(SceneManager sceneManager) {
 
         Pane pane = new Pane();
         pane.setBackground(new Background((new BackgroundFill(Color.DARKGRAY, null, null))));
 
         Button exit = new Button("Exit");
         exit.setOnAction(e -> {
-            MainMenu.create(stage);
-            stage.show();
+            sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
         });
 
         pane.getChildren().add(exit);
@@ -53,7 +51,7 @@ public class Game implements MyScene {
         return pane;
     }
 
-    private static GridPane createInformationGrid() {
+    private GridPane createInformationGrid() {
 
         Label playerName = new Label("Name: " + player.getName());
         Label playerLevel = new Label("Level: " + player.getLevel());
@@ -90,7 +88,7 @@ public class Game implements MyScene {
         return grid;
     }
 
-    private static HBox createProgressBarWithExplicitValues(Label barName, ProgressBar bar, Label explicitValue) {
+    private HBox createProgressBarWithExplicitValues(Label barName, ProgressBar bar, Label explicitValue) {
         HBox hBox = new HBox();
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER_LEFT);
