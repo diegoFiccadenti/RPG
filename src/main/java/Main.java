@@ -2,6 +2,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import scenes.SceneManager;
 
+// TODO: implementare creazione personaggio e sistema di permanenza dati
+
 public class Main extends Application {
 
     @Override

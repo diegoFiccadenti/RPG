@@ -41,25 +41,25 @@ public class PlayerInfoGrid {
         this.playerCoins = new Label();
 
         this.HPLabel = new Label("HP");
-        this.HPValue = new Label(currentHP + " / " + maxHP);
+        this.HPValue = new Label();
         this.HPBar = new ProgressBar();
         this.HP_HBox = new HBox();
         HP_HBox.setSpacing(10);
         HP_HBox.setAlignment(Pos.CENTER_LEFT);
 
         this.MPLabel = new Label("MP");
-        this.MPValue = new Label(currentMP + " / " + maxMP);
+        this.MPValue = new Label();
         this.MPBar = new ProgressBar();
         this.MP_HBox = new HBox();
         MP_HBox.setSpacing(10);
         MP_HBox.setAlignment(Pos.CENTER_LEFT);
 
-        updateGrid(player);
+        refreshData(player);
     }
 
     public GridPane getGrid() {return grid;}
 
-    public void updateGrid(Player player) {
+    public void refreshData(Player player) {
 
         this.playerName.setText("Name: " + player.getName());
         this.playerLevel.setText("Level: " + player.getLevel());
