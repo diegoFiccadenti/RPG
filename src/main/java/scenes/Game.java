@@ -1,19 +1,19 @@
 package scenes;
 
 import entities.Player;
-import data_structures.Inventory;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import json.MyReader;
 import panes.PlayerInfoGrid;
 import panes.WorldPane;
+
+import java.nio.file.Path;
 
 public class Game implements MyScene {
 
     // creazione player temporanea:
-    private final Player player = new Player(
-            "NomeDiProva",
-            new Inventory(16)
-    );
+    Path playerPath = Path.of("saves/player.json");
+    private final Player player = MyReader.readPlayer(playerPath);
 
     private final PlayerInfoGrid playerInfoGrid;
 

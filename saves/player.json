@@ -14,7 +14,7 @@
       "4": 5
     },
     "HP": {
-      "currentValue": 100,
+      "currentValue": 85,
       "maxValue": 100,
       "minValue": 0
     },
@@ -37,7 +37,6 @@
   "name": "PlayerName",
   "inventory": {
     "items": {
-      "items.Potion@399b1bb9": 3
     },
     "maxCapacity": 16
   },
