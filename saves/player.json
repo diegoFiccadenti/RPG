@@ -1,0 +1,49 @@
+{
+  "XP": {
+    "currentValue": 0,
+    "maxValue": 100,
+    "minValue": 0
+  },
+  "level": 0,
+  "personalStats": {
+    "skillStats": {
+      "0": 0,
+      "1": 5,
+      "2": 5,
+      "3": 5,
+      "4": 5
+    },
+    "HP": {
+      "currentValue": 100,
+      "maxValue": 100,
+      "minValue": 0
+    },
+    "MP": {
+      "currentValue": 100,
+      "maxValue": 100,
+      "minValue": 0
+    },
+    "basicMeleeAttack": 15,
+    "basicMagicAttack": 15,
+    "persuasiveness": 15
+  },
+  "equipment": {
+    "equipmentSlots": {},
+    "meleeAttack": 0,
+    "meleeDefence": 0,
+    "magicAttack": 0,
+    "magicDefence": 0
+  },
+  "name": "PlayerName",
+  "inventory": {
+    "items": {
+      "items.Potion@399b1bb9": 3
+    },
+    "maxCapacity": 16
+  },
+  "coins": {
+    "currentValue": 0,
+    "maxValue": 999999,
+    "minValue": 0
+  }
+}
