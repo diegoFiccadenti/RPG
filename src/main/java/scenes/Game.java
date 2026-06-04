@@ -12,7 +12,7 @@ public class Game implements MyScene {
     // creazione player temporanea:
     private final Player player = new Player(
             "NomeDiProva",
-            new Inventory()
+            new Inventory(16)
     );
 
     private final PlayerInfoGrid playerInfoGrid;

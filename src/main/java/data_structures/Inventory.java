@@ -4,33 +4,51 @@ import items.Item;
 
 import java.util.HashMap;
 
-public class Inventory extends HashMap<Item, Integer> {
+public class Inventory {
 
-    public Inventory() {
-        super();
+    private final HashMap<Item, Integer> items;
+
+    private int maxCapacity;
+
+    public Inventory(int maxCapacity) {
+        items = new HashMap<>();
+        this.maxCapacity = maxCapacity;
     }
+
+    public Inventory(HashMap<Item, Integer> items, int maxCapacity) {
+        this.items = items;
+        this.maxCapacity = maxCapacity;
+    }
+
+    public HashMap<Item, Integer> getItems() {
+        return items;
+    }
+
+    public int getMaxCapacity() {return maxCapacity;}
+
+    public void setMaxCapacity(int maxCapacity) {this.maxCapacity = maxCapacity;}
 
     public void addItem(Item item, int amount) {
         if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
 
-        if (this.containsKey(item)) this.put(item, this.get(item) + amount);
-        else this.put(item, amount);
+        if (items.containsKey(item)) items.put(item, items.get(item) + amount);
+        else items.put(item, amount);
     }
 
     public boolean removeItem(Item item, int amount) {
         if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
 
-        if (this.containsKey(item) && this.get(item) >= amount) {
-            this.put(item, this.get(item) - amount);
-            if (this.get(item) == 0) this.remove(item);
+        if (items.containsKey(item) && items.get(item) >= amount) {
+            items.put(item, items.get(item) - amount);
+            if (items.get(item) == 0) items.remove(item);
             return true;
         }
         return false;
     }
 
     public void listAllItems() {
-        for (Item item : this.keySet()) {
-            System.out.println(item.getName() + ": " + this.get(item));
+        for (Item item : items.keySet()) {
+            System.out.println(item.getName() + ": " + items.get(item));
         }
     }
 }

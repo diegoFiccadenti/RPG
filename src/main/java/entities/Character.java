@@ -11,7 +11,7 @@ public abstract class Character {
 
     public Character(String name) {
         this.name = name;
-        this.inventory = new Inventory();
+        this.inventory = new Inventory(16);
     }
 
     public Character(String name, Inventory inventory, int coins) {
