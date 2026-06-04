@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import scenes.SceneManager;
 
 public class PlayerInfoGrid {
 
@@ -35,6 +36,7 @@ public class PlayerInfoGrid {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(100);
         grid.setVgap(10);
+        grid.setPrefSize(SceneManager.getScreenWidth(), 100);
 
         this.playerName = new Label();
         this.playerLevel = new Label();

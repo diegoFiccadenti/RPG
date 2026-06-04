@@ -10,11 +10,11 @@ public class StatsHandler {
     private final HashMap<Integer,Integer> skillStats;
 
     // Keys definition
-    private static final int ABILITY_POINTS = 0;
-    private static final int STRENGTH = 1;
-    private static final int VITALITY = 2;
-    private static final int INTELLIGENCE = 3;
-    private static final int CHARISMA = 4;
+    public static final int ABILITY_POINTS = 0;
+    public static final int STRENGTH = 1;
+    public static final int VITALITY = 2;
+    public static final int INTELLIGENCE = 3;
+    public static final int CHARISMA = 4;
 
     // dependent attributes
     private final HealthPoints HP = new HealthPoints(0, 0);

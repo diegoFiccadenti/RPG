@@ -12,14 +12,16 @@ public class Main extends Application {
         SceneManager sceneManager = new SceneManager(stage);
 
         // first scene to be displayed
-        sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
+        SceneManager.SceneType firstScene = SceneManager.SceneType.MAIN_MENU;
+
+        sceneManager.switchScene(firstScene);
 
         stage.show();
 
     }
 
     static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
 }

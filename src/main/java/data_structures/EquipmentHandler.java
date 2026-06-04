@@ -10,12 +10,12 @@ public class EquipmentHandler {
     private final HashMap<Integer, Equippable> equipmentSlots;
 
     // Keys definition
-    private static final int PRIMARY_WEAPON = 0;
-    private static final int HEAD = 1;
-    private static final int CHEST = 2;
-    private static final int LEGS = 3;
-    private static final int FEET = 4;
-    private static final int CHARM = 5;
+    public static final int PRIMARY_WEAPON = 0;
+    public static final int HEAD = 1;
+    public static final int CHEST = 2;
+    public static final int LEGS = 3;
+    public static final int FEET = 4;
+    public static final int CHARM = 5;
 
     // dependent attributes
     private int meleeAttack;
