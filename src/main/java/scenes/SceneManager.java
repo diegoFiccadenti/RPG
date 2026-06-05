@@ -13,11 +13,13 @@ public class SceneManager {
     private final MyScene mainMenuScene;
     private final MyScene tutorialScene;
     private final MyScene gameScene;
+    private final MyScene combatScene;
 
     public enum SceneType {
         MAIN_MENU,
         TUTORIAL,
-        GAME
+        GAME,
+        COMBAT
     }
 
     public SceneManager(Stage stage) {
@@ -29,6 +31,7 @@ public class SceneManager {
         mainMenuScene = new MainMenu(this);
         tutorialScene = new Tutorial(this);
         gameScene = new Game(this);
+        combatScene = new Combat(this);
     }
 
     public void switchScene(SceneType scene) {
@@ -42,6 +45,9 @@ public class SceneManager {
         }
         else if (scene == SceneType.GAME) {
             newScene = gameScene.getScene();
+        }
+        else if (scene == SceneType.COMBAT) {
+            newScene = combatScene.getScene();
         }
         else throw new IllegalArgumentException("Invalid scene type");
 

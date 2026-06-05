@@ -28,7 +28,7 @@ public class Game implements MyScene {
         this.mainPane = new WorldPane(sceneManager, player, playerInfoGrid);
 
         BorderPane root = new BorderPane();
-        root.setCenter( mainPane.getMainPane());
+        root.setCenter(mainPane.getMainPane());
         root.setBottom(playerInfoGrid.getGrid());
 
         this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
