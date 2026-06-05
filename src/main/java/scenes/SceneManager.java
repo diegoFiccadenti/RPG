@@ -2,10 +2,13 @@ package scenes;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import persistence.SaveManager;
 
 public class SceneManager {
 
     private final Stage stage;
+
+    private final SaveManager saveManager;
 
     private static final int SCREEN_WIDTH = 640;
     private static final int SCREEN_HEIGHT = 480;
@@ -22,8 +25,9 @@ public class SceneManager {
         COMBAT
     }
 
-    public SceneManager(Stage stage) {
+    public SceneManager(Stage stage, SaveManager saveManager) {
         this.stage = stage;
+        this.saveManager = saveManager;
 
         stage.setTitle("MyRPG");
         stage.setResizable(false);
@@ -34,9 +38,15 @@ public class SceneManager {
         combatScene = new Combat(this);
     }
 
+    public SaveManager getSaveManager() {return this.saveManager;}
+
+    public static int getScreenWidth() {return SCREEN_WIDTH;}
+
+    public static int getScreenHeight() {return SCREEN_HEIGHT;}
+
     public void switchScene(SceneType scene) {
 
-        Scene newScene = null;
+        Scene newScene;
         if (scene == SceneType.MAIN_MENU) {
             newScene = mainMenuScene.getScene();
         }
@@ -53,8 +63,4 @@ public class SceneManager {
 
         stage.setScene(newScene);
     }
-
-    public static int getScreenWidth() {return SCREEN_WIDTH;}
-
-    public static int getScreenHeight() {return SCREEN_HEIGHT;}
 }

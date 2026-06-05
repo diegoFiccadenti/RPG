@@ -3,32 +3,23 @@ package scenes;
 import entities.Player;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
-import json.MyReader;
 import panes.PlayerInfoGrid;
 import panes.WorldPane;
 
-import java.nio.file.Path;
-
 public class Game implements MyScene {
-
-    // creazione player temporanea:
-    Path playerPath = Path.of("saves/player.json");
-    private final Player player = MyReader.readPlayer(playerPath);
-
-    private final PlayerInfoGrid playerInfoGrid;
-
-    private final WorldPane mainPane;
 
     private final Scene scene;
 
     public Game(SceneManager sceneManager) {
 
-        this.playerInfoGrid = new PlayerInfoGrid(player);
+        Player player = sceneManager.getSaveManager().getPlayer();
 
-        this.mainPane = new WorldPane(sceneManager, player, playerInfoGrid);
+        PlayerInfoGrid playerInfoGrid = new PlayerInfoGrid(player);
+
+        WorldPane worldPane = new WorldPane(sceneManager, player, playerInfoGrid);
 
         BorderPane root = new BorderPane();
-        root.setCenter(mainPane.getMainPane());
+        root.setCenter(worldPane.getMainPane());
         root.setBottom(playerInfoGrid.getGrid());
 
         this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
