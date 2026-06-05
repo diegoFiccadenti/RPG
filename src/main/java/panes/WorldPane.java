@@ -1,6 +1,8 @@
 package panes;
 
 import entities.Player;
+import items.Item;
+import items.Potion;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -54,7 +56,21 @@ public class WorldPane {
             sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
         });
 
-        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit);
+        Button addPotion = new Button("Add Potion");
+        addPotion.setPrefSize(200, 50);
+        addPotion.setOnAction(e -> {
+            Item healingPotion = new Potion("Healing Potion", "Heals 20 HP", 20, 0);
+            player.getInventory().addItem(healingPotion, 1);
+        });
+
+        Button removePotion = new Button("Remove Potion");
+        removePotion.setPrefSize(200, 50);
+        removePotion.setOnAction(e -> {
+            Item healingPotion = new Potion("Healing Potion", "Heals 20 HP", 20, 0);
+            player.getInventory().removeItem(healingPotion, 1);
+        });
+
+        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, addPotion, removePotion);
         mainPane.getChildren().addAll(vBox);
     }
 
