@@ -37,6 +37,10 @@ public class PlayerSaveManager {
         this.observers.remove(observer);
     }
 
+    public void clearObservers() {
+        this.observers.clear();
+    }
+
     public void notifyObservers() {
         for (PlayerObserver observer : this.observers) {
             observer.onPlayerUpdate();

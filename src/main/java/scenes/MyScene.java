@@ -4,5 +4,5 @@ import javafx.scene.Scene;
 
 public interface MyScene {
 
-    public Scene getScene();
+    Scene getScene();
 }
