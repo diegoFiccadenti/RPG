@@ -36,8 +36,19 @@
   },
   "name": "PlayerName",
   "inventory": {
-    "items": {},
-    "containedItems": 16,
+    "items": [
+      [
+        {
+          "recoveredHP": 20,
+          "recoveredMP": 0,
+          "name": "Healing Potion",
+          "description": "Heals 20 HP",
+          "type": "POTION"
+        },
+        1
+      ]
+    ],
+    "containedItems": 1,
     "maxCapacity": 16
   },
   "coins": {

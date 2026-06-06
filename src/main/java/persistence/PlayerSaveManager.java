@@ -33,10 +33,6 @@ public class PlayerSaveManager {
         this.observers.add(observer);
     }
 
-    public void removeObserver(PlayerObserver observer) {
-        this.observers.remove(observer);
-    }
-
     public void clearObservers() {
         this.observers.clear();
     }
