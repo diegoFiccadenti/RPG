@@ -9,21 +9,18 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import persistence.MyWriter;
 import scenes.SceneManager;
-
-import java.nio.file.Path;
-
-// TODO: WorldPane non dovrebbe conoscere playerInfoGrid (rompe principi SOLID), implementare una soluzione
 
 public class WorldPane {
 
     private final Pane mainPane;
 
-    public WorldPane(SceneManager sceneManager, Player player, PlayerInfoGrid playerInfoGrid) {
+    public WorldPane(SceneManager sceneManager) {
 
         this.mainPane = new Pane();
         mainPane.setBackground(new Background((new BackgroundFill(Color.DARKGRAY, null, null))));
+
+        Player player = sceneManager.getSaveManager().getPlayer();
 
         VBox vBox = new VBox();
         vBox.setSpacing(10);
@@ -32,14 +29,14 @@ public class WorldPane {
         takeDamage.setPrefSize(200, 50);
         takeDamage.setOnAction(e -> {
             player.getCombatStats().getHP().decreaseCurrent(10);
-            playerInfoGrid.refreshData(player);
+            sceneManager.getSaveManager().notifyObservers();
         });
 
         Button heal = new Button("Heal");
         heal.setPrefSize(200, 50);
         heal.setOnAction(e -> {
             player.getCombatStats().getHP().increaseCurrent(5);
-            playerInfoGrid.refreshData(player);
+            sceneManager.getSaveManager().notifyObservers();
         });
 
         Button exit = new Button("Exit");
@@ -51,8 +48,7 @@ public class WorldPane {
         Button saveAndExit = new Button("Save & Exit");
         saveAndExit.setPrefSize(200, 50);
         saveAndExit.setOnAction(e -> {
-            Path playerSavePath = Path.of("saves/player.json");
-            MyWriter.savePlayer(player, playerSavePath);
+            sceneManager.getSaveManager().savePlayer();
             sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
         });
 

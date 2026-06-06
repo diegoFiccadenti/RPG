@@ -1,6 +1,5 @@
 package scenes;
 
-import entities.Player;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import panes.PlayerInfoGrid;
@@ -12,11 +11,10 @@ public class Game implements MyScene {
 
     public Game(SceneManager sceneManager) {
 
-        Player player = sceneManager.getSaveManager().getPlayer();
+        PlayerInfoGrid playerInfoGrid = new PlayerInfoGrid(sceneManager);
+        sceneManager.getSaveManager().addObserver(playerInfoGrid);
 
-        PlayerInfoGrid playerInfoGrid = new PlayerInfoGrid(player);
-
-        WorldPane worldPane = new WorldPane(sceneManager, player, playerInfoGrid);
+        WorldPane worldPane = new WorldPane(sceneManager);
 
         BorderPane root = new BorderPane();
         root.setCenter(worldPane.getMainPane());

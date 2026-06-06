@@ -1,4 +1,4 @@
-import persistence.SaveManager;
+import persistence.PlayerSaveManager;
 import scenes.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        SaveManager saveManager = new SaveManager();
+        PlayerSaveManager saveManager = new PlayerSaveManager();
         SceneManager sceneManager = new SceneManager(stage, saveManager);
 
         // first scene to be displayed

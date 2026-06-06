@@ -2,13 +2,13 @@ package scenes;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import persistence.SaveManager;
+import persistence.PlayerSaveManager;
 
 public class SceneManager {
 
     private final Stage stage;
 
-    private final SaveManager saveManager;
+    private final PlayerSaveManager saveManager;
 
     private static final int SCREEN_WIDTH = 640;
     private static final int SCREEN_HEIGHT = 480;
@@ -25,7 +25,7 @@ public class SceneManager {
         COMBAT
     }
 
-    public SceneManager(Stage stage, SaveManager saveManager) {
+    public SceneManager(Stage stage, PlayerSaveManager saveManager) {
         this.stage = stage;
         this.saveManager = saveManager;
 
@@ -38,7 +38,7 @@ public class SceneManager {
         combatScene = new Combat(this);
     }
 
-    public SaveManager getSaveManager() {return this.saveManager;}
+    public PlayerSaveManager getSaveManager() {return this.saveManager;}
 
     public static int getScreenWidth() {return SCREEN_WIDTH;}
 

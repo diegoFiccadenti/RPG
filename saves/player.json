@@ -14,7 +14,7 @@
       "4": 5
     },
     "HP": {
-      "currentValue": 90,
+      "currentValue": 80,
       "maxValue": 100,
       "minValue": 0
     },
@@ -36,8 +36,7 @@
   },
   "name": "PlayerName",
   "inventory": {
-    "items": {
-    },
+    "items": {},
     "containedItems": 16,
     "maxCapacity": 16
   },

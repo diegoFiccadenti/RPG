@@ -8,9 +8,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import scenes.SceneManager;
 
-public class PlayerInfoGrid {
+public class PlayerInfoGrid implements PlayerObserver {
 
     private final GridPane grid;
+
+    private final Player player;
 
     private final Label playerName;
     private final Label playerLevel;
@@ -30,7 +32,9 @@ public class PlayerInfoGrid {
     private final ProgressBar MPBar;
     private final HBox MP_HBox;
 
-    public PlayerInfoGrid(Player player) {
+    public PlayerInfoGrid(SceneManager sceneManager) {
+
+        this.player = sceneManager.getSaveManager().getPlayer();
 
         grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -91,5 +95,9 @@ public class PlayerInfoGrid {
         grid.add(playerCoins, 0,2);
         grid.add(HP_HBox, 1,0);
         grid.add(MP_HBox, 1,1);
+    }
+
+    public void onPlayerUpdate() {
+        refreshData(this.player);
     }
 }
