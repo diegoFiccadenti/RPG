@@ -20,7 +20,7 @@ public class WorldPane {
         this.mainPane = new Pane();
         mainPane.setBackground(new Background((new BackgroundFill(Color.DARKGRAY, null, null))));
 
-        Player player = sceneManager.getSaveManager().getPlayer();
+        Player player = sceneManager.getPlayerSaveManager().getPlayer();
 
         VBox vBox = new VBox();
         vBox.setSpacing(10);
@@ -29,14 +29,14 @@ public class WorldPane {
         takeDamage.setPrefSize(200, 50);
         takeDamage.setOnAction(e -> {
             player.getCombatStats().getHP().decreaseCurrent(10);
-            sceneManager.getSaveManager().notifyObservers();
+            sceneManager.getPlayerSaveManager().notifyObservers();
         });
 
         Button heal = new Button("Heal");
         heal.setPrefSize(200, 50);
         heal.setOnAction(e -> {
             player.getCombatStats().getHP().increaseCurrent(5);
-            sceneManager.getSaveManager().notifyObservers();
+            sceneManager.getPlayerSaveManager().notifyObservers();
         });
 
         Button exit = new Button("Exit");
@@ -48,7 +48,7 @@ public class WorldPane {
         Button saveAndExit = new Button("Save & Exit");
         saveAndExit.setPrefSize(200, 50);
         saveAndExit.setOnAction(e -> {
-            sceneManager.getSaveManager().savePlayer();
+            sceneManager.getPlayerSaveManager().savePlayer();
             sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
         });
 

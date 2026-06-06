@@ -8,7 +8,7 @@ public class SceneManager {
 
     private final Stage stage;
 
-    private final PlayerSaveManager saveManager;
+    private final PlayerSaveManager playerSaveManager;
 
     private static final int SCREEN_WIDTH = 640;
     private static final int SCREEN_HEIGHT = 480;
@@ -25,9 +25,9 @@ public class SceneManager {
         COMBAT
     }
 
-    public SceneManager(Stage stage, PlayerSaveManager saveManager) {
+    public SceneManager(Stage stage, PlayerSaveManager playerSaveManager) {
         this.stage = stage;
-        this.saveManager = saveManager;
+        this.playerSaveManager = playerSaveManager;
 
         stage.setTitle("MyRPG");
         stage.setResizable(false);
@@ -38,7 +38,7 @@ public class SceneManager {
         combatScene = new Combat(this);
     }
 
-    public PlayerSaveManager getSaveManager() {return this.saveManager;}
+    public PlayerSaveManager getPlayerSaveManager() {return this.playerSaveManager;}
 
     public static int getScreenWidth() {return SCREEN_WIDTH;}
 

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public class PlayerSaveManager {
 
-    private final Player player;
+    private Player player;
     private final ArrayList<PlayerObserver> observers;
 
     public PlayerSaveManager() {
-        this.player = readPlayerSaves();
+        readPlayerSaves();
         this.observers = new ArrayList<>();
     }
 
@@ -23,9 +23,10 @@ public class PlayerSaveManager {
         MyWriter.savePlayer(player, path);
     }
 
-    public Player readPlayerSaves() {
+    public void readPlayerSaves() {
         Path playerPath = Path.of("saves/player.json");
-        return MyReader.readPlayer(playerPath);
+        this.player = MyReader.readPlayer(playerPath);
+        notifyObservers();
     }
 
     public void addObserver(PlayerObserver observer) {

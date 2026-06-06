@@ -50,6 +50,7 @@ public class MainMenu implements MyScene {
 
     private void addEventStartGame(Button playButton, SceneManager sceneManager) {
         playButton.setOnAction(e -> {
+            sceneManager.getPlayerSaveManager().readPlayerSaves();
             sceneManager.switchScene(SceneManager.SceneType.GAME);
         });
     }

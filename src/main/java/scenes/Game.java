@@ -12,7 +12,7 @@ public class Game implements MyScene {
     public Game(SceneManager sceneManager) {
 
         PlayerInfoGrid playerInfoGrid = new PlayerInfoGrid(sceneManager);
-        sceneManager.getSaveManager().addObserver(playerInfoGrid);
+        sceneManager.getPlayerSaveManager().addObserver(playerInfoGrid);
 
         WorldPane worldPane = new WorldPane(sceneManager);
 

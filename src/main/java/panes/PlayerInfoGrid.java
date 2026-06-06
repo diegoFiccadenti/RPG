@@ -34,7 +34,7 @@ public class PlayerInfoGrid implements PlayerObserver {
 
     public PlayerInfoGrid(SceneManager sceneManager) {
 
-        this.player = sceneManager.getSaveManager().getPlayer();
+        this.player = sceneManager.getPlayerSaveManager().getPlayer();
 
         grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
