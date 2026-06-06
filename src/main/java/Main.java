@@ -8,8 +8,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        PlayerSaveManager saveManager = new PlayerSaveManager();
-        SceneManager sceneManager = new SceneManager(stage, saveManager);
+        PlayerSaveManager playerSaveManager = new PlayerSaveManager();
+        SceneManager sceneManager = new SceneManager(stage, playerSaveManager);
 
         // first scene to be displayed
         SceneManager.SceneType firstScene = SceneManager.SceneType.MAIN_MENU;

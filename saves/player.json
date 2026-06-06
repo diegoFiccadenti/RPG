@@ -14,7 +14,7 @@
       "4": 5
     },
     "HP": {
-      "currentValue": 80,
+      "currentValue": 100,
       "maxValue": 100,
       "minValue": 0
     },
@@ -34,21 +34,10 @@
     "magicAttack": 0,
     "magicDefence": 0
   },
-  "name": "PlayerName",
+  "name": "NomeDiProva",
   "inventory": {
-    "items": [
-      [
-        {
-          "recoveredHP": 20,
-          "recoveredMP": 0,
-          "name": "Healing Potion",
-          "description": "Heals 20 HP",
-          "type": "POTION"
-        },
-        1
-      ]
-    ],
-    "containedItems": 1,
+    "items": {},
+    "containedItems": 0,
     "maxCapacity": 16
   },
   "coins": {

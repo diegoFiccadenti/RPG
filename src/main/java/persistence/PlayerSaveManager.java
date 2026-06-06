@@ -1,5 +1,6 @@
 package persistence;
 
+import data_structures.Inventory;
 import entities.Player;
 import panes.PlayerObserver;
 
@@ -25,7 +26,14 @@ public class PlayerSaveManager {
 
     public void readPlayerSaves() {
         Path playerPath = Path.of("saves/player.json");
-        this.player = MyReader.readPlayer(playerPath);
+        Player loadedPlayer = MyReader.readPlayer(playerPath);
+
+        if (loadedPlayer != null) {
+            this.player = loadedPlayer;
+        }
+        else {
+            this.player = new Player("NomeDiProva", new Inventory(16));
+        }
         notifyObservers();
     }
 
