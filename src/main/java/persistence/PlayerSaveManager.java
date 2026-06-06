@@ -12,8 +12,8 @@ public class PlayerSaveManager {
     private final ArrayList<PlayerObserver> observers;
 
     public PlayerSaveManager() {
-        readPlayerSaves();
         this.observers = new ArrayList<>();
+        readPlayerSaves();
     }
 
     public Player getPlayer() {return this.player;}

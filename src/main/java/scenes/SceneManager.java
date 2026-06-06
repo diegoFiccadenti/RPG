@@ -13,10 +13,13 @@ public class SceneManager {
     private static final int SCREEN_WIDTH = 640;
     private static final int SCREEN_HEIGHT = 480;
 
+    // static scenes
     private final MyScene mainMenuScene;
     private final MyScene tutorialScene;
-    private final MyScene gameScene;
-    private final MyScene combatScene;
+
+    // dynamic scenes
+    private MyScene gameScene;
+    private MyScene combatScene;
 
     public enum SceneType {
         MAIN_MENU,
@@ -34,8 +37,6 @@ public class SceneManager {
 
         mainMenuScene = new MainMenu(this);
         tutorialScene = new Tutorial(this);
-        gameScene = new Game(this);
-        combatScene = new Combat(this);
     }
 
     public PlayerSaveManager getPlayerSaveManager() {return this.playerSaveManager;}
@@ -54,13 +55,23 @@ public class SceneManager {
             newScene = tutorialScene.getScene();
         }
         else if (scene == SceneType.GAME) {
+            initGameScene();
             newScene = gameScene.getScene();
         }
         else if (scene == SceneType.COMBAT) {
+            initCombatScene();
             newScene = combatScene.getScene();
         }
         else throw new IllegalArgumentException("Invalid scene type");
 
         stage.setScene(newScene);
+    }
+
+    private void initGameScene() {
+        this.gameScene = new Game(this);
+    }
+
+    private void initCombatScene() {
+        this.combatScene = new Combat(this);
     }
 }
