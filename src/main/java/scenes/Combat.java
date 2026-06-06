@@ -7,15 +7,12 @@ import panes.CombatSelectionGrid;
 
 public class Combat implements MyScene {
 
-    private final CombatPane combatPane;
-    private final CombatSelectionGrid combatSelectionGrid;
-
     private final Scene scene;
 
     public Combat (SceneManager sceneManager) {
 
-        combatPane = new CombatPane();
-        combatSelectionGrid = new CombatSelectionGrid();
+        CombatPane combatPane = new CombatPane();
+        CombatSelectionGrid combatSelectionGrid = new CombatSelectionGrid();
 
         BorderPane root = new BorderPane();
 

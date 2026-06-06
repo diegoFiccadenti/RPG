@@ -3,9 +3,6 @@ import scenes.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-// TODO: rifinire ed estendere il sistema di persistenza dei dati
-//  *IMPORTANTE!* sistemare il bug che rompe il gioco quando l'inventario non è vuoto
-
 public class Main extends Application {
 
     @Override
