@@ -5,17 +5,19 @@ import quantifiables.ManaPoints;
 import java.util.HashMap;
 import java.util.Map;
 
-// Manges the stats which depends on character level or ability points used
+// Manages the stats which depends on character level or ability points used
 public class StatsHandler {
 
-    private final Map<Integer,Integer> skillStats;
+    private final Map<Stat,Integer> skillStats;
 
     // Keys definition
-    public static final int ABILITY_POINTS = 0;
-    public static final int STRENGTH = 1;
-    public static final int VITALITY = 2;
-    public static final int INTELLIGENCE = 3;
-    public static final int CHARISMA = 4;
+    public enum Stat {
+        ABILITY_POINTS,
+        STRENGTH,
+        VITALITY,
+        INTELLIGENCE,
+        CHARISMA
+    }
 
     // dependent attributes
     private final HealthPoints HP = new HealthPoints(0, 0);
@@ -28,32 +30,30 @@ public class StatsHandler {
 
         // default value: 5 (for level 0 entities)
         skillStats = new HashMap<>();
-        skillStats.put(ABILITY_POINTS, 0); // Points to distribute on the others stats
-        skillStats.put(STRENGTH, 5); // Strength stat
-        skillStats.put(VITALITY, 5); // Vitality stat
-        skillStats.put(INTELLIGENCE, 5); // Intelligence stat
-        skillStats.put(CHARISMA, 5); // Charisma stat
+        skillStats.put(Stat.ABILITY_POINTS, 0); // Points to distribute on the others stats
+        skillStats.put(Stat.STRENGTH, 5); // Strength stat
+        skillStats.put(Stat.VITALITY, 5); // Vitality stat
+        skillStats.put(Stat.INTELLIGENCE, 5); // Intelligence stat
+        skillStats.put(Stat.CHARISMA, 5); // Charisma stat
 
         updateDependantStats();
     }
 
-    public StatsHandler(Map<Integer,Integer> skillStats) {
+    public StatsHandler(Map<Stat,Integer> skillStats) {
         if (skillStats == null) {
             throw new IllegalArgumentException("skillStats cannot be null");
         }
-        if (!skillStats.containsKey(ABILITY_POINTS) ||
-                !skillStats.containsKey(STRENGTH) ||
-                !skillStats.containsKey(VITALITY) ||
-                !skillStats.containsKey(INTELLIGENCE) ||
-                !skillStats.containsKey(CHARISMA)) {
-            throw new IllegalArgumentException("given skillStats is not valid");
+        for (Stat stat : Stat.values()) {
+            if (skillStats.containsKey(stat)) {
+                throw new IllegalArgumentException("given skillStats is not valid");
+            }
         }
 
         this.skillStats = new HashMap<>(skillStats);
         updateDependantStats();
     }
 
-    public Map<Integer,Integer> getSkillStats() {return skillStats;}
+    public Map<Stat,Integer> getSkillStats() {return skillStats;}
 
     public HealthPoints getHP() {return HP;}
 
@@ -67,43 +67,43 @@ public class StatsHandler {
 
     // to call every time a skill stat changes (except for Ability Points)
     private void updateDependantStats() {
-        this.HP.setMax(20*skillStats.get(VITALITY));
+        this.HP.setMax(20*skillStats.get(Stat.VITALITY));
         this.HP.setCurrent(this.HP.getMaxValue());
-        this.MP.setMax(20*skillStats.get(INTELLIGENCE));
+        this.MP.setMax(20*skillStats.get(Stat.INTELLIGENCE));
         this.MP.setCurrent(this.MP.getMaxValue());
-        this.basicMeleeAttack = 3*skillStats.get(STRENGTH);
-        this.basicMagicAttack = 3*skillStats.get(INTELLIGENCE);
-        this.persuasiveness = 3*skillStats.get(CHARISMA);
+        this.basicMeleeAttack = 3*skillStats.get(Stat.STRENGTH);
+        this.basicMagicAttack = 3*skillStats.get(Stat.INTELLIGENCE);
+        this.persuasiveness = 3*skillStats.get(Stat.CHARISMA);
     }
 
-    public boolean increaseStat(int statName) {
+    public boolean increaseStat(Stat statName) {
         if (!skillStats.containsKey(statName)) {
             throw new IllegalArgumentException("Unknown skill stat: " + statName);
         }
-        if (statName == ABILITY_POINTS) {
+        if (statName == Stat.ABILITY_POINTS) {
             throw new IllegalArgumentException("Cannot use this method for increasing ability points");
         }
 
-        if (skillStats.get(ABILITY_POINTS) > 0) {
+        if (skillStats.get(Stat.ABILITY_POINTS) > 0) {
             skillStats.put(statName, skillStats.get(statName) + 1);
-            skillStats.put(ABILITY_POINTS, skillStats.get(ABILITY_POINTS) - 1);
+            skillStats.put(Stat.ABILITY_POINTS, skillStats.get(Stat.ABILITY_POINTS) - 1);
             updateDependantStats();
             return true;
         }
         return false;
     }
 
-    public boolean increaseStat(int statName, int amount) {
+    public boolean increaseStat(Stat statName, int amount) {
         if (!skillStats.containsKey(statName)) {
             throw new IllegalArgumentException("Unknown skill stat: " + statName);
         }
-        if (statName == ABILITY_POINTS) {
+        if (statName == Stat.ABILITY_POINTS) {
             throw new IllegalArgumentException("Cannot use this method for increasing ability points");
         }
 
-        if (skillStats.get(ABILITY_POINTS) >= amount) {
+        if (skillStats.get(Stat.ABILITY_POINTS) >= amount) {
             skillStats.put(statName, skillStats.get(statName) + amount);
-            skillStats.put(ABILITY_POINTS, skillStats.get(ABILITY_POINTS) - amount);
+            skillStats.put(Stat.ABILITY_POINTS, skillStats.get(Stat.ABILITY_POINTS) - amount);
             updateDependantStats();
             return true;
         }
@@ -111,16 +111,16 @@ public class StatsHandler {
     }
 
     public void addAbilityPoints(int amount) {
-        skillStats.put(ABILITY_POINTS, skillStats.get(ABILITY_POINTS) + amount);
+        skillStats.put(Stat.ABILITY_POINTS, skillStats.get(Stat.ABILITY_POINTS) + amount);
     }
 
     public void showStats() {
-        for(int stat : skillStats.keySet()) {
-            if (stat == STRENGTH) System.out.println("Strength: " + skillStats.get(stat));
-            else if (stat == VITALITY) System.out.println("Vitality: " + skillStats.get(stat));
-            else if (stat == INTELLIGENCE) System.out.println("Intelligence: " + skillStats.get(stat));
-            else if (stat == CHARISMA) System.out.println("Charisma: " + skillStats.get(stat));
-            else if (stat == ABILITY_POINTS) System.out.println("Ability Points: " + skillStats.get(stat));
+        for(Stat stat : skillStats.keySet()) {
+            if (stat == Stat.STRENGTH) System.out.println("Strength: " + skillStats.get(stat));
+            else if (stat == Stat.VITALITY) System.out.println("Vitality: " + skillStats.get(stat));
+            else if (stat == Stat.INTELLIGENCE) System.out.println("Intelligence: " + skillStats.get(stat));
+            else if (stat == Stat.CHARISMA) System.out.println("Charisma: " + skillStats.get(stat));
+            else if (stat == Stat.ABILITY_POINTS) System.out.println("Ability Points: " + skillStats.get(stat));
         }
     }
 }
