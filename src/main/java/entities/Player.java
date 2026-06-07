@@ -10,6 +10,7 @@ public class Player extends Character implements Fighter, Levelable {
     private int level;
     private final StatsHandler personalStats;
     private final EquipmentHandler equipment;
+    private final AttackSetHandler attackSet;
 
     public Player(String name, Inventory inventory) {
         super(name, inventory, 0);
@@ -17,6 +18,7 @@ public class Player extends Character implements Fighter, Levelable {
         this.XP = new Experience(level);
         this.personalStats = new StatsHandler();
         this.equipment = new EquipmentHandler();
+        this.attackSet = new AttackSetHandler();
     }
 
     public int getLevel() {
@@ -30,6 +32,8 @@ public class Player extends Character implements Fighter, Levelable {
     public StatsHandler getCombatStats() {return personalStats;}
 
     public EquipmentHandler getEquipment() {return equipment;}
+
+    public AttackSetHandler getAttacks() {return attackSet;}
 
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {
