@@ -71,9 +71,9 @@ public class StatsHandler {
         this.HP.setCurrent(this.HP.getMaxValue());
         this.MP.setMax(20*skillStats.get(Stat.INTELLIGENCE));
         this.MP.setCurrent(this.MP.getMaxValue());
-        this.basicMeleeAttack = 3*skillStats.get(Stat.STRENGTH);
-        this.basicMagicAttack = 3*skillStats.get(Stat.INTELLIGENCE);
-        this.persuasiveness = 3*skillStats.get(Stat.CHARISMA);
+        this.basicMeleeAttack = 2*skillStats.get(Stat.STRENGTH);
+        this.basicMagicAttack = 2*skillStats.get(Stat.INTELLIGENCE);
+        this.persuasiveness = 2*skillStats.get(Stat.CHARISMA);
     }
 
     public boolean increaseStat(Stat statName) {

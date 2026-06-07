@@ -7,14 +7,14 @@
   "level": 0,
   "personalStats": {
     "skillStats": {
-      "0": 0,
-      "1": 5,
-      "2": 5,
-      "3": 5,
-      "4": 5
+      "CHARISMA": 5,
+      "VITALITY": 5,
+      "STRENGTH": 5,
+      "INTELLIGENCE": 5,
+      "ABILITY_POINTS": 0
     },
     "HP": {
-      "currentValue": 85,
+      "currentValue": 100,
       "maxValue": 100,
       "minValue": 0
     },
@@ -28,7 +28,7 @@
     "persuasiveness": 15
   },
   "equipment": {
-    "equipmentSlots": {},
+    "equipment": {},
     "meleeAttack": 0,
     "meleeDefence": 0,
     "magicAttack": 0,
