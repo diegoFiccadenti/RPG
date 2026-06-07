@@ -8,15 +8,17 @@ import java.util.Map;
 
 public class EquipmentHandler {
 
-    private final Map<Integer, Equippable> equipmentSlots;
+    private final Map<EquipmentType, Equippable> equipment;
 
     // Keys definition
-    public static final int PRIMARY_WEAPON = 0;
-    public static final int HEAD = 1;
-    public static final int CHEST = 2;
-    public static final int LEGS = 3;
-    public static final int FEET = 4;
-    public static final int CHARM = 5;
+    public enum EquipmentType {
+        PRIMARY_WEAPON,
+        HEAD,
+        CHEST,
+        LEGS,
+        FEET,
+        CHARM
+    }
 
     // dependent attributes
     private int meleeAttack;
@@ -25,36 +27,30 @@ public class EquipmentHandler {
     private int magicDefence;
 
     public EquipmentHandler() {
-        this.equipmentSlots = new HashMap<>();
-        this.equipmentSlots.put(PRIMARY_WEAPON, null);
-        this.equipmentSlots.put(HEAD, null);
-        this.equipmentSlots.put(CHEST, null);
-        this.equipmentSlots.put(LEGS, null);
-        this.equipmentSlots.put(FEET, null);
-        this.equipmentSlots.put(CHARM, null);
+        this.equipment = new HashMap<>();
+        for (EquipmentType slot : EquipmentType.values()) {
+            this.equipment.put(slot, null);
+        }
 
         updateDependantStats();
     }
 
-    public EquipmentHandler(Map<Integer, Equippable> equipment) {
+    public EquipmentHandler(Map<EquipmentType, Equippable> equipment) {
         if (equipment == null) {
             throw new IllegalArgumentException("Equipment cannot be null");
         }
-        if (!equipment.containsKey(PRIMARY_WEAPON) ||
-                !equipment.containsKey(HEAD) ||
-                !equipment.containsKey(CHEST) ||
-                !equipment.containsKey(LEGS) ||
-                !equipment.containsKey(FEET) ||
-                !equipment.containsKey(CHARM)) {
-            throw new IllegalArgumentException("given equipment is not valid");
+        for (EquipmentType slot : EquipmentType.values()) {
+            if (!equipment.containsKey(slot)) {
+                throw new IllegalArgumentException("given equipment is not valid");
+            }
         }
 
-        this.equipmentSlots = new HashMap<>(equipment);
+        this.equipment = new HashMap<>(equipment);
         updateDependantStats();
     }
 
-    public Map<Integer, Equippable> getEquipmentSlots() {
-        return equipmentSlots;
+    public Map<EquipmentType, Equippable> getEquipment() {
+        return equipment;
     }
 
     public int getMeleeAttack() {
@@ -74,23 +70,23 @@ public class EquipmentHandler {
     }
 
     public void equip(Equippable pieceToEquip) {
-        int type = pieceToEquip.getType();
+        EquipmentType type = pieceToEquip.getType();
 
-        if (equipmentSlots.get(type) != null) {
-            equipmentSlots.get(type).setEquipped(false);
+        if (equipment.get(type) != null) {
+            equipment.get(type).setEquipped(false);
         }
-        equipmentSlots.put(type, pieceToEquip);
+        equipment.put(type, pieceToEquip);
         pieceToEquip.setEquipped(true);
         updateDependantStats();
     }
 
     public void unequip(Equippable pieceToUnequip) {
-        int type = pieceToUnequip.getType();
+        EquipmentType type = pieceToUnequip.getType();
 
-        if (equipmentSlots.get(type) != null) {
-            if (equipmentSlots.get(type).equals(pieceToUnequip)) {
-                equipmentSlots.get(type).setEquipped(false);
-                equipmentSlots.put(type, null);
+        if (equipment.get(type) != null) {
+            if (equipment.get(type).equals(pieceToUnequip)) {
+                equipment.get(type).setEquipped(false);
+                equipment.put(type, null);
                 updateDependantStats();
             }
         }
@@ -103,8 +99,8 @@ public class EquipmentHandler {
         meleeDefence = 0;
         magicAttack = 0;
         magicDefence = 0;
-        for (int slot : equipmentSlots.keySet()) {
-            Equippable piece = equipmentSlots.get(slot);
+        for (EquipmentType slot : equipment.keySet()) {
+            Equippable piece = equipment.get(slot);
             if (piece instanceof EquipmentPiece) {
                 meleeAttack += ((EquipmentPiece) piece).getMeleeDamage();
                 meleeDefence += ((EquipmentPiece) piece).getMeleeDefence();

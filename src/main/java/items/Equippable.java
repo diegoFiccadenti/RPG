@@ -1,8 +1,10 @@
 package items;
 
+import data_structures.EquipmentHandler.EquipmentType;
+
 public interface Equippable {
 
     void setEquipped(boolean equipped);
 
-    int getType();
+    EquipmentType getType();
 }

@@ -1,21 +1,19 @@
 package items;
 
+import data_structures.EquipmentHandler.EquipmentType;
+
 public class EquipmentPiece extends Item implements Equippable {
 
     private boolean equipped;
-    private final int type;
+    private final EquipmentType type;
     private final int meleeDamage;
     private final int meleeDefence;
     private final int magicDamage;
     private final int magicDefence;
 
-    public EquipmentPiece(String name, String description, int type, int meleeDamage, int meleeDefence, int magicDamage, int magicDefence) {
+    public EquipmentPiece(String name, String description, EquipmentType type, int meleeDamage, int meleeDefence, int magicDamage, int magicDefence) {
         super(name, description);
 
-        // the current range of equipment types
-        if (type < 0 || type > 5) {
-            throw new IllegalArgumentException("Invalid equipment type");
-        }
         this.type = type;
 
         this.meleeDamage = meleeDamage;
@@ -28,7 +26,7 @@ public class EquipmentPiece extends Item implements Equippable {
 
     public void setEquipped(boolean equipped) {this.equipped = equipped;}
 
-    public int getType() {return type;}
+    public EquipmentType getType() {return type;}
 
     public int getMeleeDamage() {
         return meleeDamage;
