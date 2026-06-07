@@ -1,0 +1,65 @@
+package data_structures;
+
+import mechanics.Attack;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class AttackSetHandler {
+
+    private final List<Attack> knownAttacks;
+
+    private final Map<AttackSlot, Attack> attackSet;
+
+    public enum AttackSlot {
+        SLOT1,
+        SLOT2,
+        SLOT3,
+    }
+
+    public AttackSetHandler() {
+        this.knownAttacks = new ArrayList<>();
+        this.attackSet = new HashMap<>();
+        for (AttackSlot slot : AttackSlot.values()) {
+            this.attackSet.put(slot, null);
+        }
+    }
+
+    public AttackSetHandler(Map<AttackSlot, Attack> attackSet) {
+        if (attackSet == null) {
+            throw new IllegalArgumentException("Argument cannot be null");
+        }
+        for (AttackSlot slot : AttackSlot.values()) {
+            if (!attackSet.containsKey(slot)) {
+                throw new IllegalArgumentException("Slot " + slot + " not found");
+            }
+        }
+
+        this.knownAttacks = new ArrayList<>();
+        this.knownAttacks.addAll(attackSet.values());
+        this.attackSet = attackSet;
+    }
+
+    public List<Attack> getKnownAttacks() {return this.knownAttacks;}
+
+    public Map<AttackSlot, Attack> getAttackSet() {return this.attackSet;}
+
+    public void addAttack(Attack attack) {
+        for (AttackSlot slot : AttackSlot.values()) {
+            if (attackSet.get(slot) == null) {
+                attackSet.put(slot, attack);
+                return;
+            }
+        }
+    }
+
+    public void emptySlot(AttackSlot slot) {
+        this.attackSet.put(slot, null);
+    }
+
+    public void addLearnedAttack(Attack attack) {
+        this.knownAttacks.add(attack);
+    }
+}
