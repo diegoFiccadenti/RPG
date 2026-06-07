@@ -3,11 +3,12 @@ package data_structures;
 import quantifiables.HealthPoints;
 import quantifiables.ManaPoints;
 import java.util.HashMap;
+import java.util.Map;
 
 // Manges the stats which depends on character level or ability points used
 public class StatsHandler {
 
-    private final HashMap<Integer,Integer> skillStats;
+    private final Map<Integer,Integer> skillStats;
 
     // Keys definition
     public static final int ABILITY_POINTS = 0;
@@ -36,7 +37,7 @@ public class StatsHandler {
         updateDependantStats();
     }
 
-    public StatsHandler(HashMap<Integer,Integer> skillStats) {
+    public StatsHandler(Map<Integer,Integer> skillStats) {
         if (skillStats == null) {
             throw new IllegalArgumentException("skillStats cannot be null");
         }
@@ -52,7 +53,7 @@ public class StatsHandler {
         updateDependantStats();
     }
 
-    public HashMap<Integer,Integer> getSkillStats() {return skillStats;}
+    public Map<Integer,Integer> getSkillStats() {return skillStats;}
 
     public HealthPoints getHP() {return HP;}
 

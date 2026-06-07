@@ -3,10 +3,11 @@ package data_structures;
 import items.Item;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Inventory {
 
-    private final HashMap<Item, Integer> items;
+    private final Map<Item, Integer> items;
 
     private int containedItems;
     private int maxCapacity;
@@ -17,13 +18,13 @@ public class Inventory {
         this.maxCapacity = maxCapacity;
     }
 
-    public Inventory(HashMap<Item, Integer> items, int maxCapacity) {
+    public Inventory(Map<Item, Integer> items, int maxCapacity) {
         this.items = items;
         this.containedItems = countItems();
         this.maxCapacity = maxCapacity;
     }
 
-    public HashMap<Item, Integer> getItems() {
+    public Map<Item, Integer> getItems() {
         return items;
     }
 

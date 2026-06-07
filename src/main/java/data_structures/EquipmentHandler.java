@@ -4,10 +4,11 @@ import items.EquipmentPiece;
 import items.Equippable;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class EquipmentHandler {
 
-    private final HashMap<Integer, Equippable> equipmentSlots;
+    private final Map<Integer, Equippable> equipmentSlots;
 
     // Keys definition
     public static final int PRIMARY_WEAPON = 0;
@@ -35,7 +36,7 @@ public class EquipmentHandler {
         updateDependantStats();
     }
 
-    public EquipmentHandler(HashMap<Integer, Equippable> equipment) {
+    public EquipmentHandler(Map<Integer, Equippable> equipment) {
         if (equipment == null) {
             throw new IllegalArgumentException("Equipment cannot be null");
         }
@@ -52,7 +53,7 @@ public class EquipmentHandler {
         updateDependantStats();
     }
 
-    public HashMap<Integer, Equippable> getEquipmentSlots() {
+    public Map<Integer, Equippable> getEquipmentSlots() {
         return equipmentSlots;
     }
 
