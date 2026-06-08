@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import panes.PlayerInfoGrid;
 import panes.WorldPane;
 
-public class Game implements MyScene {
+public class Game implements SceneFactory {
 
     private final Scene scene;
 

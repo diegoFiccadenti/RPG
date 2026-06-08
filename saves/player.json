@@ -14,7 +14,7 @@
       "STRENGTH": 5
     },
     "HP": {
-      "currentValue": 100,
+      "currentValue": 80,
       "maxValue": 100,
       "minValue": 0
     },

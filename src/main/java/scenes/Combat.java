@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderPane;
 import panes.CombatPane;
 import panes.CombatSelectionGrid;
 
-public class Combat implements MyScene {
+public class Combat implements SceneFactory {
 
     private final Scene scene;
 

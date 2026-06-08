@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class MainMenu implements MyScene {
+public class MainMenu implements SceneFactory {
 
     private final Scene scene;
 

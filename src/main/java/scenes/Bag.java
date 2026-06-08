@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderPane;
 import panes.BagItemSelection;
 import panes.BagList;
 
-public class Bag implements MyScene {
+public class Bag implements SceneFactory {
 
     private final Scene scene;
 

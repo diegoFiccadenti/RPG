@@ -14,13 +14,13 @@ public class SceneManager {
     private static final int SCREEN_HEIGHT = 480;
 
     // static scenes (created once when the game starts)
-    private final MyScene mainMenuScene;
-    private final MyScene tutorialScene;
+    private final SceneFactory mainMenuScene;
+    private final SceneFactory tutorialScene;
 
     // dynamic scenes (re-created every time they are needed)
-    private MyScene gameScene;
-    private MyScene combatScene;
-    private MyScene bagScene;
+    private SceneFactory gameScene;
+    private SceneFactory combatScene;
+    private SceneFactory bagScene;
 
     public enum SceneType {
         MAIN_MENU,
