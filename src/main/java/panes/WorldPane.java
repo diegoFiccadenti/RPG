@@ -61,6 +61,13 @@ public class WorldPane {
             sceneManager.switchScene(SceneType.BAG);
         });
 
+        Button addPotion = new Button("Add Potion");
+        addPotion.setPrefSize(200, 50);
+        addPotion.setOnAction(e -> {
+            Item healingPotion = new Potion("Healing Potion", "Heals 20 HP", 20, 0);
+            player.getInventory().addItem(healingPotion, 1);
+        });
+
         Button removePotion = new Button("Remove Potion");
         removePotion.setPrefSize(200, 50);
         removePotion.setOnAction(e -> {
@@ -68,7 +75,7 @@ public class WorldPane {
             player.getInventory().removeItem(healingPotion, 1);
         });
 
-        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, openBag, removePotion);
+        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, openBag, addPotion, removePotion);
         mainPane.getChildren().addAll(vBox);
     }
 
