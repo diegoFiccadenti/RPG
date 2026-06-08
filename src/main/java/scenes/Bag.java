@@ -14,6 +14,7 @@ public class Bag implements MyScene {
         BorderPane root = new BorderPane();
 
         BagList bagList = new BagList(sceneManager);
+        sceneManager.getPlayerSaveManager().addObserver(bagList);
         BagItemSelection bagItemSelection = new BagItemSelection(sceneManager);
 
         root.setBottom(bagItemSelection.getHBox());

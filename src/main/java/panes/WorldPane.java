@@ -43,7 +43,6 @@ public class WorldPane {
         Button exit = new Button("Exit");
         exit.setPrefSize(200, 50);
         exit.setOnAction(e -> {
-            sceneManager.getPlayerSaveManager().clearObservers();
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
@@ -51,7 +50,6 @@ public class WorldPane {
         saveAndExit.setPrefSize(200, 50);
         saveAndExit.setOnAction(e -> {
             sceneManager.getPlayerSaveManager().savePlayer();
-            sceneManager.getPlayerSaveManager().clearObservers();
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 

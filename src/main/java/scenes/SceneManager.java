@@ -50,6 +50,8 @@ public class SceneManager {
     public void switchScene(SceneType scene) {
 
         Scene newScene;
+        // observers' list gets cleared every time a scene changes
+        playerSaveManager.clearObservers();
         if (scene == SceneType.MAIN_MENU) {
             newScene = mainMenuScene.getScene();
         }

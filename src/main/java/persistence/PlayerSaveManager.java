@@ -6,11 +6,12 @@ import panes.PlayerObserver;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerSaveManager {
 
     private Player player;
-    private final ArrayList<PlayerObserver> observers;
+    private final List<PlayerObserver> observers;
 
     public PlayerSaveManager() {
         this.observers = new ArrayList<>();
@@ -18,6 +19,8 @@ public class PlayerSaveManager {
     }
 
     public Player getPlayer() {return this.player;}
+
+    public List<PlayerObserver> getObservers() {return this.observers;}
 
     public void savePlayer() {
         Path path = Path.of("saves/player.json");

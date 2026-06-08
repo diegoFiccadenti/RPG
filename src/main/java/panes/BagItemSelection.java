@@ -8,7 +8,7 @@ import scenes.SceneManager.SceneType;
 
 public class BagItemSelection {
 
-    HBox hbox;
+    private final HBox hbox;
 
     public BagItemSelection(SceneManager sceneManager) {
 

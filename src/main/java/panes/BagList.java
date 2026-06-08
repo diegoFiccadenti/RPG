@@ -9,19 +9,22 @@ import scenes.SceneManager;
 
 import java.util.Map;
 
-public class BagList {
+public class BagList implements PlayerObserver {
 
-    ScrollPane scrollPane;
+    private final ScrollPane scrollPane;
 
-    VBox itemList;
+    private final Player player;
+
+    private final VBox itemList;
 
     public BagList(SceneManager sceneManager) {
         this.scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
+        this.player = sceneManager.getPlayerSaveManager().getPlayer();
+
         this.itemList = new VBox();
         itemList.setSpacing(5);
-        Player player = sceneManager.getPlayerSaveManager().getPlayer();
         refreshItemList(player);
 
         scrollPane.setContent(itemList);
@@ -41,5 +44,9 @@ public class BagList {
             newItemButton.setText(item.getName() + ": " + items.get(item));
             itemList.getChildren().add(newItemButton);
         }
+    }
+
+    public void onPlayerUpdate() {
+        refreshItemList(this.player);
     }
 }
