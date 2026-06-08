@@ -18,7 +18,7 @@ public class Bag implements SceneFactory {
         BagItemSelection bagItemSelection = new BagItemSelection(sceneManager);
 
         root.setBottom(bagItemSelection.getHBox());
-        root.setCenter(bagList.getScrollPane());
+        root.setCenter(bagList.getTabPane());
 
         this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
     }

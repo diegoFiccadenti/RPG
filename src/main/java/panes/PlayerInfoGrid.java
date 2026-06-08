@@ -52,7 +52,7 @@ public class PlayerInfoGrid implements PlayerObserver {
         MP_HBox.setSpacing(10);
         MP_HBox.setAlignment(Pos.CENTER_LEFT);
 
-        refreshData(player);
+        refreshData();
         this.HP_HBox.getChildren().addAll(new Label("HP"), HPBar, HPValue);
         this.MP_HBox.getChildren().addAll(new Label("MP"), MPBar, MPValue);
         addValuesToGrid();
@@ -60,7 +60,7 @@ public class PlayerInfoGrid implements PlayerObserver {
 
     public GridPane getGrid() {return grid;}
 
-    public void refreshData(Player player) {
+    public void refreshData() {
 
         this.playerName.setText("Name: " + player.getName());
         this.playerLevel.setText("Level: " + player.getLevel());
@@ -87,6 +87,6 @@ public class PlayerInfoGrid implements PlayerObserver {
     }
 
     public void onPlayerUpdate() {
-        refreshData(this.player);
+        refreshData();
     }
 }
