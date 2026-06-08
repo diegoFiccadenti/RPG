@@ -53,7 +53,7 @@ public class WorldPane {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        Button openBag = new Button("Open bag");
+        Button openBag = new Button("Open Bag");
         openBag.setPrefSize(200, 50);
         openBag.setOnAction(e -> {
             sceneManager.switchScene(SceneType.BAG);
@@ -62,6 +62,12 @@ public class WorldPane {
         Button addPotion = new Button("Add Potion");
         addPotion.setPrefSize(200, 50);
         addPotion.setOnAction(e -> {
+            /* TEST FOR MULTIPLE DIFFERENT ITEMS:
+            for (int i = 0; i < 16; i++) {
+                Item healingPotion = new Potion("Healing Potion n" + i, "Heals 20 HP", 20, 0);
+                player.getInventory().addItem(healingPotion, 1);
+            }
+             */
             Item healingPotion = new Potion("Healing Potion", "Heals 20 HP", 20, 0);
             player.getInventory().addItem(healingPotion, 1);
         });
