@@ -18,7 +18,7 @@ public class Tutorial implements SceneFactory {
 
         // creating the text
         Text text1 = new Text("Benvenuto nel tutorial di *inserire nome del gioco*!\n");
-        text1.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        text1.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         Text text2 = new Text("Questa è una prova per il testo del tutorial: " +
                 "ab cdefgh ijklmnopqrstuvwxyz 123456789 qwerty uiop asdfgh jkl zxcv" +
                 "bnm");
@@ -40,6 +40,7 @@ public class Tutorial implements SceneFactory {
 
         // creating the scrollPane
         ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setFitToWidth(true);
         scrollPane.setContent(vbox);
 
         this.scene = new Scene(scrollPane, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());

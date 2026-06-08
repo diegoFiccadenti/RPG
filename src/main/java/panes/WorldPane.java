@@ -1,14 +1,18 @@
 package panes;
 
+import data_structures.EquipmentHandler.EquipmentType;
 import entities.Player;
+import items.EquipmentPiece;
 import items.Item;
 import items.Potion;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import scenes.SceneManager;
 import scenes.SceneManager.SceneType;
 
@@ -26,41 +30,35 @@ public class WorldPane {
         VBox vBox = new VBox();
         vBox.setSpacing(10);
 
-        Button takeDamage = new Button("Take Damage");
-        takeDamage.setPrefSize(200, 50);
+        Button takeDamage = newPersonalizedButton("Take Damage");
         takeDamage.setOnAction(e -> {
             player.getCombatStats().getHP().decreaseCurrent(10);
             sceneManager.getPlayerSaveManager().notifyObservers();
         });
 
-        Button heal = new Button("Heal");
-        heal.setPrefSize(200, 50);
+        Button heal = newPersonalizedButton("Heal");
         heal.setOnAction(e -> {
             player.getCombatStats().getHP().increaseCurrent(5);
             sceneManager.getPlayerSaveManager().notifyObservers();
         });
 
-        Button exit = new Button("Exit");
-        exit.setPrefSize(200, 50);
+        Button exit = newPersonalizedButton("Exit");
         exit.setOnAction(e -> {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        Button saveAndExit = new Button("Save & Exit");
-        saveAndExit.setPrefSize(200, 50);
+        Button saveAndExit = newPersonalizedButton("Save & Exit");
         saveAndExit.setOnAction(e -> {
             sceneManager.getPlayerSaveManager().savePlayer();
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        Button openBag = new Button("Open Bag");
-        openBag.setPrefSize(200, 50);
+        Button openBag = newPersonalizedButton("Open Bag");
         openBag.setOnAction(e -> {
             sceneManager.switchScene(SceneType.BAG);
         });
 
-        Button addPotion = new Button("Add Potion");
-        addPotion.setPrefSize(200, 50);
+        Button addPotion = newPersonalizedButton("Add Potion");
         addPotion.setOnAction(e -> {
             /* TEST FOR MULTIPLE DIFFERENT ITEMS:
             for (int i = 0; i < 16; i++) {
@@ -72,16 +70,23 @@ public class WorldPane {
             player.getInventory().addItem(healingPotion, 1);
         });
 
-        Button removePotion = new Button("Remove Potion");
-        removePotion.setPrefSize(200, 50);
-        removePotion.setOnAction(e -> {
-            Item healingPotion = new Potion("Healing Potion", "Heals 20 HP", 20, 0);
-            player.getInventory().removeItem(healingPotion, 1);
+        Button addSword = newPersonalizedButton("Add Sword");
+        addSword.setOnAction(e -> {
+            Item ironSword = new EquipmentPiece("Iron Sword", "A sword made of iron", EquipmentType.PRIMARY_WEAPON, 20, 0, 0, 0);
+            player.getInventory().addItem(ironSword, 1);
         });
 
-        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, openBag, addPotion, removePotion);
+        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, openBag, addPotion, addSword);
         mainPane.getChildren().addAll(vBox);
     }
 
     public Pane getMainPane() {return mainPane;}
+
+    private Button newPersonalizedButton(String buttonName) {
+        Button button = new Button(buttonName);
+        button.setPrefSize(200, 50);
+        button.setAlignment(Pos.CENTER);
+        button.setFont(Font.font("Copperplate Gothic Light", 24));
+        return button;
+    }
 }
