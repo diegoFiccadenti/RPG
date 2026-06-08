@@ -9,11 +9,11 @@ public class Main extends Application {
     public void start(Stage stage) {
 
         PlayerSaveManager playerSaveManager = new PlayerSaveManager();
-        SceneManager sceneManager = new SceneManager(stage, playerSaveManager);
 
         // first scene to be displayed
         SceneManager.SceneType firstScene = SceneManager.SceneType.MAIN_MENU;
 
+        SceneManager sceneManager = new SceneManager(stage, firstScene, playerSaveManager);
         sceneManager.switchScene(firstScene);
 
         stage.show();

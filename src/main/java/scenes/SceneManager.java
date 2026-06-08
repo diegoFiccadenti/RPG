@@ -8,6 +8,8 @@ public class SceneManager {
 
     private final Stage stage;
 
+    private Scene currentScene;
+
     private final PlayerSaveManager playerSaveManager;
 
     private static final int SCREEN_WIDTH = 640;
@@ -30,7 +32,7 @@ public class SceneManager {
         BAG
     }
 
-    public SceneManager(Stage stage, PlayerSaveManager playerSaveManager) {
+    public SceneManager(Stage stage, SceneType firstScene, PlayerSaveManager playerSaveManager) {
         this.stage = stage;
         this.playerSaveManager = playerSaveManager;
 
@@ -39,7 +41,11 @@ public class SceneManager {
 
         mainMenuScene = new MainMenu(this);
         tutorialScene = new Tutorial(this);
+
+        switchScene(firstScene);
     }
+
+    public Scene getCurrentScene() {return this.currentScene;}
 
     public PlayerSaveManager getPlayerSaveManager() {return this.playerSaveManager;}
 
@@ -47,32 +53,31 @@ public class SceneManager {
 
     public static int getScreenHeight() {return SCREEN_HEIGHT;}
 
-    public void switchScene(SceneType scene) {
+    public void switchScene(SceneType newScene) {
 
-        Scene newScene;
         // observers' list gets cleared every time a scene changes
         playerSaveManager.clearObservers();
-        if (scene == SceneType.MAIN_MENU) {
-            newScene = mainMenuScene.getScene();
+        if (newScene == SceneType.MAIN_MENU) {
+            currentScene = mainMenuScene.getScene();
         }
-        else if (scene == SceneType.TUTORIAL) {
-            newScene = tutorialScene.getScene();
+        else if (newScene == SceneType.TUTORIAL) {
+            currentScene = tutorialScene.getScene();
         }
-        else if (scene == SceneType.GAME) {
+        else if (newScene == SceneType.GAME) {
             initGameScene();
-            newScene = gameScene.getScene();
+            currentScene = gameScene.getScene();
         }
-        else if (scene == SceneType.COMBAT) {
+        else if (newScene == SceneType.COMBAT) {
             initCombatScene();
-            newScene = combatScene.getScene();
+            currentScene = combatScene.getScene();
         }
-        else if (scene == SceneType.BAG) {
+        else if (newScene == SceneType.BAG) {
             initBagScene();
-            newScene = bagScene.getScene();
+            currentScene = bagScene.getScene();
         }
         else throw new IllegalArgumentException("Invalid scene type");
 
-        stage.setScene(newScene);
+        stage.setScene(currentScene);
     }
 
     private void initGameScene() {
