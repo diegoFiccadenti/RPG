@@ -20,12 +20,14 @@ public class SceneManager {
     // dynamic scenes
     private MyScene gameScene;
     private MyScene combatScene;
+    private MyScene bagScene;
 
     public enum SceneType {
         MAIN_MENU,
         TUTORIAL,
         GAME,
-        COMBAT
+        COMBAT,
+        BAG
     }
 
     public SceneManager(Stage stage, PlayerSaveManager playerSaveManager) {
@@ -62,6 +64,10 @@ public class SceneManager {
             initCombatScene();
             newScene = combatScene.getScene();
         }
+        else if (scene == SceneType.BAG) {
+            initBagScene();
+            newScene = bagScene.getScene();
+        }
         else throw new IllegalArgumentException("Invalid scene type");
 
         stage.setScene(newScene);
@@ -73,5 +79,9 @@ public class SceneManager {
 
     private void initCombatScene() {
         this.combatScene = new Combat(this);
+    }
+
+    private void initBagScene() {
+        this.bagScene = new Bag(this);
     }
 }

@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import scenes.SceneManager;
+import scenes.SceneManager.SceneType;
 
 public class WorldPane {
 
@@ -43,7 +44,7 @@ public class WorldPane {
         exit.setPrefSize(200, 50);
         exit.setOnAction(e -> {
             sceneManager.getPlayerSaveManager().clearObservers();
-            sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
+            sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
         Button saveAndExit = new Button("Save & Exit");
@@ -51,14 +52,13 @@ public class WorldPane {
         saveAndExit.setOnAction(e -> {
             sceneManager.getPlayerSaveManager().savePlayer();
             sceneManager.getPlayerSaveManager().clearObservers();
-            sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
+            sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        Button addPotion = new Button("Add Potion");
-        addPotion.setPrefSize(200, 50);
-        addPotion.setOnAction(e -> {
-            Item healingPotion = new Potion("Healing Potion", "Heals 20 HP", 20, 0);
-            player.getInventory().addItem(healingPotion, 1);
+        Button openBag = new Button("Open bag");
+        openBag.setPrefSize(200, 50);
+        openBag.setOnAction(e -> {
+            sceneManager.switchScene(SceneType.BAG);
         });
 
         Button removePotion = new Button("Remove Potion");
@@ -68,7 +68,7 @@ public class WorldPane {
             player.getInventory().removeItem(healingPotion, 1);
         });
 
-        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, addPotion, removePotion);
+        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, openBag, removePotion);
         mainPane.getChildren().addAll(vBox);
     }
 
