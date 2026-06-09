@@ -61,6 +61,8 @@ public class BagSelector implements PlayerObserver {
 
     public Item getSelectedItem() {return this.selectedItem;}
 
+    public void deselectItem() {this.selectedItem = null;}
+
     public Tab getSelectedTab() {return this.tabPane.getSelectionModel().getSelectedItem();}
 
     private void refreshItemList() {

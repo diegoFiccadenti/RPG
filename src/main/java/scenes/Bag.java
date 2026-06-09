@@ -59,9 +59,9 @@ public class Bag implements SceneFactory {
 
         List<Button> buttonsToAdd = new ArrayList<>();
 
-        if (currentTab.getText().equals("Consumable")) {
-            Button useButton = createUseButton(sceneManager);
-            buttonsToAdd.add(useButton);
+        if (currentTab.getText().equals("Consumables")) {
+            Button useConsumableButton = createUseConsumableButton(sceneManager);
+            buttonsToAdd.add(useConsumableButton);
         }
         else if (currentTab.getText().equals("Equipment")) {
             Button equipButton = createEquipButton(sceneManager);
@@ -77,15 +77,21 @@ public class Bag implements SceneFactory {
         selectionPane.getChildren().addAll(buttonsToAdd);
     }
 
-    private Button createUseButton(SceneManager sceneManager) {
+    private Button createUseConsumableButton(SceneManager sceneManager) {
         Button useButton = new Button("Use");
         useButton.setPrefSize(200, 50);
         useButton.setOnAction(e -> {
             Item selectedItem = bagSelector.getSelectedItem();
-            Player player = sceneManager.getPlayerSaveManager().getPlayer();
-            ((Consumable) selectedItem).useOn(player);
-            player.getInventory().removeItem(selectedItem, 1);
-            sceneManager.getPlayerSaveManager().notifyObservers();
+            if (selectedItem != null) {
+                Player player = sceneManager.getPlayerSaveManager().getPlayer();
+                ((Consumable) selectedItem).useOn(player);
+                player.getInventory().removeItem(selectedItem, 1);
+                sceneManager.getPlayerSaveManager().notifyObservers();
+                // if the player runs out of an item while using it, then the item gets deselected
+                if (!player.getInventory().getItems().containsKey(selectedItem)) {
+                    bagSelector.deselectItem();
+                }
+            }
         });
         return useButton;
     }
