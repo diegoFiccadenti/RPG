@@ -6,12 +6,15 @@ import items.Item;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import panes.BagSelector;
-import panes.BagSelectorObserver;
 
-public class Bag implements SceneFactory, BagSelectorObserver {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Bag implements SceneFactory {
 
     private final Scene scene;
 
@@ -27,6 +30,13 @@ public class Bag implements SceneFactory, BagSelectorObserver {
         sceneManager.getPlayerSaveManager().addObserver(bagSelector);
         createSelectionPane(sceneManager);
 
+        // Every time a different tab is selected, the selectionPane gets updated
+        this.bagSelector.getTabPane().getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                refreshSelectionPane(sceneManager);
+            }
+        });
+
         root.setBottom(selectionPane);
         root.setCenter(bagSelector.getTabPane());
 
@@ -34,8 +44,6 @@ public class Bag implements SceneFactory, BagSelectorObserver {
     }
 
     public Scene getScene() {return scene;}
-
-    public HBox getSelectionPane() {return selectionPane;}
 
     private void createSelectionPane(SceneManager sceneManager) {
         this.selectionPane = new HBox();
@@ -47,28 +55,59 @@ public class Bag implements SceneFactory, BagSelectorObserver {
 
     private void refreshSelectionPane(SceneManager sceneManager) {
 
+        Tab currentTab = bagSelector.getSelectedTab();
+
+        List<Button> buttonsToAdd = new ArrayList<>();
+
+        if (currentTab.getText().equals("Consumable")) {
+            Button useButton = createUseButton(sceneManager);
+            buttonsToAdd.add(useButton);
+        }
+        else if (currentTab.getText().equals("Equipment")) {
+            Button equipButton = createEquipButton(sceneManager);
+            Button unequipButton = createUnequipButton(sceneManager);
+            buttonsToAdd.add(equipButton);
+            buttonsToAdd.add(unequipButton);
+        }
+
+        Button exitButton = createExitButton(sceneManager);
+        buttonsToAdd.add(exitButton);
+
+        selectionPane.getChildren().clear();
+        selectionPane.getChildren().addAll(buttonsToAdd);
+    }
+
+    private Button createUseButton(SceneManager sceneManager) {
         Button useButton = new Button("Use");
         useButton.setPrefSize(200, 50);
         useButton.setOnAction(e -> {
             Item selectedItem = bagSelector.getSelectedItem();
             Player player = sceneManager.getPlayerSaveManager().getPlayer();
-            if (selectedItem instanceof Consumable) {
-                ((Consumable) selectedItem).useOn(player);
-                player.getInventory().removeItem(selectedItem, 1);
-                sceneManager.getPlayerSaveManager().notifyObservers();
-            }
+            ((Consumable) selectedItem).useOn(player);
+            player.getInventory().removeItem(selectedItem, 1);
+            sceneManager.getPlayerSaveManager().notifyObservers();
         });
+        return useButton;
+    }
 
+    private Button createExitButton(SceneManager sceneManager) {
         Button exitButton = new Button("Exit");
         exitButton.setPrefSize(200, 50);
         exitButton.setOnAction(e -> {
             sceneManager.switchScene(SceneManager.SceneType.GAME);
         });
-
-        selectionPane.getChildren().addAll(useButton, exitButton);
+        return exitButton;
     }
 
-    public void onBagSelectorUpdate() {
+    private Button createEquipButton(SceneManager sceneManager) {
+        Button equipButton = new Button("Equip");
+        equipButton.setPrefSize(200, 50);
+        return equipButton;
+    }
 
+    private Button createUnequipButton(SceneManager sceneManager) {
+        Button unequipButton = new Button("Unequip");
+        unequipButton.setPrefSize(200, 50);
+        return unequipButton;
     }
 }
