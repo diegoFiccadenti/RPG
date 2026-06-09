@@ -22,7 +22,7 @@ public class Potion extends Item implements Consumable {
     }
 
     @Override
-    public void use(Fighter user) {
+    public void useOn(Fighter user) {
         user.getCombatStats().getHP().increaseCurrent(recoveredHP);
         user.getCombatStats().getMP().increaseCurrent(recoveredMP);
     }

@@ -36,12 +36,6 @@ public class WorldPane {
             sceneManager.getPlayerSaveManager().notifyObservers();
         });
 
-        Button heal = newPersonalizedButton("Heal");
-        heal.setOnAction(e -> {
-            player.getCombatStats().getHP().increaseCurrent(5);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
         Button exit = newPersonalizedButton("Exit");
         exit.setOnAction(e -> {
             sceneManager.switchScene(SceneType.MAIN_MENU);
@@ -76,7 +70,7 @@ public class WorldPane {
             player.getInventory().addItem(ironSword, 1);
         });
 
-        vBox.getChildren().addAll(takeDamage, heal, exit, saveAndExit, openBag, addPotion, addSword);
+        vBox.getChildren().addAll(takeDamage, exit, saveAndExit, openBag, addPotion, addSword);
         mainPane.getChildren().addAll(vBox);
     }
 

@@ -13,7 +13,7 @@ import scenes.SceneManager;
 
 import java.util.Map;
 
-public class BagList implements PlayerObserver {
+public class BagSelector implements PlayerObserver {
 
     private final TabPane tabPane;
 
@@ -25,7 +25,9 @@ public class BagList implements PlayerObserver {
 
     private final Player player;
 
-    public BagList(SceneManager sceneManager) {
+    private Item selectedItem;
+
+    public BagSelector(SceneManager sceneManager) {
 
         this.tabPane = new TabPane();
 
@@ -50,11 +52,14 @@ public class BagList implements PlayerObserver {
         equippableTab.setContent(equippableScrollPane);
 
         this.player = sceneManager.getPlayerSaveManager().getPlayer();
+        this.selectedItem = null;
 
         refreshItemList();
     }
 
     public TabPane getTabPane() {return this.tabPane;}
+
+    public Item getSelectedItem() {return this.selectedItem;}
 
     private void refreshItemList() {
 
@@ -66,6 +71,9 @@ public class BagList implements PlayerObserver {
             newItemButton.setPrefSize(SceneManager.getScreenWidth() * 0.95, SceneManager.getScreenHeight() * 0.1);
             newItemButton.setText(item.getName() + ": " + items.get(item));
             if (item instanceof Consumable) {
+                newItemButton.setOnAction(e -> {
+                    selectedItem = item;
+                });
                 consumableList.getChildren().add(newItemButton);
             }
             else if (item instanceof Equippable) {
