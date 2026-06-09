@@ -20,7 +20,7 @@ public class Bag implements SceneFactory {
 
     private HBox selectionPane;
 
-    private BagSelector bagSelector;
+    private final BagSelector bagSelector;
 
     public Bag(SceneManager sceneManager) {
 

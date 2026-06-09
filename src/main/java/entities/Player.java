@@ -3,6 +3,7 @@ package entities;
 import data_structures.*;
 import quantifiables.Experience;
 import data_structures.StatsHandler;
+import data_structures.StatsHandler.Stat;
 
 public class Player extends Character implements Fighter, Levelable {
 
@@ -51,6 +52,11 @@ public class Player extends Character implements Fighter, Levelable {
     public void levelUp() {
         level++;
         personalStats.addAbilityPoints(3);
+        // following lines are a temporary solution, can be removed once a stats assigner is implemented
+        personalStats.increaseStat(Stat.STRENGTH, 1);
+        personalStats.increaseStat(Stat.VITALITY, 1);
+        personalStats.increaseStat(Stat.INTELLIGENCE, 1);
+        personalStats.increaseStat(Stat.CHARISMA, 1);
     }
 
     public void attack(Fighter target) {}

@@ -70,7 +70,19 @@ public class WorldPane {
             player.getInventory().addItem(ironSword, 1);
         });
 
-        vBox.getChildren().addAll(takeDamage, exit, saveAndExit, openBag, addPotion, addSword);
+        Button gainXP1 = newPersonalizedButton("Gain XP (x100)");
+        gainXP1.setOnAction(e -> {
+            player.gainXP(100);
+            sceneManager.getPlayerSaveManager().notifyObservers();
+        });
+
+        Button gainXP2 = newPersonalizedButton("Gain XP (x1000)");
+        gainXP2.setOnAction(e -> {
+            player.gainXP(1000);
+            sceneManager.getPlayerSaveManager().notifyObservers();
+        });
+
+        vBox.getChildren().addAll(takeDamage, exit, saveAndExit, openBag, addPotion, addSword, gainXP1, gainXP2);
         mainPane.getChildren().addAll(vBox);
     }
 
@@ -78,7 +90,7 @@ public class WorldPane {
 
     private Button newPersonalizedButton(String buttonName) {
         Button button = new Button(buttonName);
-        button.setPrefSize(200, 50);
+        button.setPrefSize(250, 50);
         button.setAlignment(Pos.CENTER);
         button.setFont(Font.font("Copperplate Gothic Light", 24));
         return button;
