@@ -1,7 +1,5 @@
-package data_structures;
+package components;
 
-import quantifiables.HealthPoints;
-import quantifiables.ManaPoints;
 import java.util.HashMap;
 import java.util.Map;
 

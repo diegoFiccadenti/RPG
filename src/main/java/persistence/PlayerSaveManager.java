@@ -1,6 +1,6 @@
 package persistence;
 
-import data_structures.Inventory;
+import components.Inventory;
 import entities.Player;
 import panes.PlayerObserver;
 

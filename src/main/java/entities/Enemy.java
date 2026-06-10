@@ -1,9 +1,9 @@
 package entities;
 
-import data_structures.AttackSetHandler;
-import data_structures.Inventory;
-import data_structures.StatsHandler;
-import data_structures.EquipmentHandler;
+import components.AttackSetHandler;
+import components.Inventory;
+import components.StatsHandler;
+import components.EquipmentHandler;
 
 public class Enemy extends Character implements Fighter, Lootable {
 

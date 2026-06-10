@@ -1,8 +1,8 @@
 package entities;
 
-import data_structures.AttackSetHandler;
-import data_structures.StatsHandler;
-import data_structures.EquipmentHandler;
+import components.AttackSetHandler;
+import components.StatsHandler;
+import components.EquipmentHandler;
 
 public interface Fighter {
 

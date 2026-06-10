@@ -1,9 +1,9 @@
 package entities;
 
-import data_structures.*;
-import quantifiables.Experience;
-import data_structures.StatsHandler;
-import data_structures.StatsHandler.Stat;
+import components.*;
+import components.Experience;
+import components.StatsHandler;
+import components.StatsHandler.Stat;
 
 public class Player extends Character implements Fighter, Levelable {
 

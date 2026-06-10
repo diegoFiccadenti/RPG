@@ -1,6 +1,6 @@
 package entities;
 
-import quantifiables.Experience;
+import components.Experience;
 
 public interface Levelable {
 

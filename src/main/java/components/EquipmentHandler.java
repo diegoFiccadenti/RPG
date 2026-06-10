@@ -1,4 +1,4 @@
-package data_structures;
+package components;
 
 import items.EquipmentPiece;
 import items.Equippable;

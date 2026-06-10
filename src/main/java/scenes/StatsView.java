@@ -1,6 +1,6 @@
 package scenes;
 
-import data_structures.StatsHandler.Stat;
+import components.StatsHandler.Stat;
 import entities.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

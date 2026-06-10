@@ -1,6 +1,6 @@
 package items;
 
-import data_structures.EquipmentHandler.EquipmentType;
+import components.EquipmentHandler.EquipmentType;
 
 public class EquipmentPiece extends Item implements Equippable {
 
