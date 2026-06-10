@@ -40,6 +40,10 @@ public class WorldPane {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
+        shop.setOnAction(e -> {
+            sceneManager.switchScene(SceneType.SHOP);
+        });
+
         bag.setOnAction(e -> {
             sceneManager.switchScene(SceneType.BAG);
         });

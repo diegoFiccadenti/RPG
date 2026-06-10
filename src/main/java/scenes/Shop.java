@@ -1,0 +1,49 @@
+package scenes;
+
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import panes.ShopSelector;
+import utils.ButtonPersonalizer;
+
+public class Shop implements SceneFactory {
+
+    private final Scene scene;
+
+    private HBox selectionPane;
+
+    private final ShopSelector shopSelector;
+
+    public Shop(SceneManager sceneManager) {
+
+        BorderPane root = new BorderPane();
+
+        this.shopSelector = new ShopSelector(sceneManager);
+        createSelectionPane(sceneManager);
+
+        root.setBottom(selectionPane);
+        root.setCenter(shopSelector.getTabPane());
+
+        this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
+    }
+
+    @Override
+    public Scene getScene() {return scene;}
+
+    private void createSelectionPane(SceneManager sceneManager) {
+        this.selectionPane = new HBox();
+        selectionPane.setAlignment(Pos.CENTER);
+        selectionPane.setSpacing(50);
+
+        Button buyButton = ButtonPersonalizer.newButton("Buy");
+
+        Button exitButton = ButtonPersonalizer.newButton("Exit");
+        exitButton.setOnAction(e -> {
+            sceneManager.switchScene(SceneManager.SceneType.GAME);
+        });
+
+        this.selectionPane.getChildren().addAll(buyButton, exitButton);
+    }
+}
