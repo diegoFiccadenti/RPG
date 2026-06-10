@@ -49,9 +49,20 @@ public class WorldPane {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
+        // TEMPORARY BUTTONS FOT TESTS
+        VBox testButtons = new VBox();
+
+        Button gainXP = ButtonPersonalizer.newButton("Gain XP");
+        gainXP.setOnAction(e -> {
+           sceneManager.getPlayerSaveManager().getPlayer().gainXP(100);
+           sceneManager.getPlayerSaveManager().notifyObservers();
+        });
+
+        testButtons.getChildren().addAll(gainXP);
+
         vbox1.getChildren().addAll(missionBoard, stats, exit);
         vbox2.getChildren().addAll(shop, bag, saveAndExit);
-        root.getChildren().addAll(vbox1, vbox2);
+        root.getChildren().addAll(vbox1, vbox2, testButtons);
     }
 
     public HBox getMainPane() {return root;}

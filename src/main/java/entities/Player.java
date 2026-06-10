@@ -51,7 +51,7 @@ public class Player extends Character implements Fighter, Levelable {
 
     public void levelUp() {
         level++;
-        personalStats.addAbilityPoints(3);
+        personalStats.addAbilityPoints(4);
         // following lines are a temporary solution, can be removed once a stats assigner is implemented
         personalStats.increaseStat(Stat.STRENGTH, 1);
         personalStats.increaseStat(Stat.VITALITY, 1);

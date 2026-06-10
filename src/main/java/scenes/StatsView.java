@@ -31,6 +31,8 @@ public class StatsView implements SceneFactory, PlayerObserver {
 
     public StatsView(SceneManager sceneManager) {
 
+        sceneManager.getPlayerSaveManager().addObserver(this);
+
         this.player = sceneManager.getPlayerSaveManager().getPlayer();
 
         BorderPane root = new BorderPane();
@@ -38,6 +40,14 @@ public class StatsView implements SceneFactory, PlayerObserver {
         VBox infoList = new VBox();
         infoList.setSpacing(10);
         infoList.setAlignment(Pos.CENTER);
+
+        this.playerName = new Label();
+        this.playerLevel = new Label();
+        this.abilityPoints = new Label();
+        this.strength = new Label();
+        this.vitality = new Label();
+        this.intelligence = new Label();
+        this.charisma = new Label();
         updateLabels();
         formatLabels();
         infoList.getChildren().addAll(playerName, playerLevel,  abilityPoints, strength, vitality, intelligence, charisma);
@@ -46,7 +56,7 @@ public class StatsView implements SceneFactory, PlayerObserver {
         bottomPane.setAlignment(Pos.CENTER);
         Button exit = ButtonPersonalizer.newButton("Exit");
         exit.setOnAction(e -> {
-            sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
+            sceneManager.switchScene(SceneManager.SceneType.GAME);
         });
         bottomPane.getChildren().add(exit);
 
@@ -67,13 +77,14 @@ public class StatsView implements SceneFactory, PlayerObserver {
 
     private void updateLabels() {
         Map<Stat, Integer> skillStats = player.getCombatStats().getSkillStats();
-        this.playerName = new Label("Player Name: " +  player.getName());
-        this.playerLevel = new Label("Player Level: " +  player.getLevel());
-        this.abilityPoints = new Label("ABILITY POINTS: " + skillStats.get(Stat.ABILITY_POINTS));
-        this.strength = new Label("ABILITY POINTS: " + skillStats.get(Stat.STRENGTH));
-        this.vitality = new Label("VITALITY: " + skillStats.get(Stat.VITALITY));
-        this.intelligence = new Label("INTELLIGENCE: " + skillStats.get(Stat.INTELLIGENCE));
-        this.charisma = new Label("CHARISMA: " + skillStats.get(Stat.CHARISMA));
+
+        this.playerName.setText("Player Name: " +  player.getName());
+        this.playerLevel.setText("Player Level: " +  player.getLevel());
+        this.abilityPoints.setText("ABILITY POINTS: " + skillStats.get(Stat.ABILITY_POINTS));
+        this.strength.setText("STRENGTH: " + skillStats.get(Stat.STRENGTH));
+        this.vitality.setText("VITALITY: " + skillStats.get(Stat.VITALITY));
+        this.intelligence.setText("INTELLIGENCE: " + skillStats.get(Stat.INTELLIGENCE));
+        this.charisma.setText("CHARISMA: " + skillStats.get(Stat.CHARISMA));
     }
 
     private void formatLabels() {
