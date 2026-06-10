@@ -1,6 +1,5 @@
 package panes;
 
-import entities.Player;
 import items.Consumable;
 import items.Equippable;
 import items.Item;
@@ -11,6 +10,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import scenes.SceneManager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ShopSelector {
@@ -22,8 +22,6 @@ public class ShopSelector {
 
     private final VBox consumableList;
     private final VBox equippableList;
-
-    private final Player player;
 
     private Item selectedItem;
 
@@ -51,7 +49,6 @@ public class ShopSelector {
         consumableTab.setContent(consumableScrollPane);
         equippableTab.setContent(equippableScrollPane);
 
-        this.player = sceneManager.getPlayerSaveManager().getPlayer();
         this.selectedItem = null;
 
         refreshItemList();
@@ -63,13 +60,11 @@ public class ShopSelector {
 
     public void deselectItem() {this.selectedItem = null;}
 
-    public Tab getSelectedTab() {return this.tabPane.getSelectionModel().getSelectedItem();}
-
     private void refreshItemList() {
 
         consumableList.getChildren().clear();
         equippableList.getChildren().clear();
-        Map<Item, Integer> items = player.getInventory().getItems();
+        Map<Item, Integer> items = new HashMap();
         for (Item item : items.keySet()) {
             Button newItemButton = new Button();
             newItemButton.setPrefSize(SceneManager.getScreenWidth() * 0.95, SceneManager.getScreenHeight() * 0.1);
@@ -86,9 +81,5 @@ public class ShopSelector {
         }
 
         tabPane.getTabs().addAll(consumableTab, equippableTab);
-    }
-
-    public void onPlayerUpdate() {
-        refreshItemList();
     }
 }

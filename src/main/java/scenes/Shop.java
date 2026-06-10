@@ -1,5 +1,7 @@
 package scenes;
 
+import entities.Player;
+import items.Item;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,6 +40,10 @@ public class Shop implements SceneFactory {
         selectionPane.setSpacing(50);
 
         Button buyButton = ButtonPersonalizer.newButton("Buy");
+        buyButton.setOnAction(e -> {
+            Player player = sceneManager.getPlayerSaveManager().getPlayer();
+            Item selectedItem = this.shopSelector.getSelectedItem();
+        });
 
         Button exitButton = ButtonPersonalizer.newButton("Exit");
         exitButton.setOnAction(e -> {

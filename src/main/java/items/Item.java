@@ -6,10 +6,12 @@ public abstract class Item implements Takeable, Droppable {
 
     private final String name;
     private final String description;
+    private final int cost;
 
-    public Item(String name, String description) {
+    public Item(String name, String description, int cost) {
         this.name = name;
         this.description = description;
+        this.cost = cost;
     }
 
     public String getName() {
@@ -18,6 +20,7 @@ public abstract class Item implements Takeable, Droppable {
     public String getDescription() {
         return description;
     }
+    public int getCost() {return cost;}
 
     public void take(Character taker) {
         if (taker == null) throw new  IllegalArgumentException("taker cannot be null");
