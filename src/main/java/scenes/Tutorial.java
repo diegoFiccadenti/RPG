@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import utils.ButtonPersonalizer;
 
 public class Tutorial implements SceneFactory {
 
@@ -24,8 +25,10 @@ public class Tutorial implements SceneFactory {
                 "bnm");
 
         // creating the button for returning to main menu
-        Button returnToMenu = new Button("Return to Menu");
-        personalizeReturnButton(returnToMenu, sceneManager);
+        Button returnToMenu = ButtonPersonalizer.newButton("Return to Menu", 250, 50, 24);
+        returnToMenu.setOnAction(e -> {
+            sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
+        });
 
         // creating the text-flow area
         TextFlow textFlow = new TextFlow(text1, text2);
@@ -47,13 +50,4 @@ public class Tutorial implements SceneFactory {
     }
 
     public Scene getScene() {return scene;}
-
-    private static void personalizeReturnButton(Button button, SceneManager sceneManager) {
-        button.setPrefSize(250, 50);
-        button.setAlignment(Pos.CENTER);
-        button.setFont(Font.font("Copperplate Gothic Light", 24));
-        button.setOnAction(e -> {
-            sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
-        });
-    }
 }

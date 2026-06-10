@@ -18,6 +18,7 @@ public class SceneManager {
     // static scenes (created once when the game starts)
     private final SceneFactory mainMenuScene;
     private final SceneFactory tutorialScene;
+    private final SceneFactory statsScene;
 
     // dynamic scenes (re-created every time they are needed)
     private SceneFactory gameScene;
@@ -29,7 +30,8 @@ public class SceneManager {
         TUTORIAL,
         GAME,
         COMBAT,
-        BAG
+        BAG,
+        STATSVIEWER
     }
 
     public SceneManager(Stage stage, SceneType firstScene, PlayerSaveManager playerSaveManager) {
@@ -41,6 +43,7 @@ public class SceneManager {
 
         mainMenuScene = new MainMenu(this);
         tutorialScene = new Tutorial(this);
+        statsScene = new StatsView(this);
 
         switchScene(firstScene);
     }
@@ -74,6 +77,9 @@ public class SceneManager {
         else if (newScene == SceneType.BAG) {
             initBagScene();
             currentScene = bagScene.getScene();
+        }
+        else if (newScene == SceneType.STATSVIEWER) {
+            currentScene = statsScene.getScene();
         }
         else throw new IllegalArgumentException("Invalid scene type");
 
