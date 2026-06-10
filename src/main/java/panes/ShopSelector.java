@@ -13,15 +13,9 @@ import scenes.SceneManager;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: fare in modo che quando sia cambia tab il parametro "selectedItem" diventi null,
-//  (potrebbe essere utile farlo anche nella classe BagSelector)
-
 public class ShopSelector {
 
     private final TabPane tabPane;
-
-    private final Tab consumableTab;
-    private final Tab equippableTab;
 
     private final VBox consumableList;
     private final VBox equippableList;
@@ -32,8 +26,8 @@ public class ShopSelector {
 
         this.tabPane = new TabPane();
 
-        this.consumableTab = new Tab();
-        this.equippableTab = new Tab();
+        Tab consumableTab = new Tab();
+        Tab equippableTab = new Tab();
         consumableTab.setClosable(false);
         equippableTab.setClosable(false);
         consumableTab.setText("Consumables");
@@ -54,6 +48,13 @@ public class ShopSelector {
 
         this.selectedItem = null;
 
+        this.tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                deselectItem();
+            }
+        });
+
+        tabPane.getTabs().addAll(consumableTab, equippableTab);
         refreshItemList();
     }
 
@@ -82,7 +83,5 @@ public class ShopSelector {
                 equippableList.getChildren().add(newItemButton);
             }
         }
-
-        tabPane.getTabs().addAll(consumableTab, equippableTab);
     }
 }

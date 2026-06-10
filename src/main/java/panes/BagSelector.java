@@ -17,9 +17,6 @@ public class BagSelector implements PlayerObserver {
 
     private final TabPane tabPane;
 
-    private final Tab consumableTab;
-    private final Tab equippableTab;
-
     private final VBox consumableList;
     private final VBox equippableList;
 
@@ -31,8 +28,8 @@ public class BagSelector implements PlayerObserver {
 
         this.tabPane = new TabPane();
 
-        this.consumableTab = new Tab();
-        this.equippableTab = new Tab();
+        Tab consumableTab = new Tab();
+        Tab equippableTab = new Tab();
         consumableTab.setClosable(false);
         equippableTab.setClosable(false);
         consumableTab.setText("Consumables");
@@ -54,6 +51,13 @@ public class BagSelector implements PlayerObserver {
         this.player = sceneManager.getPlayerSaveManager().getPlayer();
         this.selectedItem = null;
 
+        this.tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                deselectItem();
+            }
+        });
+
+        tabPane.getTabs().addAll(consumableTab, equippableTab);
         refreshItemList();
     }
 
@@ -84,8 +88,6 @@ public class BagSelector implements PlayerObserver {
                 equippableList.getChildren().add(newItemButton);
             }
         }
-
-        tabPane.getTabs().addAll(consumableTab, equippableTab);
     }
 
     public void onPlayerUpdate() {
