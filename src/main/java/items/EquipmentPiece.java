@@ -11,8 +11,8 @@ public class EquipmentPiece extends Item implements Equippable {
     private final int magicDamage;
     private final int magicDefence;
 
-    public EquipmentPiece(String name, String description, EquipmentType type, int meleeDamage, int meleeDefence, int magicDamage, int magicDefence) {
-        super(name, description);
+    public EquipmentPiece(String name, String description, int cost, EquipmentType type, int meleeDamage, int meleeDefence, int magicDamage, int magicDefence) {
+        super(name, description, cost);
 
         this.type = type;
 
