@@ -10,6 +10,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import panes.BagSelector;
+import utils.ButtonPersonalizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Bag implements SceneFactory {
     private void createSelectionPane(SceneManager sceneManager) {
         this.selectionPane = new HBox();
         selectionPane.setAlignment(Pos.CENTER);
-        selectionPane.setSpacing(100);
+        selectionPane.setSpacing(50);
 
         refreshSelectionPane(sceneManager);
     }
@@ -78,8 +79,7 @@ public class Bag implements SceneFactory {
     }
 
     private Button createUseConsumableButton(SceneManager sceneManager) {
-        Button useButton = new Button("Use");
-        useButton.setPrefSize(200, 50);
+        Button useButton = ButtonPersonalizer.newButton("Use");
         useButton.setOnAction(e -> {
             Item selectedItem = bagSelector.getSelectedItem();
             if (selectedItem != null) {
@@ -97,8 +97,7 @@ public class Bag implements SceneFactory {
     }
 
     private Button createExitButton(SceneManager sceneManager) {
-        Button exitButton = new Button("Exit");
-        exitButton.setPrefSize(200, 50);
+        Button exitButton = ButtonPersonalizer.newButton("Exit");
         exitButton.setOnAction(e -> {
             sceneManager.switchScene(SceneManager.SceneType.GAME);
         });
@@ -106,14 +105,12 @@ public class Bag implements SceneFactory {
     }
 
     private Button createEquipButton(SceneManager sceneManager) {
-        Button equipButton = new Button("Equip");
-        equipButton.setPrefSize(200, 50);
+        Button equipButton = ButtonPersonalizer.newButton("Equip");
         return equipButton;
     }
 
     private Button createUnequipButton(SceneManager sceneManager) {
-        Button unequipButton = new Button("Unequip");
-        unequipButton.setPrefSize(200, 50);
+        Button unequipButton = ButtonPersonalizer.newButton("Unequip");
         return unequipButton;
     }
 }

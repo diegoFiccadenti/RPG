@@ -12,8 +12,8 @@ public class SceneManager {
 
     private final PlayerSaveManager playerSaveManager;
 
-    private static final int SCREEN_WIDTH = 1280;
-    private static final int SCREEN_HEIGHT = 720;
+    private static final int SCREEN_WIDTH = 640;
+    private static final int SCREEN_HEIGHT = 480;
 
     // static scenes (created once when the game starts)
     private final SceneFactory mainMenuScene;

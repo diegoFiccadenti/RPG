@@ -1,98 +1,54 @@
 package panes;
 
-import data_structures.EquipmentHandler.EquipmentType;
-import entities.Player;
-import items.EquipmentPiece;
-import items.Item;
-import items.Potion;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import javafx.scene.layout.*;
 import scenes.SceneManager;
 import scenes.SceneManager.SceneType;
+import utils.ButtonPersonalizer;
 
 public class WorldPane {
 
-    private final Pane mainPane;
+    private final HBox root;
 
     public WorldPane(SceneManager sceneManager) {
 
-        this.mainPane = new Pane();
-        mainPane.setBackground(new Background((new BackgroundFill(Color.DARKGRAY, null, null))));
+        this.root = new HBox();
+        root.setAlignment(Pos.CENTER);
+        root.setFillHeight(true);
+        root.setSpacing(50);
+        root.setPadding(new Insets(100));
 
-        Player player = sceneManager.getPlayerSaveManager().getPlayer();
+        VBox vbox1 = new VBox();
+        VBox vbox2 = new VBox();
+        vbox1.setSpacing(20);
+        vbox2.setSpacing(20);
 
-        VBox vBox = new VBox();
-        vBox.setSpacing(10);
+        Button missionBoard = ButtonPersonalizer.newButton("Missions");
+        Button stats = ButtonPersonalizer.newButton("Stats");
+        Button exit = ButtonPersonalizer.newButton("Exit");
+        Button shop = ButtonPersonalizer.newButton("Shop");
+        Button bag = ButtonPersonalizer.newButton("Bag");
+        Button saveAndExit = ButtonPersonalizer.newButton("Save & Exit");
 
-        Button takeDamage = newPersonalizedButton("Take Damage");
-        takeDamage.setOnAction(e -> {
-            player.getCombatStats().getHP().decreaseCurrent(10);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        Button exit = newPersonalizedButton("Exit");
         exit.setOnAction(e -> {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        Button saveAndExit = newPersonalizedButton("Save & Exit");
+        bag.setOnAction(e -> {
+            sceneManager.switchScene(SceneType.BAG);
+        });
+
         saveAndExit.setOnAction(e -> {
             sceneManager.getPlayerSaveManager().savePlayer();
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        Button openBag = newPersonalizedButton("Open Bag");
-        openBag.setOnAction(e -> {
-            sceneManager.switchScene(SceneType.BAG);
-        });
-
-        Button addPotion = newPersonalizedButton("Add Potion");
-        addPotion.setOnAction(e -> {
-            /* TEST FOR MULTIPLE DIFFERENT ITEMS:
-            for (int i = 0; i < 16; i++) {
-                Item healingPotion = new Potion("Healing Potion n" + i, "Heals 20 HP", 20, 0);
-                player.getInventory().addItem(healingPotion, 1);
-            }
-             */
-            Item healingPotion = new Potion("Healing Potion", "Heals 20 HP", 20, 0);
-            player.getInventory().addItem(healingPotion, 1);
-        });
-
-        Button addSword = newPersonalizedButton("Add Sword");
-        addSword.setOnAction(e -> {
-            Item ironSword = new EquipmentPiece("Iron Sword", "A sword made of iron", EquipmentType.PRIMARY_WEAPON, 20, 0, 0, 0);
-            player.getInventory().addItem(ironSword, 1);
-        });
-
-        Button gainXP1 = newPersonalizedButton("Gain XP (x100)");
-        gainXP1.setOnAction(e -> {
-            player.gainXP(100);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        Button gainXP2 = newPersonalizedButton("Gain XP (x1000)");
-        gainXP2.setOnAction(e -> {
-            player.gainXP(1000);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        vBox.getChildren().addAll(takeDamage, exit, saveAndExit, openBag, addPotion, addSword, gainXP1, gainXP2);
-        mainPane.getChildren().addAll(vBox);
+        vbox1.getChildren().addAll(missionBoard, stats, exit);
+        vbox2.getChildren().addAll(shop, bag, saveAndExit);
+        root.getChildren().addAll(vbox1, vbox2);
     }
 
-    public Pane getMainPane() {return mainPane;}
-
-    private Button newPersonalizedButton(String buttonName) {
-        Button button = new Button(buttonName);
-        button.setPrefSize(250, 50);
-        button.setAlignment(Pos.CENTER);
-        button.setFont(Font.font("Copperplate Gothic Light", 24));
-        return button;
-    }
+    public HBox getMainPane() {return root;}
 }

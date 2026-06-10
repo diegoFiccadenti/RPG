@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
+import utils.ButtonPersonalizer;
 
 public class MainMenu implements SceneFactory {
 
@@ -22,10 +22,10 @@ public class MainMenu implements SceneFactory {
         vbox.setBackground(new Background((new BackgroundFill(Color.DARKGRAY, null, null))));
 
         // creates and adds the buttons
-        Button play = newMenuButton("Play");
-        Button tutorial = newMenuButton("Tutorial");
-        Button settings = newMenuButton("Settings");
-        Button quit = newMenuButton("Quit");
+        Button play = ButtonPersonalizer.newButton("Play");
+        Button tutorial = ButtonPersonalizer.newButton("Tutorial");
+        Button settings = ButtonPersonalizer.newButton("Settings");
+        Button quit = ButtonPersonalizer.newButton("Quit");
 
         vbox.getChildren().addAll(play, tutorial, settings, quit);
 
@@ -39,14 +39,6 @@ public class MainMenu implements SceneFactory {
     }
 
     public Scene getScene() {return scene;}
-
-    private Button newMenuButton(String buttonName) {
-        Button button = new Button(buttonName);
-        button.setPrefSize(200, 50);
-        button.setAlignment(Pos.CENTER);
-        button.setFont(Font.font("Copperplate Gothic Light", 24));
-        return button;
-    }
 
     private void addEventStartGame(Button playButton, SceneManager sceneManager) {
         playButton.setOnAction(e -> {
