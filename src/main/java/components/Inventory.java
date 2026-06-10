@@ -28,6 +28,8 @@ public class Inventory {
         return items;
     }
 
+    public int getContainedItems() {return containedItems;}
+
     public int getMaxCapacity() {return maxCapacity;}
 
     public void setMaxCapacity(int maxCapacity) {this.maxCapacity = maxCapacity;}

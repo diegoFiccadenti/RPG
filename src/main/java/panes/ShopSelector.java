@@ -13,6 +13,9 @@ import scenes.SceneManager;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: fare in modo che quando sia cambia tab il parametro "selectedItem" diventi null,
+//  (potrebbe essere utile farlo anche nella classe BagSelector)
+
 public class ShopSelector {
 
     private final TabPane tabPane;

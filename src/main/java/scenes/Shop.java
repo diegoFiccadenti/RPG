@@ -1,5 +1,6 @@
 package scenes;
 
+import components.Inventory;
 import entities.Player;
 import items.Item;
 import javafx.geometry.Pos;
@@ -40,10 +41,7 @@ public class Shop implements SceneFactory {
         selectionPane.setSpacing(50);
 
         Button buyButton = ButtonPersonalizer.newButton("Buy");
-        buyButton.setOnAction(e -> {
-            Player player = sceneManager.getPlayerSaveManager().getPlayer();
-            Item selectedItem = this.shopSelector.getSelectedItem();
-        });
+        addActionToBuyButton(buyButton, sceneManager);
 
         Button exitButton = ButtonPersonalizer.newButton("Exit");
         exitButton.setOnAction(e -> {
@@ -51,5 +49,21 @@ public class Shop implements SceneFactory {
         });
 
         this.selectionPane.getChildren().addAll(buyButton, exitButton);
+    }
+
+    private void addActionToBuyButton(Button buyButton, SceneManager sceneManager) {
+        buyButton.setOnAction(e -> {
+            Item selectedItem = this.shopSelector.getSelectedItem();
+            if (selectedItem != null) {
+                Player player = sceneManager.getPlayerSaveManager().getPlayer();
+                Inventory playersInventory = player.getInventory();
+                // transaction is executed if player has enough coins and space in the inventory
+                if (player.getCoins().getCurrentValue() >= selectedItem.getCost()
+                        && playersInventory.getMaxCapacity() > playersInventory.getContainedItems()) {
+                    player.getCoins().decreaseCurrent(selectedItem.getCost());
+                    playersInventory.addItem(selectedItem, 1);
+                }
+            }
+        });
     }
 }
