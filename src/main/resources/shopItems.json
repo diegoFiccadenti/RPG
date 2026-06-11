@@ -182,7 +182,7 @@
     "meleeDefence": 3,
     "magicDamage": 0,
     "magicDefence": 1,
-    "name": "Common hat",
+    "name": "Common shirt",
     "description": "A simple shirt",
     "cost": 100,
     "itemType": "EQUIPMENT"
@@ -194,7 +194,7 @@
     "meleeDefence": 3,
     "magicDamage": 0,
     "magicDefence": 1,
-    "name": "Common hat",
+    "name": "Common pants",
     "description": "Simple pants",
     "cost": 100,
     "itemType": "EQUIPMENT"
@@ -206,7 +206,7 @@
     "meleeDefence": 3,
     "magicDamage": 0,
     "magicDefence": 1,
-    "name": "Common hat",
+    "name": "Common boots",
     "description": "A simple pair of boots",
     "cost": 100,
     "itemType": "EQUIPMENT"

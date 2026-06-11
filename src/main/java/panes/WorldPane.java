@@ -1,11 +1,10 @@
 package panes;
 
-import items.Item;
-import items.Potion;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import scenes.SceneManager;
 import scenes.SceneManager.SceneType;
 import utils.ButtonPersonalizer;
@@ -21,6 +20,7 @@ public class WorldPane {
         root.setFillHeight(true);
         root.setSpacing(50);
         root.setPadding(new Insets(100));
+        root.setBackground(new Background(new BackgroundFill(Color.DARKGREY, null, null)));
 
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
@@ -58,6 +58,8 @@ public class WorldPane {
         // TEMPORARY BUTTONS FOT TESTS START HERE...
         VBox testButtons = new VBox();
 
+        testButtons.setSpacing(20);
+
         Button gainXP = ButtonPersonalizer.newButton("Gain XP");
         gainXP.setOnAction(e -> {
            sceneManager.getPlayerSaveManager().getPlayer().gainXP(100);
@@ -70,7 +72,13 @@ public class WorldPane {
             sceneManager.getPlayerSaveManager().notifyObservers();
         });
 
-        testButtons.getChildren().addAll(gainXP, addCoins);
+        Button takeDamage = ButtonPersonalizer.newButton("Take Damage");
+        takeDamage.setOnAction(e -> {
+            sceneManager.getPlayerSaveManager().getPlayer().getCombatStats().getHP().decreaseCurrent(20);
+            sceneManager.getPlayerSaveManager().notifyObservers();
+        });
+
+        testButtons.getChildren().addAll(gainXP, addCoins, takeDamage);
 
         // ...AND END HERE
 

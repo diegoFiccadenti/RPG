@@ -34,9 +34,9 @@ public class ItemRecordsInitializer {
         Item moonShadowStaff = new EquipmentPiece("Moon Shadow staff", "Perfect for night lovers", 3450, EquipmentType.PRIMARY_WEAPON, 5, 0,30,0);
         Item soulSpireStaff = new EquipmentPiece("Soul Spire staff", "A powerful staff", 6800, EquipmentType.PRIMARY_WEAPON, 5, 0,38,0);
         Item commonHat = new EquipmentPiece("Common hat", "A simple hat", 100, EquipmentType.HEAD, 0, 3,0,1);
-        Item commonShirt = new EquipmentPiece("Common hat", "A simple shirt", 100, EquipmentType.CHEST, 0, 3,0,1);
-        Item commonPants = new EquipmentPiece("Common hat", "Simple pants", 100, EquipmentType.LEGS, 0, 3,0,1);
-        Item commonBoots = new EquipmentPiece("Common hat", "A simple pair of boots", 100, EquipmentType.FEET, 0, 3,0,1);
+        Item commonShirt = new EquipmentPiece("Common shirt", "A simple shirt", 100, EquipmentType.CHEST, 0, 3,0,1);
+        Item commonPants = new EquipmentPiece("Common pants", "Simple pants", 100, EquipmentType.LEGS, 0, 3,0,1);
+        Item commonBoots = new EquipmentPiece("Common boots", "A simple pair of boots", 100, EquipmentType.FEET, 0, 3,0,1);
         Item hunterHat = new EquipmentPiece("Hunter hat", "Commonly used by hunters", 250, EquipmentType.HEAD, 0, 7,0,2);
         Item hunterVest = new EquipmentPiece("Hunter vest", "Commonly used by hunters", 250, EquipmentType.CHEST, 0, 7,0,2);
         Item hunterPants = new EquipmentPiece("Hunter pants", "Commonly used by hunters", 250, EquipmentType.LEGS, 0, 7,0,2);

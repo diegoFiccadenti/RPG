@@ -17,7 +17,6 @@ public class SceneManager {
 
     // static scenes (created once when the game starts)
     private final SceneFactory mainMenuScene;
-    private final SceneFactory tutorialScene;
     private final SceneFactory shopScene;
 
     // dynamic scenes (re-created every time they are needed)
@@ -28,7 +27,6 @@ public class SceneManager {
 
     public enum SceneType {
         MAIN_MENU,
-        TUTORIAL,
         GAME,
         COMBAT,
         BAG,
@@ -44,7 +42,6 @@ public class SceneManager {
         stage.setResizable(false);
 
         mainMenuScene = new MainMenu(this);
-        tutorialScene = new Tutorial(this);
         shopScene = new Shop(this);
 
         switchScene(firstScene);
@@ -64,9 +61,6 @@ public class SceneManager {
         playerSaveManager.clearObservers();
         if (newScene == SceneType.MAIN_MENU) {
             currentScene = mainMenuScene.getScene();
-        }
-        else if (newScene == SceneType.TUTORIAL) {
-            currentScene = tutorialScene.getScene();
         }
         else if (newScene == SceneType.GAME) {
             initGameScene();
