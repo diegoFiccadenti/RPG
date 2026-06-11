@@ -1,5 +1,7 @@
 package panes;
 
+import items.Item;
+import items.Potion;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -53,7 +55,7 @@ public class WorldPane {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        // TEMPORARY BUTTONS FOT TESTS
+        // TEMPORARY BUTTONS FOT TESTS START HERE...
         VBox testButtons = new VBox();
 
         Button gainXP = ButtonPersonalizer.newButton("Gain XP");
@@ -62,7 +64,15 @@ public class WorldPane {
            sceneManager.getPlayerSaveManager().notifyObservers();
         });
 
-        testButtons.getChildren().addAll(gainXP);
+        Button addCoins = ButtonPersonalizer.newButton("Add Coins");
+        addCoins.setOnAction(e -> {
+            sceneManager.getPlayerSaveManager().getPlayer().getCoins().increaseCurrent(1000);
+            sceneManager.getPlayerSaveManager().notifyObservers();
+        });
+
+        testButtons.getChildren().addAll(gainXP, addCoins);
+
+        // ...AND END HERE
 
         vbox1.getChildren().addAll(missionBoard, stats, exit);
         vbox2.getChildren().addAll(shop, bag, saveAndExit);

@@ -23,7 +23,7 @@ public class Shop implements SceneFactory {
 
         BorderPane root = new BorderPane();
 
-        this.shopSelector = new ShopSelector(sceneManager);
+        this.shopSelector = new ShopSelector();
         createSelectionPane(sceneManager);
 
         root.setBottom(selectionPane);

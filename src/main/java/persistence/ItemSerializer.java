@@ -26,7 +26,7 @@ public class ItemSerializer implements JsonSerializer<Item> {
         else if (item instanceof EquipmentPiece) {
             itemType = "EQUIPMENT";
         }
-        jsonObject.addProperty("type", itemType);
+        jsonObject.addProperty("itemType", itemType);
 
         return jsonObject;
     }

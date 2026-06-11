@@ -8,10 +8,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import persistence.MyReader;
 import scenes.SceneManager;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class ShopSelector {
 
@@ -22,7 +24,11 @@ public class ShopSelector {
 
     private Item selectedItem;
 
-    public ShopSelector(SceneManager sceneManager) {
+    private final List<Item> sellingItems;
+
+    public ShopSelector() {
+
+        this.sellingItems = fillShopWithItems();
 
         this.tabPane = new TabPane();
 
@@ -68,20 +74,23 @@ public class ShopSelector {
 
         consumableList.getChildren().clear();
         equippableList.getChildren().clear();
-        Map<Item, Integer> items = new HashMap();
-        for (Item item : items.keySet()) {
+        for (Item item : sellingItems) {
             Button newItemButton = new Button();
             newItemButton.setPrefSize(SceneManager.getScreenWidth() * 0.95, SceneManager.getScreenHeight() * 0.1);
-            newItemButton.setText(item.getName() + ": " + items.get(item));
+            newItemButton.setText(item.getName() + ": " + item.getCost() + " coins");
+            newItemButton.setOnAction(e -> selectedItem = item);
             if (item instanceof Consumable) {
-                newItemButton.setOnAction(e -> {
-                    selectedItem = item;
-                });
                 consumableList.getChildren().add(newItemButton);
             }
             else if (item instanceof Equippable) {
                 equippableList.getChildren().add(newItemButton);
             }
         }
+    }
+
+    private List<Item> fillShopWithItems() {
+
+        Path shopItemsResourcePath = Paths.get("src/main/resources/shopItems.json");
+        return MyReader.readItemList(shopItemsResourcePath);
     }
 }

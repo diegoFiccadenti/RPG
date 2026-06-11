@@ -14,7 +14,7 @@ public class ItemDeserializer implements JsonDeserializer<Item> {
 
         JsonObject jsonObject = json.getAsJsonObject();
 
-        String itemType = jsonObject.get("type").getAsString();
+        String itemType = jsonObject.get("itemType").getAsString();
 
         if (itemType.equals("POTION")) {
             return context.deserialize(jsonObject, Potion.class);
