@@ -12,11 +12,6 @@ public class Enemy extends Character implements Fighter, Lootable {
     private final EquipmentHandler equipment;
     private final AttackSetHandler attackSet;
 
-    /*
-     TODO:
-      creare un metodo che crei un nemico con forza semi-randomica (magari in base al livello giocatore)
-      in seguito fare in modo che l'argomento "combatStats" non debba più essere passato nel costruttore
-     */
     public Enemy (String name, Inventory inventory, int coins, StatsHandler statsHandler, EquipmentHandler equipment, AttackSetHandler attackSet, int DROPPED_XP) {
         super(name, inventory, coins);
         this.DROPPED_XP = DROPPED_XP;
