@@ -34,9 +34,10 @@ public class SceneManager {
         SHOP
     }
 
-    public SceneManager(Stage stage, SceneType firstScene, PlayerSaveManager playerSaveManager) {
+    public SceneManager(Stage stage, SceneType firstScene) {
+
         this.stage = stage;
-        this.playerSaveManager = playerSaveManager;
+        this.playerSaveManager = new PlayerSaveManager();
 
         stage.setTitle("MyRPG");
         stage.setResizable(false);
@@ -45,6 +46,7 @@ public class SceneManager {
         shopScene = new Shop(this);
 
         switchScene(firstScene);
+        stage.show();
     }
 
     public Scene getCurrentScene() {return this.currentScene;}
