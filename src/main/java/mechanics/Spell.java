@@ -5,20 +5,20 @@ import entities.Fighter;
 public class Spell implements Attack {
 
     private final String name;
-    private final String description;
     private final int power;
+    private final int requiredMana;
 
-    public Spell(String name, String description, int power) {
+    public Spell(String name, int power, int requiredMana) {
         this.name = name;
-        this.description = description;
         this.power = power;
+        this.requiredMana = requiredMana;
     }
 
     public String getName() {return name;}
 
-    public String getDescription() {return description;}
-
     public int getPower() {return power;}
+
+    public int getRequiredMana() {return requiredMana;}
 
     public void use(Fighter target) {
 

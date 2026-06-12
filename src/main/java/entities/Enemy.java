@@ -12,7 +12,7 @@ public class Enemy extends Character implements Fighter, Lootable {
     private final EquipmentHandler equipment;
     private final AttackSetHandler attackSet;
 
-    public Enemy (String name, Inventory inventory, int coins, StatsHandler statsHandler, EquipmentHandler equipment, AttackSetHandler attackSet, int DROPPED_XP) {
+    public Enemy (String name, Inventory inventory, int coins, int DROPPED_XP, StatsHandler statsHandler, EquipmentHandler equipment, AttackSetHandler attackSet) {
         super(name, inventory, coins);
         this.DROPPED_XP = DROPPED_XP;
         this.statsHandler = statsHandler;

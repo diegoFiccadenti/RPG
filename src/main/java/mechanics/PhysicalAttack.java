@@ -5,18 +5,14 @@ import entities.Fighter;
 public class PhysicalAttack implements Attack {
 
     private final String name;
-    private final String description;
     private final int power;
 
-    public PhysicalAttack(String name, String description, int power) {
+    public PhysicalAttack(String name, int power) {
         this.name = name;
-        this.description = description;
         this.power = power;
     }
 
     public String getName() {return name;}
-
-    public String getDescription() {return description;}
 
     public int getPower() {return power;}
 
