@@ -2,6 +2,7 @@ package scenes;
 
 import entities.Player;
 import items.Consumable;
+import items.Equippable;
 import items.Item;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -105,12 +106,28 @@ public class Bag implements SceneFactory {
     }
 
     private Button createEquipButton(SceneManager sceneManager) {
+        Player player = sceneManager.getPlayerSaveManager().getPlayer();
         Button equipButton = ButtonPersonalizer.newButton("Equip");
+        equipButton.setOnAction(e -> {
+            if (bagSelector.getSelectedItem() instanceof Equippable) {
+                player.getEquipment().equip((Equippable) bagSelector.getSelectedItem());
+                bagSelector.refreshItemList();
+            }
+            else throw new IllegalArgumentException();
+        });
         return equipButton;
     }
 
     private Button createUnequipButton(SceneManager sceneManager) {
+        Player player = sceneManager.getPlayerSaveManager().getPlayer();
         Button unequipButton = ButtonPersonalizer.newButton("Unequip");
+        unequipButton.setOnAction(e -> {
+            if (bagSelector.getSelectedItem() instanceof Equippable) {
+                player.getEquipment().unequip((Equippable) bagSelector.getSelectedItem());
+                bagSelector.refreshItemList();
+            }
+            else throw new IllegalArgumentException();
+        });
         return unequipButton;
     }
 }

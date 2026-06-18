@@ -69,7 +69,7 @@ public class BagSelector implements PlayerObserver {
 
     public Tab getSelectedTab() {return this.tabPane.getSelectionModel().getSelectedItem();}
 
-    private void refreshItemList() {
+    public void refreshItemList() {
 
         consumableList.getChildren().clear();
         equippableList.getChildren().clear();
@@ -84,7 +84,14 @@ public class BagSelector implements PlayerObserver {
                 });
                 consumableList.getChildren().add(newItemButton);
             }
-            else if (item instanceof Equippable) {
+            else if (item instanceof Equippable equippableItem) {
+                newItemButton.setOnAction(e -> {
+                    selectedItem = item;
+                });
+                if (equippableItem.isEquipped()) {
+                    newItemButton.setStyle("-fx-background-color: CadetBlue;");
+                    newItemButton.setText("[Equipped] " + item.getName() + ": " + items.get(equippableItem));
+                }
                 equippableList.getChildren().add(newItemButton);
             }
         }
