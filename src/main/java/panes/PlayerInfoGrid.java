@@ -26,6 +26,10 @@ public class PlayerInfoGrid implements PlayerObserver {
     private final ProgressBar MPBar;
     private final HBox MP_HBox;
 
+    private final Label XPValue;
+    private final ProgressBar XPBar;
+    private final HBox XP_HBox;
+
     public PlayerInfoGrid(SceneManager sceneManager) {
 
         this.player = sceneManager.getPlayerSaveManager().getPlayer();
@@ -52,9 +56,16 @@ public class PlayerInfoGrid implements PlayerObserver {
         MP_HBox.setSpacing(10);
         MP_HBox.setAlignment(Pos.CENTER_LEFT);
 
+        this.XPValue = new Label();
+        this.XPBar = new ProgressBar();
+        this.XP_HBox = new HBox();
+        XP_HBox.setSpacing(10);
+        XP_HBox.setAlignment(Pos.CENTER_LEFT);
+
         refreshData();
         this.HP_HBox.getChildren().addAll(new Label("HP"), HPBar, HPValue);
         this.MP_HBox.getChildren().addAll(new Label("MP"), MPBar, MPValue);
+        this.XP_HBox.getChildren().addAll(new Label("XP"), XPBar, XPValue);
         addValuesToGrid();
     }
 
@@ -75,6 +86,11 @@ public class PlayerInfoGrid implements PlayerObserver {
         int maxMP = player.getCombatStats().getMP().getMaxValue();
         this.MPValue.setText(currentMP + " / " + maxMP);
         this.MPBar.setProgress((double) currentMP / maxMP);
+
+        int currentXP = player.getXP().getCurrentValue();
+        int maxXP = player.getXP().getMaxValue();
+        this.XPValue.setText(currentXP + " / " + maxXP);
+        this.XPBar.setProgress((double) currentXP / maxXP);
     }
 
     private void addValuesToGrid() {
@@ -84,6 +100,7 @@ public class PlayerInfoGrid implements PlayerObserver {
         grid.add(playerCoins, 0,2);
         grid.add(HP_HBox, 1,0);
         grid.add(MP_HBox, 1,1);
+        grid.add(XP_HBox, 1,2);
     }
 
     public void onPlayerUpdate() {
