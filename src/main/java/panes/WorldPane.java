@@ -34,6 +34,10 @@ public class WorldPane {
         Button bag = ButtonPersonalizer.newButton("Bag");
         Button saveAndExit = ButtonPersonalizer.newButton("Save & Exit");
 
+        missionBoard.setOnAction(e -> {
+            sceneManager.switchScene(SceneType.MISSIONBOARD);
+        });
+
         stats.setOnAction(e -> {
             sceneManager.switchScene(SceneType.STATSVIEWER);
         });

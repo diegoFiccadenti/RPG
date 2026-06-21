@@ -49,6 +49,8 @@ public class ShopSelector {
 
         consumableScrollPane.setContent(consumableList);
         equippableScrollPane.setContent(equippableList);
+        consumableScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        equippableScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         consumableTab.setContent(consumableScrollPane);
         equippableTab.setContent(equippableScrollPane);
 
