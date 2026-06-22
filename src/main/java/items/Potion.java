@@ -13,7 +13,6 @@ public class Potion extends Item implements Consumable {
         this.recoveredMP = recoveredMP;
     }
 
-    @Override
     public void useOn(Fighter user) {
         user.getCombatStats().getHP().increaseCurrent(recoveredHP);
         user.getCombatStats().getMP().increaseCurrent(recoveredMP);
