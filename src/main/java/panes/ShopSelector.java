@@ -3,6 +3,7 @@ package panes;
 import items.Consumable;
 import items.Equippable;
 import items.Item;
+import items.Learnable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
@@ -21,6 +22,7 @@ public class ShopSelector {
 
     private final VBox consumableList;
     private final VBox equippableList;
+    private final VBox learnableList;
 
     private Item selectedItem;
 
@@ -34,25 +36,34 @@ public class ShopSelector {
 
         Tab consumableTab = new Tab();
         Tab equippableTab = new Tab();
+        Tab learnableTab = new Tab();
         consumableTab.setClosable(false);
         equippableTab.setClosable(false);
+        learnableTab.setClosable(false);
         consumableTab.setText("Consumables");
         equippableTab.setText("Equipment");
+        learnableTab.setText("Learnable");
 
         ScrollPane consumableScrollPane = new ScrollPane();
         ScrollPane equippableScrollPane = new ScrollPane();
+        ScrollPane learnableScrollPane = new ScrollPane();
 
         this.consumableList = new VBox();
         this.equippableList = new VBox();
+        this.learnableList = new VBox();
         consumableList.setSpacing(5);
         equippableList.setSpacing(5);
+        learnableList.setSpacing(5);
 
         consumableScrollPane.setContent(consumableList);
         equippableScrollPane.setContent(equippableList);
+        learnableScrollPane.setContent(learnableList);
         consumableScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         equippableScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        learnableScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         consumableTab.setContent(consumableScrollPane);
         equippableTab.setContent(equippableScrollPane);
+        learnableTab.setContent(learnableScrollPane);
 
         this.selectedItem = null;
 
@@ -62,7 +73,7 @@ public class ShopSelector {
             }
         });
 
-        tabPane.getTabs().addAll(consumableTab, equippableTab);
+        tabPane.getTabs().addAll(consumableTab, equippableTab, learnableTab);
         refreshItemList();
     }
 
@@ -76,6 +87,7 @@ public class ShopSelector {
 
         consumableList.getChildren().clear();
         equippableList.getChildren().clear();
+        learnableList.getChildren().clear();
         for (Item item : sellingItems) {
             Button newItemButton = new Button();
             newItemButton.setPrefSize(SceneManager.getScreenWidth() * 0.95, SceneManager.getScreenHeight() * 0.1);
@@ -86,6 +98,9 @@ public class ShopSelector {
             }
             else if (item instanceof Equippable) {
                 equippableList.getChildren().add(newItemButton);
+            }
+            else if (item instanceof Learnable) {
+                learnableList.getChildren().add(newItemButton);
             }
         }
     }

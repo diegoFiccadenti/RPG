@@ -4,6 +4,7 @@ import entities.Player;
 import items.Consumable;
 import items.Equippable;
 import items.Item;
+import items.Learnable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
@@ -19,6 +20,7 @@ public class BagSelector implements PlayerObserver {
 
     private final VBox consumableList;
     private final VBox equippableList;
+    private final VBox learnableList;
 
     private final Player player;
 
@@ -30,23 +32,31 @@ public class BagSelector implements PlayerObserver {
 
         Tab consumableTab = new Tab();
         Tab equippableTab = new Tab();
+        Tab learnableTab = new Tab();
         consumableTab.setClosable(false);
         equippableTab.setClosable(false);
+        learnableTab.setClosable(false);
         consumableTab.setText("Consumables");
         equippableTab.setText("Equipment");
+        learnableTab.setText("Learnable");
 
         ScrollPane consumableScrollPane = new ScrollPane();
         ScrollPane equippableScrollPane = new ScrollPane();
+        ScrollPane learnableScrollPane = new ScrollPane();
 
         this.consumableList = new VBox();
         this.equippableList = new VBox();
+        this.learnableList = new VBox();
         consumableList.setSpacing(5);
         equippableList.setSpacing(5);
+        learnableList.setSpacing(5);
 
         consumableScrollPane.setContent(consumableList);
         equippableScrollPane.setContent(equippableList);
+        learnableScrollPane.setContent(learnableList);
         consumableTab.setContent(consumableScrollPane);
         equippableTab.setContent(equippableScrollPane);
+        learnableTab.setContent(learnableScrollPane);
 
         this.player = sceneManager.getPlayerSaveManager().getPlayer();
         this.selectedItem = null;
@@ -57,7 +67,7 @@ public class BagSelector implements PlayerObserver {
             }
         });
 
-        tabPane.getTabs().addAll(consumableTab, equippableTab);
+        tabPane.getTabs().addAll(consumableTab, equippableTab, learnableTab);
         refreshItemList();
     }
 
@@ -73,6 +83,7 @@ public class BagSelector implements PlayerObserver {
 
         consumableList.getChildren().clear();
         equippableList.getChildren().clear();
+        learnableList.getChildren().clear();
         Map<Item, Integer> items = player.getInventory().getItems();
         for (Item item : items.keySet()) {
             Button newItemButton = new Button();
@@ -93,6 +104,12 @@ public class BagSelector implements PlayerObserver {
                     newItemButton.setText("[Equipped] " + item.getName() + ": " + items.get(equippableItem));
                 }
                 equippableList.getChildren().add(newItemButton);
+            }
+            else if (item instanceof Learnable) {
+                newItemButton.setOnAction(e -> {
+                    selectedItem = item;
+                });
+                learnableList.getChildren().add(newItemButton);
             }
         }
     }

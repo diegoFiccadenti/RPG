@@ -4,6 +4,10 @@ import components.EquipmentHandler.EquipmentType;
 import items.EquipmentPiece;
 import items.Item;
 import items.Potion;
+import items.SkillBook;
+import mechanics.Attack;
+import mechanics.PhysicalAttack;
+import mechanics.Spell;
 import persistence.MyWriter;
 
 import java.nio.file.Path;
@@ -50,6 +54,19 @@ public class ItemRecordsInitializer {
         Item wizardPants = new EquipmentPiece("Wizard pants", "A common choice among wizards", 400, EquipmentType.LEGS, 0, 4,0,10);
         Item wizardBoots = new EquipmentPiece("Wizard boots", "A common choice among wizards", 400, EquipmentType.FEET, 0, 4,0,10);
 
+        Attack slash = new PhysicalAttack("Slash", 6);
+        Item slashBook = new SkillBook("Learned attack: slash", "A simple swing of the weapon", 300, slash);
+        Attack lunge = new PhysicalAttack("Lunge", 8);
+        Item lungeBook = new SkillBook("Learned attack: lunge", "Lunge at your opponent", 500, lunge);
+        Attack heavySlash = new PhysicalAttack("Heavy slash", 11);
+        Item heavySlashBook = new SkillBook("Learned attack: Heavy slash", "An heavy swing of the weapon", 1000, heavySlash);
+        Attack basicMagicAttack = new Spell("Basic magic attack", 5, 10);
+        Item basicMagicAttackBook = new SkillBook("Learned attack: Basic magic attack", "A simple release of mana, good to start learning magic", 250, basicMagicAttack);
+        Attack fireball = new Spell("Fireball", 8, 20);
+        Item fireBallBook = new SkillBook("Learned attack: Fireball", "Burn the enemies!", 700, fireball);
+        Attack storm = new Spell("Storm", 15, 45);
+        Item stormBook = new SkillBook("Learned attack: Storm", "Generate a storm that will strike the enemies", 1500, storm);
+
         shopItems.add(rustySword);
         shopItems.add(healPotion);
         shopItems.add(manaPotion);
@@ -82,6 +99,12 @@ public class ItemRecordsInitializer {
         shopItems.add(wizardPants);
         shopItems.add(wizardBoots);
         shopItems.add(wizardStaff);
+        shopItems.add(slashBook);
+        shopItems.add(lungeBook);
+        shopItems.add(heavySlashBook);
+        shopItems.add(basicMagicAttackBook);
+        shopItems.add(fireBallBook);
+        shopItems.add(stormBook);
 
         Path shopItemsResourcePath = Paths.get("src/main/resources/shopItems.json");
         MyWriter.saveItemList(shopItems, shopItemsResourcePath);

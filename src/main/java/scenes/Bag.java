@@ -4,6 +4,7 @@ import entities.Player;
 import items.Consumable;
 import items.Equippable;
 import items.Item;
+import items.Learnable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -71,6 +72,10 @@ public class Bag implements SceneFactory {
             buttonsToAdd.add(equipButton);
             buttonsToAdd.add(unequipButton);
         }
+        else if (currentTab.getText().equals("Learnable")) {
+            Button learnButton = createLearnButton(sceneManager);
+            buttonsToAdd.add(learnButton);
+        }
 
         Button exitButton = createExitButton(sceneManager);
         buttonsToAdd.add(exitButton);
@@ -99,9 +104,7 @@ public class Bag implements SceneFactory {
 
     private Button createExitButton(SceneManager sceneManager) {
         Button exitButton = ButtonPersonalizer.newButton("Exit");
-        exitButton.setOnAction(e -> {
-            sceneManager.switchScene(SceneManager.SceneType.GAME);
-        });
+        exitButton.setOnAction(e -> sceneManager.switchScene(SceneManager.SceneType.GAME));
         return exitButton;
     }
 
@@ -129,5 +132,16 @@ public class Bag implements SceneFactory {
             else throw new IllegalArgumentException();
         });
         return unequipButton;
+    }
+
+    private Button createLearnButton(SceneManager sceneManager) {
+        Player player = sceneManager.getPlayerSaveManager().getPlayer();
+        Button learnButton = ButtonPersonalizer.newButton("Learn");
+        learnButton.setOnAction(e -> {
+            if (bagSelector.getSelectedItem() instanceof Learnable) {
+                ((Learnable) bagSelector.getSelectedItem()).learn(player);
+            }
+        });
+        return learnButton;
     }
 }

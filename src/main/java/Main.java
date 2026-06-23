@@ -4,7 +4,6 @@ import javafx.stage.Stage;
 
 // TODO 01: risolvere conflitti e bug con la permanenza dei dati (in particolare vedi comportamento degli items di player quando sono equipaggiati o meno)
 // TODO 02: implementare scena del combattimento
-// TODO 03: implementare scena selezione missioni
 
 public class Main extends Application {
 

@@ -4,9 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import items.EquipmentPiece;
-import items.Item;
-import items.Potion;
+import items.*;
 
 import java.lang.reflect.Type;
 
@@ -25,6 +23,9 @@ public class ItemSerializer implements JsonSerializer<Item> {
         }
         else if (item instanceof EquipmentPiece) {
             itemType = "EQUIPMENT";
+        }
+        else if (item instanceof SkillBook) {
+            itemType = "SKILL_BOOK";
         }
         jsonObject.addProperty("itemType", itemType);
 

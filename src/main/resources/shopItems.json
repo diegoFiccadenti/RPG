@@ -366,5 +366,68 @@
     "description": "Every wizard used it at least once",
     "cost": 650,
     "itemType": "EQUIPMENT"
+  },
+  {
+    "taughtAttack": {
+      "name": "Slash",
+      "power": 6
+    },
+    "name": "Learned attack: slash",
+    "description": "A simple swing of the weapon",
+    "cost": 300,
+    "itemType": "SKILL_BOOK"
+  },
+  {
+    "taughtAttack": {
+      "name": "Lunge",
+      "power": 8
+    },
+    "name": "Learned attack: lunge",
+    "description": "Lunge at your opponent",
+    "cost": 500,
+    "itemType": "SKILL_BOOK"
+  },
+  {
+    "taughtAttack": {
+      "name": "Heavy slash",
+      "power": 11
+    },
+    "name": "Learned attack: Heavy slash",
+    "description": "An heavy swing of the weapon",
+    "cost": 1000,
+    "itemType": "SKILL_BOOK"
+  },
+  {
+    "taughtAttack": {
+      "name": "Basic magic attack",
+      "power": 5,
+      "requiredMana": 10
+    },
+    "name": "Learned attack: Basic magic attack",
+    "description": "A simple release of mana, good to start learning magic",
+    "cost": 250,
+    "itemType": "SKILL_BOOK"
+  },
+  {
+    "taughtAttack": {
+      "name": "Fireball",
+      "power": 8,
+      "requiredMana": 20
+    },
+    "name": "Learned attack: Fireball",
+    "description": "Burn the enemies!",
+    "cost": 700,
+    "itemType": "SKILL_BOOK"
+  },
+  {
+    "taughtAttack": {
+      "name": "Storm",
+      "power": 15,
+      "requiredMana": 45
+    },
+    "name": "Learned attack: Storm",
+    "description": "Generate a storm that will strike the enemies",
+    "cost": 1500,
+    "itemType": "SKILL_BOOK"
   }
 ]
