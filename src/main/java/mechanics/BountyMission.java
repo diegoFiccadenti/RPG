@@ -2,6 +2,7 @@ package mechanics;
 
 import entities.Fighter;
 import entities.Player;
+import scenes.SceneManager;
 
 public class BountyMission implements Mission {
 
@@ -28,7 +29,9 @@ public class BountyMission implements Mission {
     public int getExperienceRewarded() {return experienceRewarded;}
 
     @Override
-    public void startMission() {}
+    public void startMission(SceneManager sceneManager) {
+        sceneManager.switchScene(SceneManager.SceneType.COMBAT, opponent);
+    }
 
     @Override
     public void isCompleted(Player player) {

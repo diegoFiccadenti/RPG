@@ -1,5 +1,6 @@
 package scenes;
 
+import entities.Fighter;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import persistence.PlayerSaveManager;
@@ -70,10 +71,6 @@ public class SceneManager {
             initGameScene();
             currentScene = gameScene.getScene();
         }
-        else if (newScene == SceneType.COMBAT) {
-            initCombatScene();
-            currentScene = combatScene.getScene();
-        }
         else if (newScene == SceneType.BAG) {
             initBagScene();
             currentScene = bagScene.getScene();
@@ -94,12 +91,24 @@ public class SceneManager {
         stage.setScene(currentScene);
     }
 
+    public void switchScene(SceneType newScene, Fighter opponent) {
+
+        playerSaveManager.clearObservers();
+        if (newScene == SceneType.COMBAT) {
+            initCombatScene(opponent);
+            currentScene = combatScene.getScene();
+        }
+        else throw new IllegalArgumentException("Invalid scene type");
+
+        stage.setScene(currentScene);
+    }
+
     private void initGameScene() {
         this.gameScene = new Game(this);
     }
 
-    private void initCombatScene() {
-        this.combatScene = new Combat(this);
+    private void initCombatScene(Fighter opponent) {
+        this.combatScene = new Combat(this, opponent);
     }
 
     private void initBagScene() {

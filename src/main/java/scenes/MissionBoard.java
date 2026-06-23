@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import mechanics.Mission;
 import panes.MissionSelector;
 import utils.ButtonPersonalizer;
 
@@ -46,7 +47,9 @@ public class MissionBoard implements SceneFactory {
     }
 
     private void addActionToStartButton(Button startButton, SceneManager sceneManager) {
-        startButton.setOnAction(e -> {});
+        startButton.setOnAction(e -> {
+            missionSelector.getSelectedMission().startMission(sceneManager);
+        });
 
     }
 }

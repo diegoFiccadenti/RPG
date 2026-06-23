@@ -1,5 +1,6 @@
 package scenes;
 
+import entities.Fighter;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import panes.CombatPane;
@@ -9,7 +10,7 @@ public class Combat implements SceneFactory {
 
     private final Scene scene;
 
-    public Combat (SceneManager sceneManager) {
+    public Combat (SceneManager sceneManager, Fighter opponent) {
 
         CombatPane combatPane = new CombatPane();
         CombatSelectionGrid combatSelectionGrid = new CombatSelectionGrid();
@@ -19,7 +20,7 @@ public class Combat implements SceneFactory {
         root.setCenter(combatPane.getPane());
         root.setBottom(combatSelectionGrid.getGrid());
 
-        this.scene = new Scene(root);
+        this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());
     }
 
     public Scene getScene() {return scene;}
