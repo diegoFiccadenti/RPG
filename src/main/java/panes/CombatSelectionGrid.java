@@ -24,10 +24,10 @@ public class CombatSelectionGrid {
         Button bag = new Button("Open Bag");
 
         grid.add(attack1, 0, 0);
-        grid.add(attack2, 0, 1);
-        grid.add(attack3, 1, 0);
-        grid.add(attack4, 0, 1);
-        grid.add(bag, 0, 2);
+        grid.add(attack2, 1, 0);
+        grid.add(attack3, 0, 1);
+        grid.add(attack4, 1, 1);
+        grid.add(bag, 2, 0);
     }
 
     public GridPane getGrid() {return grid;}

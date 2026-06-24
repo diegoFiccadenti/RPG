@@ -12,12 +12,12 @@ public class Combat implements SceneFactory {
 
     public Combat (SceneManager sceneManager, Fighter opponent) {
 
-        CombatPane combatPane = new CombatPane();
+        CombatPane combatPane = new CombatPane(opponent);
         CombatSelectionGrid combatSelectionGrid = new CombatSelectionGrid();
 
         BorderPane root = new BorderPane();
 
-        root.setCenter(combatPane.getPane());
+        root.setCenter(combatPane.getMainPane());
         root.setBottom(combatSelectionGrid.getGrid());
 
         this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());

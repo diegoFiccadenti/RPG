@@ -17,6 +17,7 @@ public class AttackSetHandler {
         SLOT1,
         SLOT2,
         SLOT3,
+        SLOT4
     }
 
     public AttackSetHandler() {
