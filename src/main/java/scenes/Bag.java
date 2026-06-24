@@ -140,6 +140,8 @@ public class Bag implements SceneFactory {
         learnButton.setOnAction(e -> {
             if (bagSelector.getSelectedItem() instanceof Learnable) {
                 ((Learnable) bagSelector.getSelectedItem()).learn(player);
+                player.getInventory().removeItem(bagSelector.getSelectedItem(), 1);
+                bagSelector.refreshItemList();
             }
         });
         return learnButton;

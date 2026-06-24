@@ -42,7 +42,7 @@ public class CombatPane implements PlayerObserver {
         opponentMPProgressBar = new ProgressBar();
 
         root = new HBox();
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.BOTTOM_CENTER);
         root.setSpacing(50);
 
         VBox playerVBox = new VBox();
