@@ -4,6 +4,7 @@ import components.*;
 import components.Experience;
 import components.StatsHandler;
 import components.StatsHandler.Stat;
+import mechanics.Attack;
 
 public class Player extends Character implements Fighter, Levelable {
 
@@ -59,5 +60,5 @@ public class Player extends Character implements Fighter, Levelable {
         personalStats.increaseStat(Stat.CHARISMA, 1);
     }
 
-    public void attack(Fighter target) {}
+    public void attack(Fighter target, Attack attackUsed) {}
 }

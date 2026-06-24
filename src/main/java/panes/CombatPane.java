@@ -10,8 +10,7 @@ import javafx.scene.layout.VBox;
 
 import java.nio.file.Path;
 
-// TODO: must eventually implement "PlayerObserver"
-public class CombatPane {
+public class CombatPane implements PlayerObserver {
 
     private final HBox root;
 
@@ -39,4 +38,9 @@ public class CombatPane {
     }
 
     public Pane getMainPane() {return root;}
+
+    @Override
+    public void onPlayerUpdate() {
+
+    }
 }

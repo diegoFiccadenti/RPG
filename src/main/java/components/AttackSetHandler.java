@@ -2,10 +2,7 @@ package components;
 
 import mechanics.Attack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AttackSetHandler {
 
@@ -60,7 +57,20 @@ public class AttackSetHandler {
         this.attackSet.put(slot, null);
     }
 
-    public void addLearnedAttack(Attack attack) {
-        this.knownAttacks.add(attack);
+    public Attack getRandomAttack() {
+
+        List<Attack> activeAttacks = attackSet.values().stream()
+                .filter(Objects::nonNull)
+                .toList();
+
+        if (activeAttacks.isEmpty()) {
+            throw new IllegalArgumentException("This fighter has no attacks to chose from attacks found");
+        }
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(activeAttacks.size());
+
+        return activeAttacks.get(randomIndex);
+
     }
 }

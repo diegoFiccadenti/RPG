@@ -4,6 +4,7 @@ import components.AttackSetHandler;
 import components.Inventory;
 import components.StatsHandler;
 import components.EquipmentHandler;
+import mechanics.Attack;
 
 public class Enemy extends Character implements Fighter, Lootable {
 
@@ -18,7 +19,6 @@ public class Enemy extends Character implements Fighter, Lootable {
         this.statsHandler = statsHandler;
         this.equipment = equipment;
         this.attackSet = attackSet;
-
     }
 
     public int getDROPPED_XP() {
@@ -33,7 +33,7 @@ public class Enemy extends Character implements Fighter, Lootable {
 
     public AttackSetHandler getAttacks() {return attackSet;}
 
-    public void attack(Fighter target){}
+    public void attack(Fighter target, Attack attackUsed){}
 
     public void dropLoot() {}
 }
