@@ -51,8 +51,10 @@ public class Enemy extends Character implements Fighter, Lootable {
         target.getCombatStats().getHP().decreaseCurrent(totalDamage);
     }
 
-    public void dropLoot(Player player) {
-        player.getCoins().increaseCurrent(this.getCoins().getCurrentValue());
-        player.getXP().increaseCurrent(this.getDROPPED_XP());
+    public void dropLoot(Looter looter) {
+        looter.getCoins().increaseCurrent(this.getCoins().getCurrentValue());
+        if (looter instanceof Levelable) {
+            ((Levelable) looter).getXP().increaseCurrent(DROPPED_XP);
+        }
     }
 }

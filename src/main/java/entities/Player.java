@@ -8,7 +8,7 @@ import mechanics.Attack;
 import mechanics.PhysicalAttack;
 import mechanics.Spell;
 
-public class Player extends Character implements Fighter, Levelable {
+public class Player extends Character implements Fighter, Levelable, Looter {
 
     private final Experience XP;
     private int level;
