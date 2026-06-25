@@ -17,7 +17,7 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     private final AttackSetHandler attackSet;
 
     public Player(String name, Inventory inventory) {
-        super(name, inventory, 0);
+        super(name, inventory, 1000);
         this.level = 0;
         this.XP = new Experience(level);
         this.personalStats = new StatsHandler();

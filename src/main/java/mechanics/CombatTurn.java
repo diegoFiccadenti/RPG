@@ -46,6 +46,6 @@ public class CombatTurn {
         else if (!battleWon) {
             player.getCombatStats().getHP().increaseCurrent(10);
         }
-        sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
+        sceneManager.switchScene(SceneManager.SceneType.GAME);
     }
 }

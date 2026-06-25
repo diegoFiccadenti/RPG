@@ -45,7 +45,7 @@
     "maxCapacity": 16
   },
   "coins": {
-    "currentValue": 0,
+    "currentValue": 1000,
     "maxValue": 999999,
     "minValue": 0
   }

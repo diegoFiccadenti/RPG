@@ -39,9 +39,17 @@ public class Enemy extends Character implements Fighter, Lootable {
         int totalDamage = 0;
         totalDamage += attackUsed.getPower();
         if (attackUsed instanceof Spell) {
-            totalDamage += personalStats.getBasicMagicAttack();
-            totalDamage += equipment.getMagicAttack();
-            totalDamage -= target.getEquipment().getMagicDefence();
+            int currentMana = personalStats.getMP().getCurrentValue();
+            if (currentMana >= ((Spell) attackUsed).getRequiredMana()) {
+                totalDamage += personalStats.getBasicMagicAttack();
+                totalDamage += equipment.getMagicAttack();
+                totalDamage -= target.getEquipment().getMagicDefence();
+                personalStats.getMP().decreaseCurrent(((Spell) attackUsed).getRequiredMana());
+            }
+            else {
+                totalDamage = 0;
+            }
+
         }
         else if (attackUsed instanceof PhysicalAttack) {
             totalDamage += personalStats.getBasicMeleeAttack();
