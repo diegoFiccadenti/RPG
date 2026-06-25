@@ -52,7 +52,7 @@ public class AttacksSelector {
             newAttackButton.setText(attack.getName() + " - Power: " + attack.getPower());
             newAttackButton.setOnAction(e -> selectedAttack = attack);
             for (AttackSlot slot : currentlySelectedAttacks.keySet()) {
-                if (currentlySelectedAttacks.get(slot).equals(attack)) {
+                if (currentlySelectedAttacks.get(slot) != null && currentlySelectedAttacks.get(slot).equals(attack)) {
                     newAttackButton.setStyle("-fx-background-color: CadetBlue;");
                     newAttackButton.setText("[Selected] " + attack.getName() + " - Power: " + attack.getPower());
                 }
