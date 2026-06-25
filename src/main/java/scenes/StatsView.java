@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import panes.PlayerObserver;
 import utils.ButtonPersonalizer;
+import scenes.SceneManager.SceneType;
 
 import java.util.Map;
 
@@ -54,11 +55,12 @@ public class StatsView implements SceneFactory, PlayerObserver {
 
         HBox bottomPane = new HBox();
         bottomPane.setAlignment(Pos.CENTER);
+        bottomPane.setSpacing(50);
+        Button attacks =  ButtonPersonalizer.newButton("Attacks");
+        attacks.setOnAction(e -> sceneManager.switchScene(SceneType.ATTACKS_MENU));
         Button exit = ButtonPersonalizer.newButton("Exit");
-        exit.setOnAction(e -> {
-            sceneManager.switchScene(SceneManager.SceneType.GAME);
-        });
-        bottomPane.getChildren().add(exit);
+        exit.setOnAction(e -> sceneManager.switchScene(SceneType.GAME));
+        bottomPane.getChildren().addAll(attacks, exit);
 
         root.setCenter(infoList);
         root.setBottom(bottomPane);

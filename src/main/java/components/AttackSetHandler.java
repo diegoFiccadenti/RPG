@@ -25,21 +25,6 @@ public class AttackSetHandler {
         }
     }
 
-    public AttackSetHandler(Map<AttackSlot, Attack> attackSet) {
-        if (attackSet == null) {
-            throw new IllegalArgumentException("Argument cannot be null");
-        }
-        for (AttackSlot slot : AttackSlot.values()) {
-            if (!attackSet.containsKey(slot)) {
-                throw new IllegalArgumentException("Slot " + slot + " not found");
-            }
-        }
-
-        this.knownAttacks = new ArrayList<>();
-        this.knownAttacks.addAll(attackSet.values());
-        this.attackSet = attackSet;
-    }
-
     public List<Attack> getKnownAttacks() {return this.knownAttacks;}
 
     public Map<AttackSlot, Attack> getAttackSet() {return this.attackSet;}

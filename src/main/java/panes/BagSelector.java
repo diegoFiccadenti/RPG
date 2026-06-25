@@ -90,15 +90,11 @@ public class BagSelector implements PlayerObserver {
             newItemButton.setPrefSize(SceneManager.getScreenWidth() * 0.95, SceneManager.getScreenHeight() * 0.1);
             newItemButton.setText(item.getName() + ": " + items.get(item));
             if (item instanceof Consumable) {
-                newItemButton.setOnAction(e -> {
-                    selectedItem = item;
-                });
+                newItemButton.setOnAction(e -> selectedItem = item);
                 consumableList.getChildren().add(newItemButton);
             }
             else if (item instanceof Equippable equippableItem) {
-                newItemButton.setOnAction(e -> {
-                    selectedItem = item;
-                });
+                newItemButton.setOnAction(e -> selectedItem = item);
                 if (equippableItem.isEquipped()) {
                     newItemButton.setStyle("-fx-background-color: CadetBlue;");
                     newItemButton.setText("[Equipped] " + item.getName() + ": " + items.get(equippableItem));
@@ -106,9 +102,7 @@ public class BagSelector implements PlayerObserver {
                 equippableList.getChildren().add(newItemButton);
             }
             else if (item instanceof Learnable) {
-                newItemButton.setOnAction(e -> {
-                    selectedItem = item;
-                });
+                newItemButton.setOnAction(e -> selectedItem = item);
                 learnableList.getChildren().add(newItemButton);
             }
         }

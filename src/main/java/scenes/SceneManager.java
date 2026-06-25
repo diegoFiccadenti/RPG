@@ -26,6 +26,7 @@ public class SceneManager {
     private SceneFactory bagScene;
     private SceneFactory statsScene;
     private SceneFactory missionBoardScene;
+    private SceneFactory attacksMenuScene;
 
     public enum SceneType {
         MAIN_MENU,
@@ -34,7 +35,8 @@ public class SceneManager {
         BAG,
         STATSVIEWER,
         SHOP,
-        MISSIONBOARD
+        MISSIONBOARD,
+        ATTACKS_MENU
     }
 
     public SceneManager(Stage stage, SceneType firstScene) {
@@ -86,6 +88,10 @@ public class SceneManager {
             initMissionBoardScene();
             currentScene = missionBoardScene.getScene();
         }
+        else if (newScene == SceneType.ATTACKS_MENU) {
+            initAttacksMenuScene();
+            currentScene = attacksMenuScene.getScene();
+        }
         else throw new IllegalArgumentException("Invalid scene type");
 
         stage.setScene(currentScene);
@@ -121,5 +127,9 @@ public class SceneManager {
 
     private void initMissionBoardScene() {
         this.missionBoardScene = new MissionBoard(this);
+    }
+
+    private void initAttacksMenuScene() {
+        this.attacksMenuScene = new AttacksMenu(this);
     }
 }
