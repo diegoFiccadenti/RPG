@@ -2,5 +2,5 @@ package entities;
 
 public interface Lootable {
 
-    void dropLoot();
+    void dropLoot(Player player);
 }

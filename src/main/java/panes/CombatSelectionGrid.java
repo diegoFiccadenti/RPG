@@ -55,7 +55,7 @@ public class CombatSelectionGrid {
             newAttackButton.setText(selectedAttack.getName());
             newAttackButton.setOnAction(e -> {
                 CombatTurn nextTurn = new CombatTurn(sceneManager, opponent, selectedAttack);
-                nextTurn.executeTurn();
+                nextTurn.executeTurn(sceneManager);
                 sceneManager.getPlayerSaveManager().notifyObservers();
             });
         }

@@ -1,6 +1,7 @@
 package mechanics;
 
 import entities.Fighter;
+import entities.Lootable;
 import entities.Player;
 import scenes.SceneManager;
 
@@ -18,9 +19,33 @@ public class CombatTurn {
 
     }
 
-    public void executeTurn() {
+    public void executeTurn(SceneManager sceneManager) {
+        player.attack(opponent, attackUsedByPlayer);
+        if (checkIfBattleIsWon()) {
+            exitBattle(sceneManager, true);
+        }
         Attack attackUsedByOpponent = opponent.getAttacks().getRandomAttack();
         opponent.attack(player, attackUsedByOpponent);
-        player.attack(opponent, attackUsedByPlayer);
+        if (checkIfBattleIsLost()) {
+            exitBattle(sceneManager, false);
+        }
+    }
+
+    private boolean checkIfBattleIsWon() {
+        return opponent.getCombatStats().getHP().getCurrentValue() <= 0;
+    }
+
+    private boolean checkIfBattleIsLost() {
+        return player.getCombatStats().getHP().getCurrentValue() <= 0;
+    }
+
+    private void exitBattle(SceneManager sceneManager, boolean battleWon) {
+        if (battleWon && opponent instanceof Lootable) {
+            ((Lootable) opponent).dropLoot(player);
+        }
+        else if (!battleWon) {
+            player.getCombatStats().getHP().increaseCurrent(10);
+        }
+        sceneManager.switchScene(SceneManager.SceneType.MAIN_MENU);
     }
 }
