@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import mechanics.Attack;
 import mechanics.CombatTurn;
 import scenes.SceneManager;
+import utils.ButtonPersonalizer;
 
 public class CombatSelectionGrid {
 
@@ -22,7 +23,7 @@ public class CombatSelectionGrid {
 
         grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(100);
+        grid.setHgap(10);
         grid.setVgap(10);
         grid.setPrefSize(SceneManager.getScreenWidth(), 100);
 
@@ -30,7 +31,7 @@ public class CombatSelectionGrid {
         Button attack2 = createAttackButton(sceneManager, AttackSlot.SLOT2);
         Button attack3 = createAttackButton(sceneManager, AttackSlot.SLOT3);
         Button attack4 = createAttackButton(sceneManager, AttackSlot.SLOT4);
-        Button bag = new Button("Open Bag");
+        Button bag = ButtonPersonalizer.newButton("Bag", 200, 30, 16);
 
         grid.add(attack1, 0, 0);
         grid.add(attack2, 1, 0);
@@ -45,21 +46,21 @@ public class CombatSelectionGrid {
 
         Player player = sceneManager.getPlayerSaveManager().getPlayer();
         Attack selectedAttack = player.getAttacks().getAttackSet().get(slot);
-        Button button = new Button();
+        Button newAttackButton = ButtonPersonalizer.newButton("", 200, 30, 16);
 
         if (selectedAttack == null) {
-            button.setText("No attack selected");
+            newAttackButton.setText("No attack selected");
         }
         else {
-            button.setText(selectedAttack.getName());
-            button.setOnAction(e -> {
+            newAttackButton.setText(selectedAttack.getName());
+            newAttackButton.setOnAction(e -> {
                 CombatTurn nextTurn = new CombatTurn(sceneManager, opponent, selectedAttack);
                 nextTurn.executeTurn();
                 sceneManager.getPlayerSaveManager().notifyObservers();
             });
         }
 
-        return button;
+        return newAttackButton;
 
     }
 }

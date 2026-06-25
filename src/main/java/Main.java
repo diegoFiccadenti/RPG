@@ -3,7 +3,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 // TODO 01: risolvere conflitti e bug con la permanenza dei dati (in particolare danno problemi gli items equipaggiati + attacchi imparati)
-// TODO 02: implementare scena del combattimento
 
 public class Main extends Application {
 
