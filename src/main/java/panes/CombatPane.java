@@ -54,8 +54,12 @@ public class CombatPane implements PlayerObserver {
 
         Path playerSpritePath = Path.of("src/main/resources/sprites/hero.png");
         ImageView playerSprite = new ImageView(new Image(playerSpritePath.toUri().toString()));
+        playerSprite.setPreserveRatio(true);
+        playerSprite.setFitHeight(150);
         Path opponentSpritePath = Path.of("src/main/resources/sprites/goblin.png");
         ImageView opponentSprite = new ImageView(new Image(opponentSpritePath.toUri().toString()));
+        opponentSprite.setPreserveRatio(true);
+        opponentSprite.setFitHeight(150);
 
         Label HPLabel = new Label("HP");
         Label MPLabel = new Label("MP");

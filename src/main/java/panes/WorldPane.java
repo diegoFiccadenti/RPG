@@ -59,6 +59,7 @@ public class WorldPane {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
+        /*
         // TEMPORARY BUTTONS FOT TESTS START HERE...
         VBox testButtons = new VBox();
 
@@ -85,10 +86,11 @@ public class WorldPane {
         testButtons.getChildren().addAll(gainXP, addCoins, takeDamage);
 
         // ...AND END HERE
+         */
 
         vbox1.getChildren().addAll(missionBoard, stats, exit);
         vbox2.getChildren().addAll(shop, bag, saveAndExit);
-        root.getChildren().addAll(vbox1, vbox2, testButtons);
+        root.getChildren().addAll(vbox1, vbox2);
     }
 
     public HBox getMainPane() {return root;}
