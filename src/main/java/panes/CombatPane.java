@@ -52,9 +52,10 @@ public class CombatPane implements PlayerObserver {
         playerVBox.setSpacing(10);
         opponentVBox.setSpacing(10);
 
-        Path playerSpritePath = Path.of("src/main/resources/sprites/39.png");
+        Path playerSpritePath = Path.of("src/main/resources/sprites/hero.png");
         ImageView playerSprite = new ImageView(new Image(playerSpritePath.toUri().toString()));
-        ImageView opponentSprite = new ImageView(new Image(playerSpritePath.toUri().toString()));
+        Path opponentSpritePath = Path.of("src/main/resources/sprites/goblin.png");
+        ImageView opponentSprite = new ImageView(new Image(opponentSpritePath.toUri().toString()));
 
         Label HPLabel = new Label("HP");
         Label MPLabel = new Label("MP");
