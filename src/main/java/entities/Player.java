@@ -5,6 +5,8 @@ import components.Experience;
 import components.StatsHandler;
 import components.StatsHandler.Stat;
 import mechanics.Attack;
+import mechanics.PhysicalAttack;
+import mechanics.Spell;
 
 public class Player extends Character implements Fighter, Levelable {
 
@@ -60,5 +62,19 @@ public class Player extends Character implements Fighter, Levelable {
         personalStats.increaseStat(Stat.CHARISMA, 1);
     }
 
-    public void attack(Fighter target, Attack attackUsed) {}
+    public void attack(Fighter target, Attack attackUsed) {
+        int totalDamage = 0;
+        totalDamage += attackUsed.getPower();
+        if (attackUsed instanceof Spell) {
+            totalDamage += personalStats.getBasicMagicAttack();
+            totalDamage += equipment.getMagicAttack();
+            totalDamage -= target.getEquipment().getMagicDefence();
+        }
+        else if (attackUsed instanceof PhysicalAttack) {
+            totalDamage += personalStats.getBasicMeleeAttack();
+            totalDamage += equipment.getMeleeAttack();
+            totalDamage -= target.getEquipment().getMeleeDefence();
+        }
+        target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+    }
 }
