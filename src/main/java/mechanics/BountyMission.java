@@ -1,8 +1,12 @@
 package mechanics;
 
+import components.AttackSetHandler.AttackSlot;
 import entities.Fighter;
 import entities.Player;
+import javafx.scene.control.Alert;
 import scenes.SceneManager;
+
+import java.util.Map;
 
 public class BountyMission implements Mission {
 
@@ -31,6 +35,14 @@ public class BountyMission implements Mission {
     @Override
     public void startMission(SceneManager sceneManager) {
         Player player = sceneManager.getPlayerSaveManager().getPlayer();
+        if (!checkIfMissionCanBeStarted(player)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mission cannot be started");
+            alert.setHeaderText("No attacks currently equipped!");
+            alert.setContentText("Equip at least one attack to start a combat");
+            alert.showAndWait();
+            return;
+        }
         player.setCurrentMission(this);
         sceneManager.switchScene(SceneManager.SceneType.COMBAT, opponent);
     }
@@ -39,6 +51,17 @@ public class BountyMission implements Mission {
     public void isCompleted(Player player) {
         player.getCoins().increaseCurrent(coinsRewarded);
         player.gainXP(experienceRewarded);
+    }
+
+    private boolean checkIfMissionCanBeStarted(Player player) {
+        Map<AttackSlot, Attack> playerActiveAttacks = player.getAttacks().getAttackSet();
+        for (AttackSlot slot : playerActiveAttacks.keySet()) {
+            if (playerActiveAttacks.get(slot) != null) {
+                return true;
+            }
+
+        }
+        return false;
     }
 
 }
