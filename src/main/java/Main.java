@@ -3,6 +3,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 // TODO 01: risolvere conflitti e bug con la permanenza dei dati (in particolare danno problemi gli items equipaggiati + attacchi imparati)
+// TODO 02: risolvere problemi di bilanciamento del gioco (opzionale)
+// TODO 03: fare in modo che non si possa iniziare un combattimento senza attacchi equipaggiati
+// TODO 04: assegnare 2 attacchi di base al Player già alla creazione
+// TODO 05: fare il merge del branch develop dentro main
 
 public class Main extends Application {
 
