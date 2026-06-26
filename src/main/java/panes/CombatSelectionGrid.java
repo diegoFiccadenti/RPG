@@ -31,13 +31,11 @@ public class CombatSelectionGrid {
         Button attack2 = createAttackButton(sceneManager, AttackSlot.SLOT2);
         Button attack3 = createAttackButton(sceneManager, AttackSlot.SLOT3);
         Button attack4 = createAttackButton(sceneManager, AttackSlot.SLOT4);
-        Button bag = ButtonPersonalizer.newButton("Bag", 200, 30, 16);
 
         grid.add(attack1, 0, 0);
         grid.add(attack2, 1, 0);
         grid.add(attack3, 0, 1);
         grid.add(attack4, 1, 1);
-        grid.add(bag, 2, 0);
     }
 
     public GridPane getGrid() {return grid;}
