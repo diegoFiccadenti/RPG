@@ -1,6 +1,6 @@
 package entities;
 
-import data_structures.Inventory;
+import components.Inventory;
 
 public class NPC extends Character implements Talkable {
 

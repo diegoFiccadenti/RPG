@@ -2,5 +2,5 @@ package entities;
 
 public interface Lootable {
 
-    public void dropLoot();
+    void dropLoot(Looter looter);
 }

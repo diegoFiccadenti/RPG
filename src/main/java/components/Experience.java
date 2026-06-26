@@ -1,4 +1,4 @@
-package quantifiables;
+package components;
 
 public class Experience extends Resource {
 
@@ -8,7 +8,8 @@ public class Experience extends Resource {
     }
 
     public static int maxXPForNewLevel(int currentLevel) {
-        return (100*currentLevel) + 100; // formula used to calculate the xp needed for each level
+        // formula used to calculate the xp needed for each level
+        return (50*currentLevel*currentLevel) + (50*currentLevel) + 100;
     }
 
     public int neededXPToLevelUp() {

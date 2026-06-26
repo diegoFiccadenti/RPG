@@ -1,8 +1,12 @@
 package items;
 
+import components.EquipmentHandler.EquipmentType;
+
 public interface Equippable {
+
+    boolean isEquipped();
 
     void setEquipped(boolean equipped);
 
-    int getType();
+    EquipmentType getType();
 }

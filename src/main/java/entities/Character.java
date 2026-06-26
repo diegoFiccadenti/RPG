@@ -1,7 +1,7 @@
 package entities;
 
-import data_structures.Inventory;
-import quantifiables.Currency;
+import components.Inventory;
+import components.Currency;
 
 public abstract class Character {
 

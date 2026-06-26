@@ -1,13 +1,17 @@
 package entities;
 
-import data_structures.StatsHandler;
-import data_structures.EquipmentHandler;
+import components.AttackSetHandler;
+import components.StatsHandler;
+import components.EquipmentHandler;
+import mechanics.Attack;
 
 public interface Fighter {
 
-    void attack(Fighter target);
+    void attack(Fighter target, Attack attackUsed);
 
     StatsHandler getCombatStats();
 
     EquipmentHandler getEquipment();
+
+    AttackSetHandler getAttacks();
 }

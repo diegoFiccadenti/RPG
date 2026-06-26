@@ -1,12 +1,12 @@
 package entities;
 
-import quantifiables.Experience;
+import components.Experience;
 
 public interface Levelable {
 
-    public int getLevel();
-    public Experience getXP();
+    int getLevel();
+    Experience getXP();
 
-    public void gainXP(int gainedXP);
-    public void levelUp();
+    void gainXP(int gainedXP);
+    void levelUp();
 }

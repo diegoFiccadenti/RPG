@@ -1,34 +1,23 @@
 package scenes;
 
-import entities.Player;
-import data_structures.Inventory;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import panes.PlayerInfoGrid;
 import panes.WorldPane;
 
-public class Game implements MyScene {
-
-    // creazione player temporanea:
-    private final Player player = new Player(
-            "NomeDiProva",
-            new Inventory(16)
-    );
-
-    private final PlayerInfoGrid playerInfoGrid;
-
-    private final WorldPane mainPane;
+public class Game implements SceneFactory {
 
     private final Scene scene;
 
     public Game(SceneManager sceneManager) {
 
-        this.playerInfoGrid = new PlayerInfoGrid(player);
+        PlayerInfoGrid playerInfoGrid = new PlayerInfoGrid(sceneManager);
+        sceneManager.getPlayerSaveManager().addObserver(playerInfoGrid);
 
-        this.mainPane = new WorldPane(sceneManager, player, playerInfoGrid);
+        WorldPane worldPane = new WorldPane(sceneManager);
 
         BorderPane root = new BorderPane();
-        root.setCenter( mainPane.getMainPane());
+        root.setCenter(worldPane.getMainPane());
         root.setBottom(playerInfoGrid.getGrid());
 
         this.scene = new Scene(root, SceneManager.getScreenWidth(), SceneManager.getScreenHeight());

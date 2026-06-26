@@ -4,5 +4,5 @@ import entities.Character;
 
 public interface Takeable {
 
-    public void take(Character taker);
+    void take(Character taker);
 }

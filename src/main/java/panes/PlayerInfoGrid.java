@@ -8,29 +8,31 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import scenes.SceneManager;
 
-public class PlayerInfoGrid {
+public class PlayerInfoGrid implements PlayerObserver {
 
     private final GridPane grid;
+
+    private final Player player;
 
     private final Label playerName;
     private final Label playerLevel;
     private final Label playerCoins;
 
-    private int currentHP;
-    private int maxHP;
-    private final Label HPLabel;
     private final Label HPValue;
     private final ProgressBar HPBar;
     private final HBox HP_HBox;
 
-    private int currentMP;
-    private int maxMP;
-    private final Label MPLabel;
     private final Label MPValue;
     private final ProgressBar MPBar;
     private final HBox MP_HBox;
 
-    public PlayerInfoGrid(Player player) {
+    private final Label XPValue;
+    private final ProgressBar XPBar;
+    private final HBox XP_HBox;
+
+    public PlayerInfoGrid(SceneManager sceneManager) {
+
+        this.player = sceneManager.getPlayerSaveManager().getPlayer();
 
         grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -42,46 +44,53 @@ public class PlayerInfoGrid {
         this.playerLevel = new Label();
         this.playerCoins = new Label();
 
-        this.HPLabel = new Label("HP");
         this.HPValue = new Label();
         this.HPBar = new ProgressBar();
         this.HP_HBox = new HBox();
         HP_HBox.setSpacing(10);
         HP_HBox.setAlignment(Pos.CENTER_LEFT);
 
-        this.MPLabel = new Label("MP");
         this.MPValue = new Label();
         this.MPBar = new ProgressBar();
         this.MP_HBox = new HBox();
         MP_HBox.setSpacing(10);
         MP_HBox.setAlignment(Pos.CENTER_LEFT);
 
-        refreshData(player);
+        this.XPValue = new Label();
+        this.XPBar = new ProgressBar();
+        this.XP_HBox = new HBox();
+        XP_HBox.setSpacing(10);
+        XP_HBox.setAlignment(Pos.CENTER_LEFT);
+
+        refreshData();
+        this.HP_HBox.getChildren().addAll(new Label("HP"), HPBar, HPValue);
+        this.MP_HBox.getChildren().addAll(new Label("MP"), MPBar, MPValue);
+        this.XP_HBox.getChildren().addAll(new Label("XP"), XPBar, XPValue);
+        addValuesToGrid();
     }
 
     public GridPane getGrid() {return grid;}
 
-    public void refreshData(Player player) {
+    public void refreshData() {
 
         this.playerName.setText("Name: " + player.getName());
         this.playerLevel.setText("Level: " + player.getLevel());
         this.playerCoins.setText("Coins: " + player.getCoins().getCurrentValue());
 
-        this.currentHP = player.getCombatStats().getHP().getCurrentValue();
-        this.maxHP = player.getCombatStats().getHP().getMaxValue();
+        int currentHP = player.getCombatStats().getHP().getCurrentValue();
+        int maxHP = player.getCombatStats().getHP().getMaxValue();
         this.HPValue.setText(currentHP + " / " + maxHP);
         this.HPBar.setProgress((double) currentHP / maxHP);
-        this.HP_HBox.getChildren().clear();
-        this.HP_HBox.getChildren().addAll(HPLabel, HPBar, HPValue);
 
-        this.currentMP = player.getCombatStats().getMP().getCurrentValue();
-        this.maxMP = player.getCombatStats().getMP().getMaxValue();
+        int currentMP = player.getCombatStats().getMP().getCurrentValue();
+        int maxMP = player.getCombatStats().getMP().getMaxValue();
         this.MPValue.setText(currentMP + " / " + maxMP);
         this.MPBar.setProgress((double) currentMP / maxMP);
-        this.MP_HBox.getChildren().clear();
-        this.MP_HBox.getChildren().addAll(MPLabel, MPBar, MPValue);
 
-        addValuesToGrid();
+        int currentXP = player.getXP().getCurrentValue();
+        int maxXP = player.getXP().getMaxValue();
+        this.XPValue.setText(currentXP + " / " + maxXP);
+        this.XPBar.setProgress((double) currentXP / maxXP);
     }
 
     private void addValuesToGrid() {
@@ -91,5 +100,10 @@ public class PlayerInfoGrid {
         grid.add(playerCoins, 0,2);
         grid.add(HP_HBox, 1,0);
         grid.add(MP_HBox, 1,1);
+        grid.add(XP_HBox, 1,2);
+    }
+
+    public void onPlayerUpdate() {
+        refreshData();
     }
 }

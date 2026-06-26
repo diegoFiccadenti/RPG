@@ -1,22 +1,22 @@
+import scenes.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import scenes.SceneManager;
 
-// TODO: implementare creazione personaggio e sistema di permanenza dati
+// TODO 01: risolvere conflitti e bug con la permanenza dei dati (in particolare danno problemi gli items equipaggiati + attacchi imparati)
+// TODO 02: risolvere problemi di bilanciamento del gioco (opzionale)
+// TODO 03: fare in modo che non si possa iniziare un combattimento senza attacchi equipaggiati
+// TODO 04: assegnare 2 attacchi di base al Player già alla creazione
+// TODO 05: fare il merge del branch develop dentro main
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
 
-        SceneManager sceneManager = new SceneManager(stage);
-
         // first scene to be displayed
         SceneManager.SceneType firstScene = SceneManager.SceneType.MAIN_MENU;
 
-        sceneManager.switchScene(firstScene);
-
-        stage.show();
+        SceneManager sceneManager = new SceneManager(stage, firstScene);
 
     }
 

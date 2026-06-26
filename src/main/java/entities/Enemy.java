@@ -1,26 +1,26 @@
 package entities;
 
-import data_structures.Inventory;
-import data_structures.StatsHandler;
-import data_structures.EquipmentHandler;
+import components.AttackSetHandler;
+import components.Inventory;
+import components.StatsHandler;
+import components.EquipmentHandler;
+import mechanics.Attack;
+import mechanics.PhysicalAttack;
+import mechanics.Spell;
 
 public class Enemy extends Character implements Fighter, Lootable {
 
     private final int DROPPED_XP; // Experience dropped when defeated
-    private final StatsHandler statsHandler;
+    private final StatsHandler personalStats;
     private final EquipmentHandler equipment;
+    private final AttackSetHandler attackSet;
 
-    /*
-     TODO:
-      creare un metodo che crei un nemico con forza semi-randomica (magari in base al livello giocatore)
-      in seguito fare in modo che l'argomento "combatStats" non debba più essere passato nel costruttore
-     */
-    public Enemy (String name, Inventory inventory, int coins, StatsHandler statsHandler, EquipmentHandler equipment, int DROPPED_XP) {
+    public Enemy (String name, Inventory inventory, int coins, int DROPPED_XP, StatsHandler personalStats, EquipmentHandler equipment, AttackSetHandler attackSet) {
         super(name, inventory, coins);
         this.DROPPED_XP = DROPPED_XP;
-        this.statsHandler = statsHandler;
+        this.personalStats = personalStats;
         this.equipment = equipment;
-
+        this.attackSet = attackSet;
     }
 
     public int getDROPPED_XP() {
@@ -28,12 +28,41 @@ public class Enemy extends Character implements Fighter, Lootable {
     }
 
     public StatsHandler getCombatStats() {
-        return statsHandler;
+        return personalStats;
     }
 
     public EquipmentHandler getEquipment() {return equipment;}
 
-    public void attack(Fighter target){}
+    public AttackSetHandler getAttacks() {return attackSet;}
 
-    public void dropLoot() {}
+    public void attack(Fighter target, Attack attackUsed){
+        int totalDamage = 0;
+        totalDamage += attackUsed.getPower();
+        if (attackUsed instanceof Spell) {
+            int currentMana = personalStats.getMP().getCurrentValue();
+            if (currentMana >= ((Spell) attackUsed).getRequiredMana()) {
+                totalDamage += personalStats.getBasicMagicAttack();
+                totalDamage += equipment.getMagicAttack();
+                totalDamage -= target.getEquipment().getMagicDefence();
+                personalStats.getMP().decreaseCurrent(((Spell) attackUsed).getRequiredMana());
+            }
+            else {
+                totalDamage = 0;
+            }
+
+        }
+        else if (attackUsed instanceof PhysicalAttack) {
+            totalDamage += personalStats.getBasicMeleeAttack();
+            totalDamage += equipment.getMeleeAttack();
+            totalDamage -= target.getEquipment().getMeleeDefence();
+        }
+        target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+    }
+
+    public void dropLoot(Looter looter) {
+        looter.getCoins().increaseCurrent(this.getCoins().getCurrentValue());
+        if (looter instanceof Levelable) {
+            ((Levelable) looter).getXP().increaseCurrent(DROPPED_XP);
+        }
+    }
 }
