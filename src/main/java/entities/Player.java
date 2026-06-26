@@ -5,6 +5,7 @@ import components.Experience;
 import components.StatsHandler;
 import components.StatsHandler.Stat;
 import mechanics.Attack;
+import mechanics.Mission;
 import mechanics.PhysicalAttack;
 import mechanics.Spell;
 
@@ -15,6 +16,7 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     private final StatsHandler personalStats;
     private final EquipmentHandler equipment;
     private final AttackSetHandler attackSet;
+    private Mission currentMission;
 
     public Player(String name, Inventory inventory) {
         super(name, inventory, 1000);
@@ -23,6 +25,7 @@ public class Player extends Character implements Fighter, Levelable, Looter {
         this.personalStats = new StatsHandler();
         this.equipment = new EquipmentHandler();
         this.attackSet = new AttackSetHandler();
+        this.currentMission = null;
     }
 
     public int getLevel() {
@@ -38,6 +41,10 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     public EquipmentHandler getEquipment() {return equipment;}
 
     public AttackSetHandler getAttacks() {return attackSet;}
+
+    public Mission getCurrentMission() {return currentMission;}
+
+    public void setCurrentMission(Mission currentMission) {this.currentMission = currentMission;}
 
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {

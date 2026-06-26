@@ -30,13 +30,15 @@ public class BountyMission implements Mission {
 
     @Override
     public void startMission(SceneManager sceneManager) {
+        Player player = sceneManager.getPlayerSaveManager().getPlayer();
+        player.setCurrentMission(this);
         sceneManager.switchScene(SceneManager.SceneType.COMBAT, opponent);
     }
 
     @Override
     public void isCompleted(Player player) {
         player.getCoins().increaseCurrent(coinsRewarded);
-        player.getXP().increaseCurrent(experienceRewarded);
+        player.gainXP(experienceRewarded);
     }
 
 }

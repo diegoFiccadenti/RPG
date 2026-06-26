@@ -37,28 +37,20 @@ public class MissionInitializer {
         goblinStats.increaseStat(Stat.VITALITY, 1);
 
         EquipmentHandler goblinEquipment = new EquipmentHandler();
-        Equippable commonHat = new EquipmentPiece("Common hat", "A simple hat", 100, EquipmentHandler.EquipmentType.HEAD, 0, 3,0,1);
-        Equippable commonShirt = new EquipmentPiece("Common shirt", "A simple shirt", 100, EquipmentHandler.EquipmentType.CHEST, 0, 3,0,1);
-        Equippable commonPants = new EquipmentPiece("Common pants", "Simple pants", 100, EquipmentHandler.EquipmentType.LEGS, 0, 3,0,1);
-        Equippable commonBoots = new EquipmentPiece("Common boots", "A simple pair of boots", 100, EquipmentHandler.EquipmentType.FEET, 0, 3,0,1);
         Equippable rustySword = new EquipmentPiece("Rusty sword", "Has seen better times", 100, EquipmentHandler.EquipmentType.PRIMARY_WEAPON, 10, 0,0,0);
-        goblinEquipment.equip(commonHat);
-        goblinEquipment.equip(commonShirt);
-        goblinEquipment.equip(commonPants);
-        goblinEquipment.equip(commonBoots);
         goblinEquipment.equip(rustySword);
 
         AttackSetHandler goblinAttacks = new AttackSetHandler();
-        Attack slash = new PhysicalAttack("Slash", 10);
-        Attack assault = new PhysicalAttack("Assault", 12);
-        Attack energyOrb = new Spell("Energy Orb", 12, 5);
+        Attack slash = new PhysicalAttack("Slash", 6);
+        Attack assault = new PhysicalAttack("Assault", 9);
+        Attack energyOrb = new Spell("Energy Orb", 5, 10);
         goblinAttacks.addAttack(slash);
         goblinAttacks.addAttack(assault);
         goblinAttacks.addAttack(energyOrb);
 
-        Fighter goblin = new Enemy("Goblin", new Inventory(16), 25, 10, goblinStats, goblinEquipment, goblinAttacks);
+        Fighter goblin = new Enemy("Goblin", new Inventory(16), 25, 25, goblinStats, goblinEquipment, goblinAttacks);
 
-        return new BountyMission("Slay a goblin", goblin, 100, 100);
+        return new BountyMission("Slay a goblin", goblin, 200, 100);
     }
 
     private static Mission evilMageBountyMission() {
