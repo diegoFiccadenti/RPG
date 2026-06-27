@@ -28,6 +28,7 @@ public class Spell implements Attack {
             totalDamage += user.getCombatStats().getBasicMagicAttack();
             totalDamage += user.getEquipment().getMagicAttack();
             totalDamage -= target.getEquipment().getMagicDefence();
+            if (totalDamage < 0) totalDamage = 0;
 
             user.getCombatStats().getMP().decreaseCurrent(requiredMana);
             target.getCombatStats().getHP().decreaseCurrent(totalDamage);

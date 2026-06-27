@@ -37,20 +37,6 @@ public class StatsHandler {
         updateDependantStats();
     }
 
-    public StatsHandler(Map<Stat,Integer> skillStats) {
-        if (skillStats == null) {
-            throw new IllegalArgumentException("skillStats cannot be null");
-        }
-        for (Stat stat : Stat.values()) {
-            if (skillStats.containsKey(stat)) {
-                throw new IllegalArgumentException("given skillStats is not valid");
-            }
-        }
-
-        this.skillStats = new HashMap<>(skillStats);
-        updateDependantStats();
-    }
-
     public Map<Stat,Integer> getSkillStats() {return skillStats;}
 
     public HealthPoints getHP() {return HP;}
@@ -74,23 +60,6 @@ public class StatsHandler {
         this.persuasiveness = 2*skillStats.get(Stat.CHARISMA);
     }
 
-    public boolean increaseStat(Stat statName) {
-        if (!skillStats.containsKey(statName)) {
-            throw new IllegalArgumentException("Unknown skill stat: " + statName);
-        }
-        if (statName == Stat.ABILITY_POINTS) {
-            throw new IllegalArgumentException("Cannot use this method for increasing ability points");
-        }
-
-        if (skillStats.get(Stat.ABILITY_POINTS) > 0) {
-            skillStats.put(statName, skillStats.get(statName) + 1);
-            skillStats.put(Stat.ABILITY_POINTS, skillStats.get(Stat.ABILITY_POINTS) - 1);
-            updateDependantStats();
-            return true;
-        }
-        return false;
-    }
-
     public boolean increaseStat(Stat statName, int amount) {
         if (!skillStats.containsKey(statName)) {
             throw new IllegalArgumentException("Unknown skill stat: " + statName);
@@ -112,13 +81,4 @@ public class StatsHandler {
         skillStats.put(Stat.ABILITY_POINTS, skillStats.get(Stat.ABILITY_POINTS) + amount);
     }
 
-    public void showStats() {
-        for(Stat stat : skillStats.keySet()) {
-            if (stat == Stat.STRENGTH) System.out.println("Strength: " + skillStats.get(stat));
-            else if (stat == Stat.VITALITY) System.out.println("Vitality: " + skillStats.get(stat));
-            else if (stat == Stat.INTELLIGENCE) System.out.println("Intelligence: " + skillStats.get(stat));
-            else if (stat == Stat.CHARISMA) System.out.println("Charisma: " + skillStats.get(stat));
-            else if (stat == Stat.ABILITY_POINTS) System.out.println("Ability Points: " + skillStats.get(stat));
-        }
-    }
 }

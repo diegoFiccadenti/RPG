@@ -23,6 +23,8 @@ public class PhysicalAttack implements Attack {
         totalDamage += user.getEquipment().getMeleeAttack();
         totalDamage -= target.getEquipment().getMeleeDefence();
 
+        if (totalDamage < 0) totalDamage = 0;
+
         target.getCombatStats().getHP().decreaseCurrent(totalDamage);
     }
 }
