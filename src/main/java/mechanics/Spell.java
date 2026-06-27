@@ -20,7 +20,17 @@ public class Spell implements Attack {
 
     public int getRequiredMana() {return requiredMana;}
 
-    public void use(Fighter target) {
+    public void use(Fighter user, Fighter target) {
 
+        int userMana = user.getCombatStats().getMP().getCurrentValue();
+        if (userMana >= requiredMana) {
+            int totalDamage = power;
+            totalDamage += user.getCombatStats().getBasicMagicAttack();
+            totalDamage += user.getEquipment().getMagicAttack();
+            totalDamage -= target.getEquipment().getMagicDefence();
+
+            user.getCombatStats().getMP().decreaseCurrent(requiredMana);
+            target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+        }
     }
 }

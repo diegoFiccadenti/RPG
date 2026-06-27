@@ -6,7 +6,6 @@ import components.StatsHandler;
 import components.StatsHandler.Stat;
 import mechanics.Attack;
 import mechanics.Mission;
-import utils.DamageCalculator;
 
 public class Player extends Character implements Fighter, Levelable, Looter {
 
@@ -69,7 +68,6 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     }
 
     public void attack(Fighter target, Attack attackUsed) {
-        int totalDamage = DamageCalculator.calculateDamage(this, target, attackUsed);
-        target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+        attackUsed.use(this, target);
     }
 }

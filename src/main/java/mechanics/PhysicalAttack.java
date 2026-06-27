@@ -16,7 +16,13 @@ public class PhysicalAttack implements Attack {
 
     public int getPower() {return power;}
 
-    public void use(Fighter target) {
+    public void use(Fighter user, Fighter target) {
 
+        int totalDamage = power;
+        totalDamage += user.getCombatStats().getBasicMeleeAttack();
+        totalDamage += user.getEquipment().getMeleeAttack();
+        totalDamage -= target.getEquipment().getMeleeDefence();
+
+        target.getCombatStats().getHP().decreaseCurrent(totalDamage);
     }
 }

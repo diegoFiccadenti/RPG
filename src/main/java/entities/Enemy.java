@@ -5,7 +5,6 @@ import components.Inventory;
 import components.StatsHandler;
 import components.EquipmentHandler;
 import mechanics.Attack;
-import utils.DamageCalculator;
 
 public class Enemy extends Character implements Fighter, Lootable {
 
@@ -35,8 +34,7 @@ public class Enemy extends Character implements Fighter, Lootable {
     public AttackSetHandler getAttacks() {return attackSet;}
 
     public void attack(Fighter target, Attack attackUsed){
-        int totalDamage = DamageCalculator.calculateDamage(this, target, attackUsed);
-        target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+        attackUsed.use(this, target);
     }
 
     public void dropLoot(Looter looter) {
