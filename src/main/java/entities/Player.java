@@ -4,8 +4,11 @@ import components.*;
 import components.Experience;
 import components.StatsHandler;
 import components.StatsHandler.Stat;
+import items.SkillBook;
 import mechanics.Attack;
 import mechanics.Mission;
+import mechanics.PhysicalAttack;
+import mechanics.Spell;
 
 public class Player extends Character implements Fighter, Levelable, Looter {
 
@@ -24,6 +27,8 @@ public class Player extends Character implements Fighter, Levelable, Looter {
         this.equipment = new EquipmentHandler();
         this.attackSet = new AttackSetHandler();
         this.currentMission = null;
+
+        addStartingAttacks();
     }
 
     public int getLevel() {
@@ -69,5 +74,16 @@ public class Player extends Character implements Fighter, Levelable, Looter {
 
     public void attack(Fighter target, Attack attackUsed) {
         attackUsed.use(this, target);
+    }
+
+    private void addStartingAttacks() {
+        Attack punch = new PhysicalAttack("Punch", 3);
+        SkillBook punchBook = new SkillBook("Learned attack: punch", "Use your fists", 100, punch);
+        Attack basicMagicAttack = new Spell("Basic magic attack", 5, 10);
+        SkillBook basicMagicAttackBook = new SkillBook("Learned attack: Basic magic attack", "A simple release of mana, good to start learning magic", 250, basicMagicAttack);
+        punchBook.learn(this);
+        basicMagicAttackBook.learn(this);
+        attackSet.addAttack(punch);
+        attackSet.addAttack(basicMagicAttack);
     }
 }
