@@ -2,6 +2,8 @@ package mechanics;
 
 import entities.Fighter;
 
+import java.util.Objects;
+
 public class PhysicalAttack implements Attack {
 
     private final String name;
@@ -26,5 +28,16 @@ public class PhysicalAttack implements Attack {
         if (totalDamage < 0) totalDamage = 0;
 
         target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof PhysicalAttack that)) return false;
+        return power == that.power && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, power);
     }
 }
