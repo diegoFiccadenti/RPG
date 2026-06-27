@@ -6,8 +6,7 @@ import components.StatsHandler;
 import components.StatsHandler.Stat;
 import mechanics.Attack;
 import mechanics.Mission;
-import mechanics.PhysicalAttack;
-import mechanics.Spell;
+import utils.DamageCalculator;
 
 public class Player extends Character implements Fighter, Levelable, Looter {
 
@@ -70,18 +69,7 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     }
 
     public void attack(Fighter target, Attack attackUsed) {
-        int totalDamage = 0;
-        totalDamage += attackUsed.getPower();
-        if (attackUsed instanceof Spell) {
-            totalDamage += personalStats.getBasicMagicAttack();
-            totalDamage += equipment.getMagicAttack();
-            totalDamage -= target.getEquipment().getMagicDefence();
-        }
-        else if (attackUsed instanceof PhysicalAttack) {
-            totalDamage += personalStats.getBasicMeleeAttack();
-            totalDamage += equipment.getMeleeAttack();
-            totalDamage -= target.getEquipment().getMeleeDefence();
-        }
+        int totalDamage = DamageCalculator.calculateDamage(this, target, attackUsed);
         target.getCombatStats().getHP().decreaseCurrent(totalDamage);
     }
 }

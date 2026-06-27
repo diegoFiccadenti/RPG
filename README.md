@@ -1,4 +1,4 @@
-# 📌 Nome del Progetto
+# 📌 MyRPG
 
 Il progetto è stato realizzato per il corso di Metodologie di Programmazione, è un applicativo java che implementa un gioco di ruolo ad ambientazione fantasy.
 

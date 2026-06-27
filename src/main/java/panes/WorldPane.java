@@ -61,35 +61,6 @@ public class WorldPane {
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
 
-        /*
-        // TEMPORARY BUTTONS FOT TESTS START HERE...
-        VBox testButtons = new VBox();
-
-        testButtons.setSpacing(20);
-
-        Button gainXP = ButtonPersonalizer.newButton("Gain XP");
-        gainXP.setOnAction(e -> {
-           sceneManager.getPlayerSaveManager().getPlayer().gainXP(100);
-           sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        Button addCoins = ButtonPersonalizer.newButton("Add Coins");
-        addCoins.setOnAction(e -> {
-            sceneManager.getPlayerSaveManager().getPlayer().getCoins().increaseCurrent(1000);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        Button takeDamage = ButtonPersonalizer.newButton("Take Damage");
-        takeDamage.setOnAction(e -> {
-            sceneManager.getPlayerSaveManager().getPlayer().getCombatStats().getHP().decreaseCurrent(20);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        testButtons.getChildren().addAll(gainXP, addCoins, takeDamage);
-
-        // ...AND END HERE
-         */
-
         vbox1.getChildren().addAll(missionBoard, stats, exit);
         vbox2.getChildren().addAll(shop, bag, saveAndExit);
         root.getChildren().addAll(vbox1, vbox2);
