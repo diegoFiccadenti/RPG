@@ -18,12 +18,6 @@ public class Inventory {
         this.maxCapacity = maxCapacity;
     }
 
-    public Inventory(Map<Item, Integer> items, int maxCapacity) {
-        this.items = items;
-        this.containedItems = countItems();
-        this.maxCapacity = maxCapacity;
-    }
-
     public Map<Item, Integer> getItems() {
         return items;
     }
