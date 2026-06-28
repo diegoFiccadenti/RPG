@@ -88,16 +88,16 @@ public class MissionInitializer {
     private static Mission dragonSlayMission() {
 
         StatsHandler dragonStats = new StatsHandler();
-        dragonStats.increaseStat(Stat.STRENGTH, 30);
-        dragonStats.increaseStat(Stat.VITALITY, 30);
-        dragonStats.increaseStat(Stat.INTELLIGENCE, 30);
+        dragonStats.increaseStat(Stat.STRENGTH, 50);
+        dragonStats.increaseStat(Stat.VITALITY, 50);
+        dragonStats.increaseStat(Stat.INTELLIGENCE, 50);
 
         EquipmentHandler dragonEquipment = new EquipmentHandler();
 
         AttackSetHandler dragonAttacks = new AttackSetHandler();
-        Attack blazeOfFire = new Spell("Blaze of Fire", 40, 15);
-        Attack claws = new PhysicalAttack("Claws", 25);
-        Attack bite = new PhysicalAttack("Bite", 30);
+        Attack blazeOfFire = new Spell("Blaze of Fire", 80, 15);
+        Attack claws = new PhysicalAttack("Claws", 50);
+        Attack bite = new PhysicalAttack("Bite", 60);
         dragonAttacks.addAttack(blazeOfFire);
         dragonAttacks.addAttack(claws);
         dragonAttacks.addAttack(bite);
