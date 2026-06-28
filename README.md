@@ -9,6 +9,7 @@ Il progetto Ã¨ stato realizzato per il corso di Metodologie di Programmazione, Ã
 ### Prerequisiti
 - Java 25 (LTS)
 - Gradle
+- Git (per clonare il repository)
 
 ### Istruzioni
 
@@ -19,12 +20,12 @@ cd <nome-cartella>
 
 ### Build del progetto
 ```bash
-./gradlew build
+.\gradlew build
 ```
 
 ### Esecuzione
 ```bash
-./gradlew run
+.\gradlew run
 ```
 
 ---
