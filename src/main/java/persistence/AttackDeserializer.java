@@ -9,17 +9,24 @@ import java.lang.reflect.Type;
 
 public class AttackDeserializer implements JsonDeserializer<Attack> {
 
+    private final Gson gson = new GsonBuilder().create();
+
     @Override
     public Attack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
         JsonObject jsonObject = json.getAsJsonObject();
+
+        if (!jsonObject.has("type") || jsonObject.get("type").isJsonNull()) {
+            throw new JsonParseException("Missing or invalid type");
+        }
+
         String itemType = jsonObject.get("type").getAsString();
 
         if (itemType.equals("Spell")) {
-            return context.deserialize(json, Spell.class);
+            return gson.fromJson(jsonObject, Spell.class);
         }
         else if (itemType.equals("PhysicalAttack")) {
-            return context.deserialize(json, PhysicalAttack.class);
+            return gson.fromJson(jsonObject, PhysicalAttack.class);
         }
         else throw new JsonParseException("Unknown item type: " + itemType);
     }

@@ -1,20 +1,22 @@
 package persistence;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
+import com.google.gson.*;
 import items.*;
+import mechanics.Attack;
 
 import java.lang.reflect.Type;
 
 public class ItemSerializer implements JsonSerializer<Item> {
 
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeHierarchyAdapter(Attack.class, new AttackSerializer())
+            .create();
+
     @Override
     public JsonElement serialize(Item item, Type typeOfSrc, JsonSerializationContext context) {
 
         // we first serialize the complete object
-        JsonObject jsonObject = context.serialize(item).getAsJsonObject();
+        JsonObject jsonObject = gson.toJsonTree(item).getAsJsonObject();
 
         // then we add the "type" field to handle the subclasses of Item
         String itemType = "UNKNOWN";
