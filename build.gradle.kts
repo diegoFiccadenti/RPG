@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass.set("Main")
+    mainClass.set("it.unicam.cs.mpgc.rpg132379.Main")
 }
 
 group = "org.example"
