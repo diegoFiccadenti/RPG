@@ -16,9 +16,9 @@ public class SceneManager {
     private static final int SCREEN_WIDTH = 640;
     private static final int SCREEN_HEIGHT = 480;
 
-    // static scenes (created once when the game starts)
-    private final SceneFactory mainMenuScene;
-    private final SceneFactory shopScene;
+    // semi-static scenes (created only when the players press "Play" in the main menu)
+    private SceneFactory mainMenuScene;
+    private SceneFactory shopScene;
 
     // dynamic scenes (re-created every time they are needed)
     private SceneFactory gameScene;
@@ -47,8 +47,7 @@ public class SceneManager {
         stage.setTitle("MyRPG");
         stage.setResizable(false);
 
-        mainMenuScene = new MainMenu(this);
-        shopScene = new Shop(this);
+        recreateStaticScenes();
 
         switchScene(firstScene);
         stage.show();
@@ -107,6 +106,11 @@ public class SceneManager {
         else throw new IllegalArgumentException("Invalid scene type");
 
         stage.setScene(currentScene);
+    }
+
+    public void recreateStaticScenes() {
+        mainMenuScene = new MainMenu(this);
+        shopScene = new Shop(this);
     }
 
     private void initGameScene() {

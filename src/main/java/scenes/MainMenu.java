@@ -40,6 +40,7 @@ public class MainMenu implements SceneFactory {
     private void addEventStartGame(Button playButton, SceneManager sceneManager) {
         playButton.setOnAction(e -> {
             sceneManager.getPlayerSaveManager().readPlayerSaves();
+            sceneManager.recreateStaticScenes();
             sceneManager.switchScene(SceneManager.SceneType.GAME);
         });
     }
