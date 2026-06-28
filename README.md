@@ -40,6 +40,9 @@ cd RPG
 
 ---
 
+## 📖 Wiki
+Per informazioni più approfondite sul progetto consultare la Wiki.
+
 
 
 
