@@ -8,14 +8,15 @@ Il progetto è stato realizzato per il corso di Metodologie di Programmazione, �
 
 ### Prerequisiti
 - Java 25 (LTS)
-- Gradle
 - Git (per clonare il repository)
+
+(Nota: Gradle è integrato nel progetto tramite il Gradle Wrapper, non è necessario installarlo localmente).
 
 ### Istruzioni
 
 ```bash
-git clone <url-del-repository>
-cd <nome-cartella>
+git clone https://github.com/diegoFiccadenti/RPG.git
+cd RPG
 ```
 
 ### Build del progetto
