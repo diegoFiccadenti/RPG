@@ -41,7 +41,7 @@ cd RPG
 ---
 
 ## 📖 Wiki
-Per informazioni più approfondite sul progetto consultare la Wiki.
+Per informazioni più approfondite sul progetto consultare la Wiki a https://github.com/diegoFiccadenti/RPG/wiki.
 
 
 
