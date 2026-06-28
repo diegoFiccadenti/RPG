@@ -4,6 +4,7 @@ import it.unicam.cs.mpgc.rpg132379.components.Inventory;
 import it.unicam.cs.mpgc.rpg132379.entities.Player;
 import it.unicam.cs.mpgc.rpg132379.panes.PlayerObserver;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,21 @@ public class PlayerSaveManager {
     public List<PlayerObserver> getObservers() {return this.observers;}
 
     public void savePlayer() {
+        File directory = new File("saves");
+        if (!directory.exists()) directory.mkdir();
+
         Path path = Path.of("saves/player.json");
         MyWriter.savePlayer(player, path);
     }
 
     public void readPlayerSaves() {
-        Path playerPath = Path.of("saves/player.json");
-        Player loadedPlayer = MyReader.readPlayer(playerPath);
+        File file = new File("saves/player.json");
+        Player loadedPlayer = null;
+
+        if (file.exists()) {
+            Path playerPath = file.toPath();
+            loadedPlayer = MyReader.readPlayer(playerPath);
+        }
 
         if (loadedPlayer != null) {
             this.player = loadedPlayer;
