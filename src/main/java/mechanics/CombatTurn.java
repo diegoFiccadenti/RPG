@@ -23,6 +23,7 @@ public class CombatTurn {
         player.attack(opponent, attackUsedByPlayer);
         if (checkIfBattleIsWon()) {
             exitBattle(sceneManager, true);
+            return;
         }
         Attack attackUsedByOpponent = opponent.getAttacks().getRandomAttack();
         opponent.attack(player, attackUsedByOpponent);
@@ -42,6 +43,13 @@ public class CombatTurn {
     private void exitBattle(SceneManager sceneManager, boolean battleWon) {
         if (battleWon && opponent instanceof Lootable) {
             ((Lootable) opponent).dropLoot(player);
+
+            if (player.getCurrentMission() instanceof BountyMission bountyMission) {
+                if (bountyMission.getOpponent().equals(opponent)) {
+                    bountyMission.isCompleted(player);
+                    player.setCurrentMission(null);
+                }
+            }
         }
         else if (!battleWon) {
             player.getCombatStats().getHP().increaseCurrent(10);

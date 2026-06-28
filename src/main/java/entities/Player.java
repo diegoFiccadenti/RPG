@@ -4,7 +4,9 @@ import components.*;
 import components.Experience;
 import components.StatsHandler;
 import components.StatsHandler.Stat;
+import items.SkillBook;
 import mechanics.Attack;
+import mechanics.Mission;
 import mechanics.PhysicalAttack;
 import mechanics.Spell;
 
@@ -15,6 +17,7 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     private final StatsHandler personalStats;
     private final EquipmentHandler equipment;
     private final AttackSetHandler attackSet;
+    private Mission currentMission;
 
     public Player(String name, Inventory inventory) {
         super(name, inventory, 1000);
@@ -23,6 +26,9 @@ public class Player extends Character implements Fighter, Levelable, Looter {
         this.personalStats = new StatsHandler();
         this.equipment = new EquipmentHandler();
         this.attackSet = new AttackSetHandler();
+        this.currentMission = null;
+
+        addStartingAttacks();
     }
 
     public int getLevel() {
@@ -38,6 +44,10 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     public EquipmentHandler getEquipment() {return equipment;}
 
     public AttackSetHandler getAttacks() {return attackSet;}
+
+    public Mission getCurrentMission() {return currentMission;}
+
+    public void setCurrentMission(Mission currentMission) {this.currentMission = currentMission;}
 
     public void gainXP(int gainedXP) {
         if (gainedXP > 0) {
@@ -63,18 +73,17 @@ public class Player extends Character implements Fighter, Levelable, Looter {
     }
 
     public void attack(Fighter target, Attack attackUsed) {
-        int totalDamage = 0;
-        totalDamage += attackUsed.getPower();
-        if (attackUsed instanceof Spell) {
-            totalDamage += personalStats.getBasicMagicAttack();
-            totalDamage += equipment.getMagicAttack();
-            totalDamage -= target.getEquipment().getMagicDefence();
-        }
-        else if (attackUsed instanceof PhysicalAttack) {
-            totalDamage += personalStats.getBasicMeleeAttack();
-            totalDamage += equipment.getMeleeAttack();
-            totalDamage -= target.getEquipment().getMeleeDefence();
-        }
-        target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+        attackUsed.use(this, target);
+    }
+
+    private void addStartingAttacks() {
+        Attack punch = new PhysicalAttack("Punch", 3);
+        SkillBook punchBook = new SkillBook("Learned attack: punch", "Use your fists", 100, punch);
+        Attack basicMagicAttack = new Spell("Basic magic attack", 5, 10);
+        SkillBook basicMagicAttackBook = new SkillBook("Learned attack: Basic magic attack", "A simple release of mana, good to start learning magic", 250, basicMagicAttack);
+        punchBook.learn(this);
+        basicMagicAttackBook.learn(this);
+        attackSet.addAttack(punch);
+        attackSet.addAttack(basicMagicAttack);
     }
 }

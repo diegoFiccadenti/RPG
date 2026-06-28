@@ -2,12 +2,16 @@ package panes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import scenes.SceneManager;
 import scenes.SceneManager.SceneType;
 import utils.ButtonPersonalizer;
+
+import java.util.Optional;
 
 public class WorldPane {
 
@@ -34,59 +38,28 @@ public class WorldPane {
         Button bag = ButtonPersonalizer.newButton("Bag");
         Button saveAndExit = ButtonPersonalizer.newButton("Save & Exit");
 
-        missionBoard.setOnAction(e -> {
-            sceneManager.switchScene(SceneType.MISSIONBOARD);
-        });
+        missionBoard.setOnAction(e -> sceneManager.switchScene(SceneType.MISSIONBOARD));
 
-        stats.setOnAction(e -> {
-            sceneManager.switchScene(SceneType.STATSVIEWER);
-        });
+        stats.setOnAction(e -> sceneManager.switchScene(SceneType.STATSVIEWER));
 
         exit.setOnAction(e -> {
-            sceneManager.switchScene(SceneType.MAIN_MENU);
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to continue?");
+            confirm.setTitle("Exiting without saving");
+            confirm.setHeaderText("You are about to exit without saving");
+            Optional<ButtonType> result = confirm.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                sceneManager.switchScene(SceneType.MAIN_MENU);
+            }
         });
 
-        shop.setOnAction(e -> {
-            sceneManager.switchScene(SceneType.SHOP);
-        });
+        shop.setOnAction(e -> sceneManager.switchScene(SceneType.SHOP));
 
-        bag.setOnAction(e -> {
-            sceneManager.switchScene(SceneType.BAG);
-        });
+        bag.setOnAction(e -> sceneManager.switchScene(SceneType.BAG));
 
         saveAndExit.setOnAction(e -> {
             sceneManager.getPlayerSaveManager().savePlayer();
             sceneManager.switchScene(SceneType.MAIN_MENU);
         });
-
-        /*
-        // TEMPORARY BUTTONS FOT TESTS START HERE...
-        VBox testButtons = new VBox();
-
-        testButtons.setSpacing(20);
-
-        Button gainXP = ButtonPersonalizer.newButton("Gain XP");
-        gainXP.setOnAction(e -> {
-           sceneManager.getPlayerSaveManager().getPlayer().gainXP(100);
-           sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        Button addCoins = ButtonPersonalizer.newButton("Add Coins");
-        addCoins.setOnAction(e -> {
-            sceneManager.getPlayerSaveManager().getPlayer().getCoins().increaseCurrent(1000);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        Button takeDamage = ButtonPersonalizer.newButton("Take Damage");
-        takeDamage.setOnAction(e -> {
-            sceneManager.getPlayerSaveManager().getPlayer().getCombatStats().getHP().decreaseCurrent(20);
-            sceneManager.getPlayerSaveManager().notifyObservers();
-        });
-
-        testButtons.getChildren().addAll(gainXP, addCoins, takeDamage);
-
-        // ...AND END HERE
-         */
 
         vbox1.getChildren().addAll(missionBoard, stats, exit);
         vbox2.getChildren().addAll(shop, bag, saveAndExit);

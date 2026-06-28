@@ -35,20 +35,6 @@ public class EquipmentHandler {
         updateDependantStats();
     }
 
-    public EquipmentHandler(Map<EquipmentType, Equippable> equipment) {
-        if (equipment == null) {
-            throw new IllegalArgumentException("Equipment cannot be null");
-        }
-        for (EquipmentType slot : EquipmentType.values()) {
-            if (!equipment.containsKey(slot)) {
-                throw new IllegalArgumentException("given equipment is not valid");
-            }
-        }
-
-        this.equipment = new HashMap<>(equipment);
-        updateDependantStats();
-    }
-
     public Map<EquipmentType, Equippable> getEquipment() {
         return equipment;
     }

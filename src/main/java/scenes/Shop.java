@@ -44,9 +44,7 @@ public class Shop implements SceneFactory {
         addActionToBuyButton(buyButton, sceneManager);
 
         Button exitButton = ButtonPersonalizer.newButton("Exit");
-        exitButton.setOnAction(e -> {
-            sceneManager.switchScene(SceneManager.SceneType.GAME);
-        });
+        exitButton.setOnAction(e -> sceneManager.switchScene(SceneManager.SceneType.GAME));
 
         this.selectionPane.getChildren().addAll(buyButton, exitButton);
     }

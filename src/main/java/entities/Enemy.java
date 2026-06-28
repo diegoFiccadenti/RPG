@@ -5,8 +5,6 @@ import components.Inventory;
 import components.StatsHandler;
 import components.EquipmentHandler;
 import mechanics.Attack;
-import mechanics.PhysicalAttack;
-import mechanics.Spell;
 
 public class Enemy extends Character implements Fighter, Lootable {
 
@@ -36,33 +34,13 @@ public class Enemy extends Character implements Fighter, Lootable {
     public AttackSetHandler getAttacks() {return attackSet;}
 
     public void attack(Fighter target, Attack attackUsed){
-        int totalDamage = 0;
-        totalDamage += attackUsed.getPower();
-        if (attackUsed instanceof Spell) {
-            int currentMana = personalStats.getMP().getCurrentValue();
-            if (currentMana >= ((Spell) attackUsed).getRequiredMana()) {
-                totalDamage += personalStats.getBasicMagicAttack();
-                totalDamage += equipment.getMagicAttack();
-                totalDamage -= target.getEquipment().getMagicDefence();
-                personalStats.getMP().decreaseCurrent(((Spell) attackUsed).getRequiredMana());
-            }
-            else {
-                totalDamage = 0;
-            }
-
-        }
-        else if (attackUsed instanceof PhysicalAttack) {
-            totalDamage += personalStats.getBasicMeleeAttack();
-            totalDamage += equipment.getMeleeAttack();
-            totalDamage -= target.getEquipment().getMeleeDefence();
-        }
-        target.getCombatStats().getHP().decreaseCurrent(totalDamage);
+        attackUsed.use(this, target);
     }
 
     public void dropLoot(Looter looter) {
         looter.getCoins().increaseCurrent(this.getCoins().getCurrentValue());
         if (looter instanceof Levelable) {
-            ((Levelable) looter).getXP().increaseCurrent(DROPPED_XP);
+            ((Levelable) looter).gainXP(DROPPED_XP);
         }
     }
 }

@@ -7,11 +7,11 @@
   "level": 0,
   "personalStats": {
     "skillStats": {
-      "ABILITY_POINTS": 0,
+      "INTELLIGENCE": 5,
+      "STRENGTH": 5,
       "CHARISMA": 5,
       "VITALITY": 5,
-      "INTELLIGENCE": 5,
-      "STRENGTH": 5
+      "ABILITY_POINTS": 0
     },
     "HP": {
       "currentValue": 100,
@@ -35,8 +35,32 @@
     "magicDefence": 0
   },
   "attackSet": {
-    "knownAttacks": [],
-    "attackSet": {}
+    "knownAttacks": [
+      {
+        "name": "Punch",
+        "power": 3,
+        "type": "PhysicalAttack"
+      },
+      {
+        "name": "Basic magic attack",
+        "power": 5,
+        "requiredMana": 10,
+        "type": "Spell"
+      }
+    ],
+    "attackSet": {
+      "SLOT1": {
+        "name": "Punch",
+        "power": 3,
+        "type": "PhysicalAttack"
+      },
+      "SLOT2": {
+        "name": "Basic magic attack",
+        "power": 5,
+        "requiredMana": 10,
+        "type": "Spell"
+      }
+    }
   },
   "name": "NomeDiProva",
   "inventory": {

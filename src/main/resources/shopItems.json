@@ -370,7 +370,8 @@
   {
     "taughtAttack": {
       "name": "Slash",
-      "power": 6
+      "power": 6,
+      "type": "PhysicalAttack"
     },
     "name": "Learned attack: slash",
     "description": "A simple swing of the weapon",
@@ -380,7 +381,8 @@
   {
     "taughtAttack": {
       "name": "Lunge",
-      "power": 8
+      "power": 8,
+      "type": "PhysicalAttack"
     },
     "name": "Learned attack: lunge",
     "description": "Lunge at your opponent",
@@ -390,7 +392,8 @@
   {
     "taughtAttack": {
       "name": "Heavy slash",
-      "power": 11
+      "power": 11,
+      "type": "PhysicalAttack"
     },
     "name": "Learned attack: Heavy slash",
     "description": "An heavy swing of the weapon",
@@ -401,7 +404,8 @@
     "taughtAttack": {
       "name": "Basic magic attack",
       "power": 5,
-      "requiredMana": 10
+      "requiredMana": 10,
+      "type": "Spell"
     },
     "name": "Learned attack: Basic magic attack",
     "description": "A simple release of mana, good to start learning magic",
@@ -412,7 +416,8 @@
     "taughtAttack": {
       "name": "Fireball",
       "power": 8,
-      "requiredMana": 20
+      "requiredMana": 20,
+      "type": "Spell"
     },
     "name": "Learned attack: Fireball",
     "description": "Burn the enemies!",
@@ -423,7 +428,8 @@
     "taughtAttack": {
       "name": "Storm",
       "power": 15,
-      "requiredMana": 45
+      "requiredMana": 45,
+      "type": "Spell"
     },
     "name": "Learned attack: Storm",
     "description": "Generate a storm that will strike the enemies",

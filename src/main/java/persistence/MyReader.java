@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import entities.Player;
+import items.Equippable;
 import items.Item;
+import mechanics.Attack;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +17,9 @@ import java.util.List;
 public class MyReader {
 
     private static final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(Item.class, new ItemDeserializer())
+            .registerTypeHierarchyAdapter(Item.class, new ItemDeserializer())
+            .registerTypeAdapter(Equippable.class, new ItemDeserializer())
+            .registerTypeHierarchyAdapter(Attack.class, new AttackDeserializer())
             // used because items are saved inside inventory with a HashMap<Item, Integer>
             .enableComplexMapKeySerialization()
             .setPrettyPrinting()

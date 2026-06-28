@@ -4,7 +4,7 @@ import entities.Fighter;
 
 public interface Attack {
 
-    void use(Fighter target);
+    void use(Fighter user, Fighter target);
 
     String getName();
 

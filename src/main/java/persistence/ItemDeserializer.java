@@ -1,35 +1,26 @@
 package persistence;
 
 import com.google.gson.*;
-import items.Item;
-import items.Potion;
-import items.EquipmentPiece;
-import items.SkillBook;
+import items.*;
 import mechanics.Attack;
-import mechanics.PhysicalAttack;
-import mechanics.Spell;
 
 import java.lang.reflect.Type;
 
 public class ItemDeserializer implements JsonDeserializer<Item> {
 
     private static final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(Attack.class, new JsonDeserializer<Attack>() {
-                public Attack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                    JsonObject object = json.getAsJsonObject();
-                    if (object.has("requiredMana")) {
-                        return new Gson().fromJson(object, Spell.class);
-                    } else {
-                        return new Gson().fromJson(object, PhysicalAttack.class);
-                    }
-                }
-            })
+            .registerTypeAdapter(Equippable.class, new ItemDeserializer())
+            .registerTypeHierarchyAdapter(Attack.class, new AttackDeserializer())
             .create();
 
     @Override
     public Item deserialize (JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
         JsonObject jsonObject = json.getAsJsonObject();
+
+        if (!jsonObject.has("itemType") || jsonObject.get("itemType").isJsonNull()) {
+            throw new JsonParseException("Missing or invalid itemType");
+        }
 
         String itemType = jsonObject.get("itemType").getAsString();
 

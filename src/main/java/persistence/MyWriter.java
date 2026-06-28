@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import entities.Player;
+import items.Equippable;
 import items.Item;
+import mechanics.Attack;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,7 +18,9 @@ import java.util.List;
 public class MyWriter {
 
     private static final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(Item.class, new ItemSerializer())
+            .registerTypeHierarchyAdapter(Item.class, new ItemSerializer())
+            .registerTypeAdapter(Equippable.class, new ItemSerializer())
+            .registerTypeHierarchyAdapter(Attack.class, new AttackSerializer())
             // used because items are saved inside inventory with a HashMap<Item, Integer>
             .enableComplexMapKeySerialization()
             .setPrettyPrinting()

@@ -35,6 +35,10 @@ public class CombatPane implements PlayerObserver {
         HBox playerMPHBox = new HBox();
         HBox opponentHPHBox = new HBox();
         HBox opponentMPHBox = new HBox();
+        playerHPHBox.setSpacing(10);
+        playerMPHBox.setSpacing(10);
+        opponentHPHBox.setSpacing(10);
+        opponentMPHBox.setSpacing(10);
 
         playerHPProgressBar = new ProgressBar();
         playerMPProgressBar = new ProgressBar();
@@ -61,12 +65,10 @@ public class CombatPane implements PlayerObserver {
         opponentSprite.setPreserveRatio(true);
         opponentSprite.setFitHeight(150);
 
-        Label HPLabel = new Label("HP");
-        Label MPLabel = new Label("MP");
-        playerHPHBox.getChildren().addAll(HPLabel, playerHPProgressBar);
-        playerMPHBox.getChildren().addAll(MPLabel, playerMPProgressBar);
-        opponentHPHBox.getChildren().addAll(HPLabel, opponentHPProgressBar);
-        opponentMPHBox.getChildren().addAll(MPLabel, opponentMPProgressBar);
+        playerHPHBox.getChildren().addAll(new Label("HP"), playerHPProgressBar);
+        playerMPHBox.getChildren().addAll(new Label("MP"), playerMPProgressBar);
+        opponentHPHBox.getChildren().addAll(new Label("HP"), opponentHPProgressBar);
+        opponentMPHBox.getChildren().addAll(new Label("MP"), opponentMPProgressBar);
 
         refreshCharactersBars();
 
